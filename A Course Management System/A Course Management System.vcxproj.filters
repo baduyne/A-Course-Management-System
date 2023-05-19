@@ -21,8 +21,14 @@
     <ClCompile Include="lib.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib1.cpp">
       <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -32,5 +38,25 @@
     <ClInclude Include="lib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="lib1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Danh_sach_cac_nam_hoc.csv">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="2020-2021.csv">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="2020-2021hocki1.csv">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="danh_sach_tai_khoan_sv.csv">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="danh_sach_tai_khoan_gv.csv">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

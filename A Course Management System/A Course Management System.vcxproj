@@ -102,7 +102,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -129,11 +129,21 @@
   <ItemGroup>
     <ClCompile Include="do_hoa.cpp" />
     <ClCompile Include="lib.cpp" />
+    <ClCompile Include="lib1.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="do_hoa.h" />
     <ClInclude Include="lib.h" />
+    <ClInclude Include="lib1.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="2020-2021.csv" />
+    <None Include="2020-2021hocki1.csv" />
+    <None Include="Danh_sach_cac_nam_hoc.csv" />
+    <None Include="danh_sach_tai_khoan_gv.csv" />
+    <None Include="danh_sach_tai_khoan_sv.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

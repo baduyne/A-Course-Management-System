@@ -140,7 +140,7 @@ void nd_gv(int x, int y, tai_khoan temp)
 	char nd2[40] = "Tao nam hoc ";
 	char nd3[40] = "Tao hoc ki ";
 	char nd4[40] = "Tao 1 lop hoc";
-	char nd5[40] = "Danh sach cac khoa hoc";
+	char nd5[40] = "Cac khoa hoc";
 	char dmk[40] = "Doi mat khau";
 	char dx[40] = "Dang xuat";
 	ToMau(x, y, nd1, 2);
@@ -153,14 +153,14 @@ void nd_gv(int x, int y, tai_khoan temp)
 }
 void log_in(list_log_in& l, tai_khoan& infor, int x , int y )
 {
-	noi_dung1();
+	noi_dung1(x,y);
 	if (click_sv_gv(x, y, 2) == y + 1)
 	{
 		while (true)
 		{
 			char tf[100] = "danh_sach_tai_khoan_sv.csv";
 			system("cls");
-			noi_dung2();
+			noi_dung2(x,y);
 			if (click_dn_dk(x, y, 2) == y + 1)
 			{
 				system("cls");
@@ -196,7 +196,7 @@ void log_in(list_log_in& l, tai_khoan& infor, int x , int y )
 		{
 			system("cls");
 			char tf[100] = "danh_sach_tai_khoan_gv.csv";
-			noi_dung2();
+			noi_dung2(x,y);
 			if (click_dn_dk(x, y, 2) == y + 1)
 			{
 				system("cls");
@@ -227,14 +227,14 @@ void log_in(list_log_in& l, tai_khoan& infor, int x , int y )
 		}
 	}
 }
-void noi_dung2()
+void noi_dung2(int x , int y)
 {
 	char a[100] = "POTAL HCMUS";
 	ToMau(40, 2, a, 2);
 	char nd1[100] = " Log In ";
 	char nd2[100] = " Sign Up ";
-	ToMau(10, 5, nd1, 2);
-	ToMau(10, 6, nd2, 2);
+	ToMau(x, y, nd1, 2);
+	ToMau(x, y+1, nd2, 2);
 }
 int click_dn_dk(int x, int y, int sl)
 {
@@ -282,7 +282,6 @@ int click_sv_gv(int x, int y, int sl)
 		if (c == 13)
 		{
 			return py;
-			break;
 		}
 		if (c == 80)
 		{
@@ -316,14 +315,14 @@ void xoa_bieu_tuong_click(int x, int y, int w)
 	gotoxy(x + w, y);
 	cout << char(32);//174
 }
-void noi_dung1()
+void noi_dung1( int x , int y )
 {
 	char a[100] = "POTAL HCMUS";
 	ToMau(40, 2, a, 2);
 	char nd1[100] = "Teacher";
 	char nd2[100] = "Student";
-	ToMau(10, 5, nd1, 2);
-	ToMau(10, 6, nd2, 2);
+	ToMau(x, y, nd1, 2);
+	ToMau(x, y+1, nd2, 2);
 }
 
 void dk(int x, int y, char tf[])
