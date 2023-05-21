@@ -1,17 +1,17 @@
 #include"lib1.h"
 using namespace std;
-void init_ds_mh(ds_mon_hoc & mh)
+void init_ds_mh(ds_khoa_hoc & mh)
 {
 	mh.head = NULL;
 }
-node_mon_hoc * tao_node_mh(mon_hoc a)
+node_khoa_hoc * tao_node_mh(khoa_hoc a)
 {
-	node_mon_hoc* add = new node_mon_hoc;
+	node_khoa_hoc* add = new node_khoa_hoc;
 	add->data = a;
 	add->next = NULL;
 	return add;
 }
-void addfirst(ds_mon_hoc& mh, node_mon_hoc* add)
+void addfirst(ds_khoa_hoc& mh, node_khoa_hoc* add)
 {
 	if (mh.head == NULL)
 		mh.head = add;
@@ -21,13 +21,13 @@ void addfirst(ds_mon_hoc& mh, node_mon_hoc* add)
 		mh.head = add;
 	}
 }
-void addlast_mh(ds_mon_hoc& mh, node_mon_hoc* add)
+void addlast_mh(ds_khoa_hoc& mh, node_khoa_hoc* add)
 {
 	if (mh.head == NULL)
 		mh.head = add;
 	else
 	{
-		node_mon_hoc* t = mh.head;
+		node_khoa_hoc* t = mh.head;
 		while (t->next != NULL)
 		{
 			t = t->next;
@@ -35,7 +35,7 @@ void addlast_mh(ds_mon_hoc& mh, node_mon_hoc* add)
 		t->next = add;
 	}
 }
-void xuat_ds_mon_hoc(ds_mon_hoc l, int x, int y)
+void xuat_ds_khoa_hoc(ds_khoa_hoc l, int x, int y)
 {
 	x += 30;
 	gotoxy(x , y);
@@ -49,45 +49,47 @@ void xuat_ds_mon_hoc(ds_mon_hoc l, int x, int y)
 		y++;
 	}
 }
-void nhap_hoc_ki(hoc_ki& h, int x, int y)
+void nhap_hoc_ki(hoc_ki& h, int x, int y, nam_hoc a)
 {
-	x = x + 30;
+	system("cls");
+	box(x, y, 4, 35);
 	textcolor(2);
 	gotoxy(x, y);
 	cout << "Nhap ten hoc ki : ";
-	cin.getline(h.ten, 100);
+	cin.getline(h.ten, 20);
+	strcpy(h.nien_khoa, a.ten);
 	y++;
 	gotoxy(x, y);
-	cout << "Niem khoa : ";
-	cin.getline(h.nien_khoa, 100);
+	cout << "Niem Khoa :" << h.nien_khoa;
 	y++;
 	gotoxy(x, y);
 	cout << "Ngay bat dau : ";
-	cin.getline(h.day_began, 100);
+	cin.getline(h.day_began, 20);
 	y++;
 	gotoxy(x, y);
 	cout << "Ngay ket thuc ";
-	cin.getline(h.day_end, 100);
+	cin.getline(h.day_end, 20);
 }
-void nhap_mon_hoc(mon_hoc& a, int x , int y)
+void nhap_khoa_hoc(khoa_hoc& a, int x , int y)
 {
-	x = x + 30;
+	system("cls");
+	box(x, y, 7, 50);
 	textcolor(2);
 	gotoxy(x, y);
 	cout << "Ma khoa : ";
-	cin.getline(a.ma_khoa, 100);
+	cin.getline(a.ma_khoa, 20);
 	y++;
 	gotoxy(x, y);
 	cout << "Ten khoa hoc : ";
-	cin.getline(a.ten_khoa_hoc, 100);
+	cin.getline(a.ten_khoa_hoc, 50);
 	y++;
 	gotoxy(x, y);
 	cout << "Ten lop hoc : ";
-	cin.getline(a.ten_lop_hoc, 100);
+	cin.getline(a.ten_lop_hoc, 50);
 	y++;
 	gotoxy(x, y);
-	cout << "Ten giao vien : ";
-	cin.getline(a.ten_giao_vien, 100);
+	cout << "Giao vien : ";
+	cin.getline(a.ten_giao_vien, 50);
 	y++;
 	gotoxy(x, y);
 	cout << "So tin chi : ";
@@ -96,11 +98,11 @@ void nhap_mon_hoc(mon_hoc& a, int x , int y)
 	y++;
 	gotoxy(x, y);
 	cout << "Ngay hoc trong tuan : ";
-	cin.getline(a.ngay, 100);
+	cin.getline(a.ngay, 10);
 	y++;
 	gotoxy(x, y);
 	cout << "Ca hoc : ";
-	cin.getline(a.ca_hoc, 100);
+	cin.getline(a.ca_hoc, 20);
 }
 void init_ds_sinh_vien(ds_sinh_vien & sv)
 {
@@ -140,25 +142,26 @@ void addlast_sv(ds_sinh_vien& mh, node_sv* add)
 void nhap_sinh_vien(sinh_vien& a, int x ,int y)
 {
 	system("cls");
+	box(x, y, 5, 30);
 	gotoxy(x, y);
-	cout << "Ma so sinh vien :";
-	cin.getline(a.ma_sinh_vien, 100);
+	cout << "Ma so :";
+	cin.getline(a.ma_sinh_vien, 10);
 	y++;
 	gotoxy(x, y);
 	cout << "Ho va ten : ";
-	cin.getline(a.ho_ten, 100);
+	cin.getline(a.ho_ten, 50);
 	y++;
 	gotoxy(x, y);
 	cout << "Gioi tinh : ";
-	cin.getline(a.gioi_tinh, 100);
+	cin.getline(a.gioi_tinh, 10);
 	y++;
 	gotoxy(x, y);
 	cout << "Ngay sinh : ";
-	cin.getline(a.ngay_sinh, 100);
+	cin.getline(a.ngay_sinh, 20);
 	y++;
 	gotoxy(x, y);
-	cout << "So chung minh dan nhan (hoac cccd) : ";
-	cin.getline(a.cmnd, 100);
+	cout << "So CMND : ";
+	cin.getline(a.cmnd, 20);
 }
 void make_address(char a[])
 {
@@ -172,47 +175,42 @@ void make_address(char a[])
 		}
 	}
 }
-void nhap_sinh_vien_tu_file(ds_sinh_vien& l, char ten_file[100])
+bool nhap_sinh_vien_tu_file(ds_sinh_vien& l, char ten_file[50])
 {
 	sinh_vien a;
 	make_address(ten_file);
 	ifstream filesv;
 	filesv.open(ten_file);
-	/*filesv.seekg(56, ios_base::beg);*/
 	if (filesv.fail())
 	{
-		cout << "Khong the mo tep ";
-		return;
+		
+		return false;
 	}
 	// bo qua hang dau tien
-	char ar[100];
-	filesv.getline(ar, 100, ',');
-	filesv.getline(ar, 100, ',');
-	filesv.getline(ar, 100, ',');
-	filesv.getline(ar, 100, ',');
-	filesv.getline(ar, 100, ',');
-	filesv.getline(ar, 100, '\n');
+	char ar[50];
+	filesv.getline(ar, 50, '\n');
 	while (!filesv.eof())
 	{
-		char r[100];
-		filesv.getline(r, 100, ',');
+		char r[50];
+		filesv.getline(r, 50, ',');
 		if (strcmp(r," ") == 0)
 			break;
-		filesv.getline(a.ma_sinh_vien, 100, ',');
+		filesv.getline(a.ma_sinh_vien, 10, ',');
 		xoa_dau_cach(a.ma_sinh_vien);
-		filesv.getline(a.ho_ten, 100, ',');
+		filesv.getline(a.ho_ten, 50, ',');
 		xoa_dau_cach(a.ho_ten);
-		filesv.getline(a.gioi_tinh, 100, ',');
+		filesv.getline(a.gioi_tinh, 10, ',');
 		xoa_dau_cach(a.gioi_tinh);
-		filesv.getline(a.ngay_sinh, 100, ',');
+		filesv.getline(a.ngay_sinh, 20, ',');
 		xoa_dau_cach(a.ngay_sinh);
-		filesv.getline(a.cmnd, 100, '\n');
+		filesv.getline(a.cmnd, 20, '\n');
 		xoa_dau_cach(a.cmnd);
 		xoa_dau_phay(a.cmnd);
 		node_sv* add = tao_node_sv(a);
 		addlast_sv(l, add);
 	}
 	filesv.close();
+	return true;
 }
 void xoa_dau_phay(char a[])
 {
@@ -252,6 +250,15 @@ void xuat_ds_sinh_vien(ds_sinh_vien l)
 		l.head = l.head->next;
 	}
 }
+void ghi_1_sinh_vien_vao_file(nam_hoc a, hoc_ki b, khoa_hoc c, sinh_vien infor)
+{
+	char address[30];
+	strcpy(address, a.ten);
+	strcpy(address, c.ma_khoa);
+	strcpy(address, c.ten_khoa_hoc);
+	xoa_dau_cach(address);
+	make_link(address);
+}
 void make_link(char a[])
 {
 	strcat(a ,".csv");
@@ -284,7 +291,7 @@ bool kiem_tra_file_empty(char ten_file[])
 }
 void ghi_1_hoc_ki_vao_file(hoc_ki h, nam_hoc a)
 {
-	char address[100];
+	char address[30];
 	strcpy(address, a.ten);
 	xoa_dau_cach(address);
 	make_link(address);
@@ -301,7 +308,7 @@ void doc_ds_hoc_ki_tu_file(hoc_ki *&arr,nam_hoc a, int& sl)
 {
 	int i = 0;
 	ifstream filehkread;
-	char address[100];
+	char address[30];
 	strcpy(address, a.ten);
 	xoa_dau_cach(address);
 	make_link(address);
@@ -309,10 +316,10 @@ void doc_ds_hoc_ki_tu_file(hoc_ki *&arr,nam_hoc a, int& sl)
 	filehkread.seekg(49, ios_base::beg);
 	while (!filehkread.eof())
 	{
-		filehkread.getline(arr[i].ten,100,',');
-		filehkread.getline(arr[i].nien_khoa, 100, ',');
-		filehkread.getline(arr[i].day_began, 100, ',');
-		filehkread.getline(arr[i].day_end, 100, '\n');
+		filehkread.getline(arr[i].ten,50,',');
+		filehkread.getline(arr[i].nien_khoa, 50, ',');
+		filehkread.getline(arr[i].day_began, 50, ',');
+		filehkread.getline(arr[i].day_end, 50, '\n');
 		i++;
 	}
 	filehkread.close();
@@ -324,15 +331,17 @@ void xuat_hoc_ki(hoc_ki h, int x , int y )
 }
 void xuat_ds_hoc_ki(hoc_ki* a,int n, int x, int y)
 {
+	system("cls");
+	box(x, y, n, 24);
 	for (int i = 0; i < n; i++)
 	{
 		cout <<left<< a[i].ten << setw(10)<<right<< a[i].nien_khoa << endl;
 	}
 }
-void ghi_ds_mon_hoc(hoc_ki h, mon_hoc a, nam_hoc b)
+void ghi_ds_khoa_hoc(hoc_ki h, khoa_hoc a, nam_hoc b)
 {
 	strcat(b.ten, h.ten);
-	char address[100];
+	char address[30];
 	strcpy(address, b.ten);
 	xoa_dau_cach(address);
 	make_link(address);
@@ -343,42 +352,44 @@ void ghi_ds_mon_hoc(hoc_ki h, mon_hoc a, nam_hoc b)
 	filemh << endl << a.ma_khoa << ',' << a.ten_khoa_hoc << ',' << a.ten_lop_hoc << ',' << a.ten_giao_vien << ',' << a.so_tin_chi <<','<< a.so_luong << ',' << a.ngay << ',' << a.ca_hoc;
 	filemh.close();
 }
-void doc_ds_mon_hoc_tu_file(hoc_ki h,nam_hoc b , ds_mon_hoc &l)
+void doc_ds_khoa_hoc_tu_file(hoc_ki h,nam_hoc b , ds_khoa_hoc &l)
 {
 	strcat(b.ten, h.ten);
-	char ad[100];
+	char ad[30];
 	strcpy(ad, b.ten);
 	xoa_dau_cach(ad);
 	make_link(ad);
-	mon_hoc a;
+	khoa_hoc a;
 	ifstream filemhread;
 	filemhread.open(ad);
 	filemhread.seekg(99, ios_base::beg);// bo qua dong dau tien
 	while (!filemhread.eof())
 	{
-		filemhread.getline(a.ma_khoa, 100, ',');
-		filemhread.getline(a.ten_khoa_hoc, 100, ',');
-		filemhread.getline(a.ten_lop_hoc, 100, ',');
-		filemhread.getline(a.ten_giao_vien, 100, ',');
+		filemhread.getline(a.ma_khoa, 50, ',');
+		filemhread.getline(a.ten_khoa_hoc, 50, ',');
+		filemhread.getline(a.ten_lop_hoc, 50, ',');
+		filemhread.getline(a.ten_giao_vien, 50, ',');
 		filemhread >> a.so_tin_chi;
-		/*char s[100];
-		filemhread.getline(s, 100, ',');*/
+		/*char s[50];
+		filemhread.getline(s, 50, ',');*/
 		filemhread.ignore();
 		filemhread >> a.so_luong;
 		filemhread.ignore();
 		filemhread.getline(a.ngay, 50, ',');
 		filemhread.getline(a.ca_hoc, 50, '\n');
-		node_mon_hoc* add = tao_node_mh(a);
+		node_khoa_hoc* add = tao_node_mh(a);
 		addlast_mh(l, add);
 	}
 	filemhread.close();
 }
 void nhap_nam_hoc(nam_hoc& nh,int x , int y)
 {
+	system("cls");
+	box(x, y, 1, 30);
 	textcolor(2);
-	gotoxy(x + 30, y);
-	cout << "Nam hoc : ";
-	cin.getline(nh.ten,100);
+	gotoxy(x , y);
+	cout << "Niem khoa : ";
+	cin.getline(nh.ten,50);
 }
 void xuat_nam_hoc(nam_hoc& nh)
 {
@@ -386,7 +397,7 @@ void xuat_nam_hoc(nam_hoc& nh)
 }
 void ghi_1_nam_hoc_vao_file(nam_hoc a)
 {
-	char ten_file[100] = "filenh";
+	char ten_file[20] = "filenh";
 	ofstream filenh;
 	if (kiem_tra_file_empty(ten_file))
 		filenh << "Nam hoc";
@@ -420,14 +431,16 @@ void doc_ds_nam_hoc_tu_file(nam_hoc*& arr, int &size)
 	{
 		if (i == size - 1)
 			cap_phat_them_nam_hoc(arr, size);
-		fileoutnh.getline(arr[i].ten, 100, '\n');
+		fileoutnh.getline(arr[i].ten, 50, '\n');
 		i++;
 	}
 	fileoutnh.close();
 	size = i;
 }
-void xuat_ds_nam_hoc(nam_hoc* a, int n)
+void xuat_ds_nam_hoc(nam_hoc* a, int n, int x , int y)
 {
+	system("cls");
+	box(x, y, n, 35);
 	for (int i = 0; i < n; i++)
 	{
 		xuat_nam_hoc(a[i]);
@@ -435,7 +448,12 @@ void xuat_ds_nam_hoc(nam_hoc* a, int n)
 }
 void nd_nam_hoc(nam_hoc*& a, int sl, int x , int y )
 {
-	x = x + 30;
+	system("cls");
+	box(x, y, sl, 25);
+	textcolor(2);
+	gotoxy(x-1, y);
+	cout << "Niem Khoa :";
+	y++;
 	for (int i = 0; i < sl; i++)
 	{
 		ToMau(x, y, a[i].ten, 2);
@@ -444,10 +462,26 @@ void nd_nam_hoc(nam_hoc*& a, int sl, int x , int y )
 }
 void nd_hoc_ki(hoc_ki*& a, int sl, int x, int y)
 {
-	x = x + 30;
+	system("cls");
+	box(x, y, sl, 35);
 	for (int i = 0; i < sl; i++)
 	{
 		ToMau(x, y, a[i].ten, 2);
 		y++;
 	}
+}
+void nd_lop_hoc(int x, int y)
+{
+	system("cls");
+	box(x, y, 5, 40);
+	char nd1[20] = "Tao 1 lop hoc";
+	char nd2[20] = "Them 1 sinh vien";
+	char nd3[30] = "Them danh sach sinh vien";
+	char nd4[20] = "Xoa 1 sinh vien";
+	char nd5[20] = "Xoa 1 khoa hoc";
+	ToMau(x, y, nd1, 2);
+	ToMau(x, y+1, nd2, 2);
+	ToMau(x, y+2, nd3, 2);
+	ToMau(x, y+3, nd4, 2);
+	ToMau(x, y+4, nd5, 2);
 }

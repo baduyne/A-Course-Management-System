@@ -2,7 +2,8 @@
 #include "do_hoa.h"
 int main()
 {
-	int x = 10, y = 5;
+	textcolor(2);
+	int x = 40, y = 10;
 	list_log_in l; 
 	tai_khoan inf;
 	khoi_tao(l);

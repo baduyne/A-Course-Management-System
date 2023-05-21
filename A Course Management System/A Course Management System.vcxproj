@@ -130,6 +130,7 @@
     <ClCompile Include="do_hoa.cpp" />
     <ClCompile Include="lib.cpp" />
     <ClCompile Include="lib1.cpp" />
+    <ClCompile Include="lib2.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="test.cpp" />
   </ItemGroup>
@@ -137,10 +138,12 @@
     <ClInclude Include="do_hoa.h" />
     <ClInclude Include="lib.h" />
     <ClInclude Include="lib1.h" />
+    <ClInclude Include="lib2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="2020-2021.csv" />
     <None Include="2020-2021hocki1.csv" />
+    <None Include="3030-3031.csv" />
     <None Include="Danh_sach_cac_nam_hoc.csv" />
     <None Include="danh_sach_tai_khoan_gv.csv" />
     <None Include="danh_sach_tai_khoan_sv.csv" />

@@ -1,19 +1,24 @@
 ﻿#include "lib.h"
 // de 2 ham option tren cung de code 
-void option_giao_vien(tai_khoan& temp, list_log_in l, int x, int y)
+void option_teacher(tai_khoan& temp, list_log_in l, int x, int y)
 {
-	char tf[100] = "danh_sach_tai_khoan_gv.csv";
+	char tf[50] = "danh_sach_tai_khoan_gv.csv";
 	int sl = 7;
+	int w = 15;
 	while (true)
 	{
 		system("cls");
 		nd_gv(x, y, temp);
-		int n = click(x, y, sl);
+		int n = click(x, y, sl,w);
 		if (n == y + 6)
 		{
 			system("cls");
 			clearn(l);
 			log_in(l, temp, x, y);
+		}
+		else if (n == y)
+		{
+			infor(x, y, temp);
 		}
 		else if (n == y + 5)
 		{
@@ -24,62 +29,42 @@ void option_giao_vien(tai_khoan& temp, list_log_in l, int x, int y)
 		else if (n == y + 4)
 		{
 			int sl, sl_hk;
-			ds_mon_hoc ds_mh;
+			ds_khoa_hoc ds_mh;
 			init_ds_mh(ds_mh);
-			mon_hoc mh;
+			khoa_hoc mh;
 			nam_hoc* nh = new nam_hoc[2];
 			doc_ds_nam_hoc_tu_file(nh, sl);
-			char a[10] = "Nam Hoc";
-			ToMau(x + 30, y, a, 2);
-			nd_nam_hoc(nh, sl, x, y + 1);
-			int cl_nam_hoc = click(x + 29, y + 1, sl) - y - 1;
+			nd_nam_hoc(nh, sl, x, y );
+			int cl_nam_hoc = click(x, y+1, sl,w ) - y - 1;
 			hoc_ki* hk = new hoc_ki[3];
 			doc_ds_hoc_ki_tu_file(hk, nh[cl_nam_hoc], sl_hk);
 			system("cls");
 			nd_gv(x, y, temp);
 			nd_hoc_ki(hk, sl_hk, x, y);
-			int cl_hoc_ki = click(x + 29, y, sl_hk) - y;
+			int cl_hoc_ki = click(x, y, sl_hk,w) - y;
 			system("cls");
 			nd_gv(x, y, temp);
-			doc_ds_mon_hoc_tu_file(hk[cl_hoc_ki], nh[cl_nam_hoc], ds_mh);
-         	xuat_ds_mon_hoc(ds_mh, x,y);
+			doc_ds_khoa_hoc_tu_file(hk[cl_hoc_ki], nh[cl_nam_hoc], ds_mh);
+         	xuat_ds_khoa_hoc(ds_mh, x,y);
 			char c = _getch();
 		}
 		else if (n == y + 3)
 		{
-			int sl, sl_hk;
-			mon_hoc mh;
-			nam_hoc* nh = new nam_hoc[2];
-			doc_ds_nam_hoc_tu_file(nh, sl);
-			char a[10] = "Nam Hoc";
-			ToMau(x + 30, y, a, 2);
-			nd_nam_hoc(nh, sl, x, y + 1);
-			int cl_nam_hoc = click(x + 29, y + 1, sl) - y - 1;
-			hoc_ki* hk = new hoc_ki[3];
-			doc_ds_hoc_ki_tu_file(hk, nh[cl_nam_hoc], sl_hk);
-			system("cls");
-			nd_gv(x, y, temp);
-			nd_hoc_ki(hk, sl_hk, x, y);
-			int cl_hoc_ki= click(x + 29, y, sl_hk) - y;
-			system("cls");
-			nd_gv(x, y, temp);
-			nhap_mon_hoc(mh, x, y);
-			ghi_ds_mon_hoc(hk[cl_hoc_ki], mh, nh[cl_nam_hoc]);
-			
+			nd_lop_hoc(x, y);
+			int cl_lh = click(x, y, 5, 30);
+			xu_ly_lop_hoc(cl_lh,x,y);
 		}
 		else if (n == y + 2)
 		{
 			int size=0;
 			nam_hoc* nh = new nam_hoc[2];
 			doc_ds_nam_hoc_tu_file(nh, sl);
-			char a[10] = "Nam Hoc";
-			ToMau(x+30, y, a, 2);
-			nd_nam_hoc(nh, sl, x, y+1);
-			int cl = click(x+29, y+1, sl) - y-1;
+			nd_nam_hoc(nh, sl, x, y);
+			int cl = click(x, y+1, sl,w) - y-1;
 			hoc_ki h;
 			system("cls");
 			nd_gv(x, y, temp);
-			nhap_hoc_ki(h,x, y);
+			nhap_hoc_ki(h,x, y,nh[cl]);
 			ghi_1_hoc_ki_vao_file(h,nh[cl]);
 		}
 		else if (n == y + 1)
@@ -90,17 +75,21 @@ void option_giao_vien(tai_khoan& temp, list_log_in l, int x, int y)
 		}
 	}
 }
-void option_sinh_vien(tai_khoan temp, list_log_in l, int x, int y)
+void option_student(tai_khoan temp, list_log_in l, int x, int y)
 {
-	char tf[100] = "danh_sach_tai_khoan_sv.csv";
-	int sl = 7;
+	char tf[50] = "danh_sach_tai_khoan_sv.csv";
+	int sl = 7, w = 20;
 	nd_sv(x, y, temp);
-	int n = click(x, y, sl);
+	int n = click(x, y, sl,w);
 	if (n == y + 6)
 	{
 		system("cls");
 		clearn(l);
 		log_in(l, temp, x, y);
+	}
+	if (n == y)
+	{
+		infor(x, y, temp);
 	}
 	else if(n == y +5)
 	{
@@ -112,7 +101,7 @@ void option_sinh_vien(tai_khoan temp, list_log_in l, int x, int y)
 }
 void  nd_sv(int x, int y, tai_khoan temp)
 {
-	char hi[100] = "Hello, ";
+	char hi[20] = "Hello, ";
 	strcat(hi, temp.ho_ten);
 	ToMau(x - 4, y - 2, hi, 2);
 	char nd1[40] = "Xem Ho so";
@@ -129,17 +118,17 @@ void  nd_sv(int x, int y, tai_khoan temp)
 	ToMau(x, y + 4, nd5, 2);
 	ToMau(x, y + 5, dmk, 2);
 	ToMau(x, y + 6, dx, 2);
+	box(x, y - 2, 10, 35);
 }
 void nd_gv(int x, int y, tai_khoan temp)
 {
-	//  xin chao 
-	char hi[100] = "Hello, ";
+	char hi[50] = "Hello, ";
 	strcat(hi, temp.ho_ten);
 	ToMau(x - 4, y - 2, hi, 2);
 	char nd1[40] = "Xem Ho so";
 	char nd2[40] = "Tao nam hoc ";
 	char nd3[40] = "Tao hoc ki ";
-	char nd4[40] = "Tao 1 lop hoc";
+	char nd4[40] = "Lop hoc";
 	char nd5[40] = "Cac khoa hoc";
 	char dmk[40] = "Doi mat khau";
 	char dx[40] = "Dang xuat";
@@ -150,18 +139,21 @@ void nd_gv(int x, int y, tai_khoan temp)
 	ToMau(x, y + 4, nd5, 2);
 	ToMau(x, y + 5, dmk, 2);
 	ToMau(x, y + 6, dx, 2);
+	box(x, y-2, 10, 35);
 }
 void log_in(list_log_in& l, tai_khoan& infor, int x , int y )
 {
 	noi_dung1(x,y);
-	if (click_sv_gv(x, y, 2) == y + 1)
+	int cl = click(x, y, 2, 10);
+	if (cl == y + 1)
 	{
 		while (true)
 		{
-			char tf[100] = "danh_sach_tai_khoan_sv.csv";
+			char tf[50] = "danh_sach_tai_khoan_sv.csv";
 			system("cls");
-			noi_dung2(x,y);
-			if (click_dn_dk(x, y, 2) == y + 1)
+			noi_dung2(x, y);
+			int cl_1= click(x, y, 2, 10);
+			if (cl_1 == y + 1)
 			{
 				system("cls");
 				dk(x, y, tf);
@@ -172,32 +164,32 @@ void log_in(list_log_in& l, tai_khoan& infor, int x , int y )
 				doc_file(tf, l);
 				if (dn(l, x, y, tf, infor))
 				{
-					textcolor(2);
-					gotoxy(x, y + 3);
+					gotoxy(x+3, y + 2);
 					cout << "Successful !!";
-					Sleep(1000);
+					Sleep(500);
 					system("cls");
 					nd_sv(x, y, infor);
-					option_sinh_vien(infor, l, x,y);
+					option_student(infor, l, x,y);
 				}
 				else
 				{
 					textcolor(2);
-					gotoxy(x, y + 3);
+					gotoxy(x+3, y + 2);
 					cout << "Failure !! ";
-					Sleep(1000);
+					Sleep(500);
 				}
 			}
 		}
 	}
-	else if (click_sv_gv(x, y, 2) == y)
+	else if (cl == y)
 	{
 		while (true)
 		{
 			system("cls");
-			char tf[100] = "danh_sach_tai_khoan_gv.csv";
+			char tf[50] = "danh_sach_tai_khoan_gv.csv";
 			noi_dung2(x,y);
-			if (click_dn_dk(x, y, 2) == y + 1)
+			int cl_2 = click(x, y, 2, 10);
+			if (cl_2 == y + 1)
 			{
 				system("cls");
 				dk(x, y, tf);
@@ -208,20 +200,18 @@ void log_in(list_log_in& l, tai_khoan& infor, int x , int y )
 				system("cls");
 				if (dn(l, x, y, tf, infor))
 				{
-					textcolor(2);
-					gotoxy(x, y + 3);
+					gotoxy(x+3, y + 2);
 					cout << "Successful !!";
-					Sleep(1000);
+					Sleep(500);
 					system("cls");
 					nd_gv(x, y, infor);
-					option_giao_vien(infor,l, x,y);
+					option_teacher(infor,l, x,y);
 				}
 				else
 				{
-					textcolor(2);
-					gotoxy(x, y + 3);
+					gotoxy(x+3, y + 2);
 					cout << "Failure  !! ";
-					Sleep(1000);
+					Sleep(500);
 				}
 			}
 		}
@@ -229,128 +219,63 @@ void log_in(list_log_in& l, tai_khoan& infor, int x , int y )
 }
 void noi_dung2(int x , int y)
 {
-	char a[100] = "POTAL HCMUS";
-	ToMau(40, 2, a, 2);
-	char nd1[100] = " Log In ";
-	char nd2[100] = " Sign Up ";
+	char nd1[20] = " Log In ";
+	char nd2[20] = " Sign Up ";
 	ToMau(x, y, nd1, 2);
 	ToMau(x, y+1, nd2, 2);
+	box(x, y, 2, 20);
 }
-int click_dn_dk(int x, int y, int sl)
+void symbol_click(int x, int y, int w)
 {
-	int  px = x, py = y;
-	char c;
-	int w = 10;
-	bool a = true;
-	while (true)
-	{
-		bieu_tuong_click(px, py, w);
-		c = _getch();
-		xoa_bieu_tuong_click(px, py, w);
-		if (c == 13)
-		{
-			return py;
-		}
-		if (c == 80)
-		{
-			if (py == y + 1)
-				py = py - 1;
-			else
-				py = py + 1;
-			bieu_tuong_click(px, py, w);
-		}
-		else if (c == 72)
-		{
-			if (py == y)
-				py = py + 1;
-			else
-				py = py - 1;
-			bieu_tuong_click(px, py, w);
-		}
-
-	}
-}
-int click_sv_gv(int x, int y, int sl)
-{
-	int  px = x, py = y, w = 10;
-	char c;
-	while (true)
-	{
-		bieu_tuong_click(px, py, w);
-		c = _getch();
-		xoa_bieu_tuong_click(px, py, w);
-		if (c == 13)
-		{
-			return py;
-		}
-		if (c == 80)
-		{
-			if (py == y + 1)
-				py = py - 1;
-			else
-				py = py + 1;
-			bieu_tuong_click(px, py, w);
-		}
-		else if (c == 72)
-		{
-			if (py == y)
-				py = py + 1;
-			else
-				py = py - 1;
-			bieu_tuong_click(px, py, w);
-		}
-	}
-}
-void bieu_tuong_click(int x, int y, int w)
-{
-	gotoxy(x - 3, y);
+	gotoxy(x -3, y);
 	cout << char(175);//175
 	gotoxy(x + w, y);
 	cout << char(174);//174
 }
-void xoa_bieu_tuong_click(int x, int y, int w)
+void remove_symbol_click(int x, int y, int w)
 {
 	gotoxy(x - 3, y);
 	cout << char(32);//175
 	gotoxy(x + w, y);
 	cout << char(32);//174
 }
-void noi_dung1( int x , int y )
+void noi_dung1( int x , int y)
 {
-	char a[100] = "POTAL HCMUS";
-	ToMau(40, 2, a, 2);
-	char nd1[100] = "Teacher";
-	char nd2[100] = "Student";
+	char nd1[50] = "Teacher";
+	char nd2[50] = "Student";
 	ToMau(x, y, nd1, 2);
 	ToMau(x, y+1, nd2, 2);
+	box(x, y, 2, 20);
 }
 
 void dk(int x, int y, char tf[])
 {
-	char aff[100] = "POTAL HCMUS";
-	ToMau(40, 2, aff, 2);
-	textcolor(2);
+	box(x, y,5,35);
 	gotoxy(x, y);
 	tai_khoan a;
-	cout << " Ma so :";
-	cin.getline(a.ms, 50);
-	y++;
-	gotoxy(x, y);
-	cout << " Ho va ten :";
+	cout << "Your Name :";
 	cin.getline(a.ho_ten, 50);
 	y++;
 	gotoxy(x, y);
-	cout << " Ten dang nhap :";
+	cout << "ID :";
+	cin.getline(a.ms, 50);
+	y++;
+	gotoxy(x, y);
+	cout << "Birthday :";
+	cin.getline(a.ngay_sinh, 20);
+	y++;
+	gotoxy(x, y);
+	cout << "Username :";
 	cin.getline(a.user, 50);
 	y++;
 	gotoxy(x, y);
-	cout << " Mat khau :";
+	cout << "Password :";
 	cin.getline(a.key, 50);
 	xoa_xuong_dong(a.key);
 	ofstream file;
 	file.open(tf, ios::app);
 	// endl o dau de xoa /n
-	file << endl << a.ms << ',' << a.ho_ten << ',' << a.user << ',' << a.key;
+	file << endl << a.ms << ',' << a.ho_ten << ',' <<a.ngay_sinh<<',' << a.user << ',' << a.key;
 	file.close();
 }
 void khoi_tao(list_log_in& l)
@@ -401,10 +326,11 @@ void doc_file(char ten_file[], list_log_in& l)
 	filelogin.seekg(0, ios_base::beg);
 	while (!filelogin.eof())
 	{
-		filelogin.getline(t.ms, 100, ',');
-		filelogin.getline(t.ho_ten, 100, ',');
-		filelogin.getline(t.user, 100, ',');
-		filelogin.getline(t.key, 100, '\n');
+		filelogin.getline(t.ms, 50, ',');
+		filelogin.getline(t.ho_ten, 50, ',');
+		filelogin.getline(t.ngay_sinh, 50, ',');
+		filelogin.getline(t.user, 50, ',');
+		filelogin.getline(t.key, 50, '\n');
 		node* add = tao_node_log_in(t);
 		addlast_log_in(l, add);
 	}
@@ -412,11 +338,10 @@ void doc_file(char ten_file[], list_log_in& l)
 }
 bool dn(list_log_in l, int x, int y, char tf[], tai_khoan& temp)
 {
-	char aff[100] = "POTAL HCMUS";
-	ToMau(40, 2, aff, 2);
-	gotoxy(x, y);
 	textcolor(2);
-	cout << "User :";
+	box(x, y, 2, 35);
+	gotoxy(x, y);
+	cout << "Username :";
 	cin.getline(temp.user, 50);
 	y++;
 	gotoxy(x, y);
@@ -442,11 +367,11 @@ void xoa_xuong_dong(char a[])
 }
 void reset_key(list_log_in& l, tai_khoan& a, char ten_file[], int x ,int y )
 {
-	textcolor(2);
-	gotoxy(x + 30, y);
+	box(x, y, 1, 30);
+	gotoxy(x, y);
 	cout << "Mat khau moi :";
-	char t[100];
-	cin.getline(t, 100);
+	char t[50];
+	cin.getline(t, 50);
 	xoa_xuong_dong(t);
 	node* temp = l.head;
 	while (temp != NULL)
@@ -476,17 +401,17 @@ void clearn(list_log_in& l)
 {
 	l.head = NULL;
 }
-int click(int x, int y, int sl)
+int click(int x, int y, int sl, int w)
 {
 	int slt = sl;
 	slt--;
-	int	px = x, py = y, w = 18;
-	char c = 0;
+	int	px = x, py = y;
+	char c ;
 	while (true)
 	{
-		bieu_tuong_click(px, py, w);
+		symbol_click(px, py, w);
 		 c = _getch();
-		xoa_bieu_tuong_click(px, py, w);
+		remove_symbol_click(px, py, w);
 		if (c == 13)
 			return py;
 		if (c == 80)
@@ -495,7 +420,7 @@ int click(int x, int y, int sl)
 				py = py - slt;
 			else
 				py = py + 1;
-			bieu_tuong_click(px, py, w);
+			symbol_click(px, py, w);
 		}
 		else if (c == 72)
 		{
@@ -503,7 +428,7 @@ int click(int x, int y, int sl)
 				py = py + sl - 1;
 			else
 				py = py - 1;
-			bieu_tuong_click(px, py, w);
+			symbol_click(px, py, w);
 		}
 	}
 	return 0;
@@ -526,4 +451,57 @@ void ghi_file_tai_khoan(list_log_in l, char tf[])
 		l.head = l.head->next;
 	}
 	filein.close();
+}
+void box(int x, int y, int sl, int w)
+{
+	char a[50] = "POTAL HCMUS";
+	int len = strlen(a);
+	ToMau(x + w / 2 - len, y - 3, a, 2);
+	x = x - 6;
+	y = y - 2;
+	sl += 3;
+	for (int i = 0; i < w; i++)
+	{
+		gotoxy(x + i, y);
+		cout << char(196);
+		gotoxy(x + i, y + sl);
+		cout << char(196);
+	}
+	for (int i = 0; i < sl; i++)
+	{
+		gotoxy(x, y + i);
+		cout << char(179);
+		gotoxy(x + w, y + i);
+		cout << char(179);
+	}
+	gotoxy(x, y);
+	cout << char(213);
+	gotoxy(x, y + sl);
+	cout << char(212);
+	gotoxy(x + w, y);
+	cout << char(184);
+	gotoxy(x + w, y + sl);
+	cout << char(190);
+}
+void infor(int x, int y, tai_khoan a)
+{
+	system("cls");
+	box(x, y, 5, 35);
+	gotoxy(x, y);
+	cout << " Name :" << a.ho_ten;
+	y++;
+	gotoxy(x, y);
+	cout << " ID :" << a.ms;
+	y++;
+	gotoxy(x, y);
+	cout << " Birthday :" << a.ngay_sinh;
+	y++;
+	gotoxy(x, y);
+	cout << " Username :" << a.user;
+	y++;
+	gotoxy(x, y);
+	cout << " >> Press Enter <<";
+	char c = _getch();
+	if (c == 13)
+		return;
 }

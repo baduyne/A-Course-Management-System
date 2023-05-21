@@ -30,6 +30,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lib2.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="do_hoa.h">
@@ -39,6 +42,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="lib1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -56,6 +62,9 @@
       <Filter>Source Files</Filter>
     </None>
     <None Include="danh_sach_tai_khoan_gv.csv">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="3030-3031.csv">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
