@@ -3,10 +3,11 @@
 void option_teacher(tai_khoan& temp, list_log_in l, int x, int y)
 {
 	char tf[50] = "danh_sach_tai_khoan_gv.csv";
-	int sl = 7;
+	
 	int w = 15;
 	while (true)
 	{
+		int sl = 7;
 		system("cls");
 		nd_gv(x, y, temp);
 		int n = click(x, y, sl,w);
@@ -29,8 +30,8 @@ void option_teacher(tai_khoan& temp, list_log_in l, int x, int y)
 		else if (n == y + 4)
 		{
 			int sl, sl_hk;
-			ds_khoa_hoc ds_mh;
-			init_ds_mh(ds_mh);
+			ds_khoa_hoc ds_kh;
+			init_ds_mh(ds_kh);
 			khoa_hoc mh;
 			nam_hoc* nh = new nam_hoc[2];
 			doc_ds_nam_hoc_tu_file(nh, sl);
@@ -43,9 +44,8 @@ void option_teacher(tai_khoan& temp, list_log_in l, int x, int y)
 			nd_hoc_ki(hk, sl_hk, x, y);
 			int cl_hoc_ki = click(x, y, sl_hk,w) - y;
 			system("cls");
-			nd_gv(x, y, temp);
-			doc_ds_khoa_hoc_tu_file(hk[cl_hoc_ki], nh[cl_nam_hoc], ds_mh);
-         	xuat_ds_khoa_hoc(ds_mh, x,y);
+			doc_ds_khoa_hoc_tu_file(hk[cl_hoc_ki], nh[cl_nam_hoc], ds_kh);
+         	xuat_ds_khoa_hoc( x,y,ds_kh);
 			char c = _getch();
 		}
 		else if (n == y + 3)
@@ -60,12 +60,12 @@ void option_teacher(tai_khoan& temp, list_log_in l, int x, int y)
 			nam_hoc* nh = new nam_hoc[2];
 			doc_ds_nam_hoc_tu_file(nh, sl);
 			nd_nam_hoc(nh, sl, x, y);
-			int cl = click(x, y+1, sl,w) - y-1;
+			int cl_hoc_ki = click(x, y+1, sl,w) - y-1;
 			hoc_ki h;
 			system("cls");
 			nd_gv(x, y, temp);
-			nhap_hoc_ki(h,x, y,nh[cl]);
-			ghi_1_hoc_ki_vao_file(h,nh[cl]);
+			nhap_hoc_ki(h,x, y,nh[cl_hoc_ki]);
+			ghi_1_hoc_ki_vao_file(h,nh[cl_hoc_ki]);
 		}
 		else if (n == y + 1)
 		{
@@ -164,17 +164,15 @@ void log_in(list_log_in& l, tai_khoan& infor, int x , int y )
 				doc_file(tf, l);
 				if (dn(l, x, y, tf, infor))
 				{
-					gotoxy(x+3, y + 2);
-					cout << "Successful !!";
-					Sleep(500);
+					draw_load(x, y + 2, 20);
 					system("cls");
 					nd_sv(x, y, infor);
 					option_student(infor, l, x,y);
 				}
 				else
 				{
-					textcolor(2);
-					gotoxy(x+3, y + 2);
+					textcolor(4);
+					gotoxy(x, y + 2);
 					cout << "Failure !! ";
 					Sleep(500);
 				}
@@ -200,16 +198,15 @@ void log_in(list_log_in& l, tai_khoan& infor, int x , int y )
 				system("cls");
 				if (dn(l, x, y, tf, infor))
 				{
-					gotoxy(x+3, y + 2);
-					cout << "Successful !!";
-					Sleep(500);
+					draw_load(x, y + 2, 20);
 					system("cls");
 					nd_gv(x, y, infor);
 					option_teacher(infor,l, x,y);
 				}
 				else
 				{
-					gotoxy(x+3, y + 2);
+					textcolor(4);
+					gotoxy(x, y + 2);
 					cout << "Failure  !! ";
 					Sleep(500);
 				}
@@ -367,12 +364,13 @@ void xoa_xuong_dong(char a[])
 }
 void reset_key(list_log_in& l, tai_khoan& a, char ten_file[], int x ,int y )
 {
+	system("cls");
 	box(x, y, 1, 30);
 	gotoxy(x, y);
 	cout << "Mat khau moi :";
 	char t[50];
 	cin.getline(t, 50);
-	xoa_xuong_dong(t);
+	/*xoa_xuong_dong(t);*/
 	node* temp = l.head;
 	while (temp != NULL)
 	{
@@ -482,6 +480,7 @@ void box(int x, int y, int sl, int w)
 	cout << char(184);
 	gotoxy(x + w, y + sl);
 	cout << char(190);
+	/*draw_load(x, y+sl-1,w);*/
 }
 void infor(int x, int y, tai_khoan a)
 {

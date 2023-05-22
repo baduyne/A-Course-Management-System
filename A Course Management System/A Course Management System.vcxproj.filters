@@ -55,9 +55,6 @@
     <None Include="2020-2021.csv">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="2020-2021hocki1.csv">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="danh_sach_tai_khoan_sv.csv">
       <Filter>Source Files</Filter>
     </None>
@@ -65,6 +62,9 @@
       <Filter>Source Files</Filter>
     </None>
     <None Include="3030-3031.csv">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="1000-2000Hocki1VYK00222CTT6.csv">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
