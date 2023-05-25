@@ -1,23 +1,27 @@
 //#include"do_hoa.h"
+//#include"lib1.h"
 //using namespace std;
-//
-//void draw_load(int x, int y,int w)
-//{
-//	gotoxy(x, y);
-//	for (int i = 0; i < w; i++)
-//	{
-//		cout << char(178);
-//	}
-//	gotoxy(x, y);
-//	for (int i = 0; i < w; i++)
-//	{
-//		
-//		textcolor(3);
-//		cout << char(178);
-//		Sleep(100);
-//	}
-//}
 //int main()
 //{
-//	draw_load(30, 2, 20);
+//	int x = 30, y = 3;
+//	ds_sinh_vien ds_sv;
+//	init_ds_sinh_vien(ds_sv);
+//	char tf[100];
+//	system("cls");
+//	box(x, y, 2, 40);
+//	gotoxy(x, y);
+//	cout << "Nhap duong dan :";
+//	cin.getline(tf, 100);
+//	if (nhap_sinh_vien_tu_file(ds_sv, tf))
+//	{
+//		cout << "Thanh Cong";
+//	}
+//	else
+//		cout << "That bai";
+//	/*while (ds_sv.head!= NULL)
+//	{
+//		ghi_1_sinh_vien_vao_file(nh[cl_nam_hoc], hk[cl_hoc_ki], kh, ds_sv.head->data);
+//		ds_sv.head=ds_sv.head->next;
+//	}*/
+//	xuat_ds_sinh_vien(ds_sv);
 //}

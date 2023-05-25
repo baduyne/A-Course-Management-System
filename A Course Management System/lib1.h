@@ -64,7 +64,7 @@ void addfirst(ds_khoa_hoc& mh, node_khoa_hoc* add);
 void addlast_mh(ds_khoa_hoc& mh, node_khoa_hoc* add);
 void init_ds_sinh_vien(ds_sinh_vien& mh);
 node_sv* tao_node_sv(sinh_vien a);
-bool nhap_sinh_vien_tu_file(ds_sinh_vien& l, char ten_file[50]);
+bool nhap_sinh_vien_tu_file(ds_sinh_vien& l, char ten_file[]);
 void make_address(char a[]);
 void xoa_dau_phay(char a[]);
 void addfirst_sv(ds_sinh_vien& mh, node_sv* add);

@@ -163,25 +163,23 @@ void make_address(char a[])
 		}
 	}
 }
-bool nhap_sinh_vien_tu_file(ds_sinh_vien& l, char ten_file[50])
+bool nhap_sinh_vien_tu_file(ds_sinh_vien & l, char ten_file[])
 {
 	sinh_vien a;
 	make_address(ten_file);
+	xoa_dau_cach(ten_file);
 	ifstream filesv;
 	filesv.open(ten_file);
-	if (filesv.fail())
-	{
-		
+	if (check_empty_file(ten_file)==true)
 		return false;
-	}
 	// bo qua hang dau tien
-	char ar[50];
-	filesv.getline(ar, 50, '\n');
+	char ar[200];
+	filesv.getline(ar, 100, '\n');
 	while (!filesv.eof())
 	{
 		char r[50];
 		filesv.getline(r, 50, ',');
-		if (strcmp(r," ") == 0)
+		if (strcmp(r,"") == 0) // k doc khoang  trang cuoi file
 			break;
 		filesv.getline(a.ma_sinh_vien, 10, ',');
 		xoa_dau_cach(a.ma_sinh_vien);
@@ -248,7 +246,7 @@ void ghi_1_sinh_vien_vao_file(nam_hoc a, hoc_ki b, khoa_hoc c, sinh_vien infor)
 	xoa_dau_cach(address);
 	make_link(address);
 	ofstream filesv;
-	filesv.open(address);
+	filesv.open(address,ios::app);
 	if (check_empty_file(address))
 		filesv << "Ma So" << ',' << "Ho va ten" << ',' << "Gioi tinh" << ',' << "Ngay sinh" << ',' << "So CMND";
 	filesv << endl << infor.ma_sinh_vien << ',' << infor.ho_ten << ',' << infor.gioi_tinh << ',' << infor.ngay_sinh << ',' << infor.cmnd;

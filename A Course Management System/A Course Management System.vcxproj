@@ -141,12 +141,12 @@
     <ClInclude Include="lib2.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="1000-2000Hocki1VYK00222CTT6.csv" />
     <None Include="2020-2021.csv" />
     <None Include="3030-3031.csv" />
     <None Include="Danh_sach_cac_nam_hoc.csv" />
     <None Include="danh_sach_tai_khoan_gv.csv" />
     <None Include="danh_sach_tai_khoan_sv.csv" />
+    <None Include="ds_vs.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
