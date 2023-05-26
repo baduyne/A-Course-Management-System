@@ -40,6 +40,7 @@ struct sinh_vien
 	char gioi_tinh[10];
 	char ngay_sinh[20];
 	char cmnd[20];
+	int diem=0;
 };
 struct node_sv
 {
@@ -72,7 +73,7 @@ void ghi_ds_khoa_hoc(hoc_ki h, khoa_hoc a, nam_hoc b);
 void addlast_sv(ds_sinh_vien& mh, node_sv* add);
 void nhap_sinh_vien(sinh_vien& a, int x, int y);
 void nhap_ds_sinh_vien(ds_sinh_vien& l, int x, int y);
-void xuat_ds_sinh_vien(ds_sinh_vien l);
+void xuat_ds_sinh_vien(ds_sinh_vien l, int x, int y);
 void doc_ds_khoa_hoc_tu_file(hoc_ki h,nam_hoc  b,ds_khoa_hoc& l);
 void xoa_dau_cach(char a[]);
 void nhap_hoc_ki(hoc_ki& h, int x, int y, nam_hoc a);
@@ -93,4 +94,6 @@ int so_node_khoa_hoc(ds_khoa_hoc l);
 void xuat_khoa_hoc_them_sv(int  x, int y, ds_khoa_hoc l);
 khoa_hoc tim_khoa_hoc(ds_khoa_hoc l, int vt);
 void draw_load(int x, int y, int w);
+void doc_ds_sinh_vien(nam_hoc a, hoc_ki b, khoa_hoc c, ds_sinh_vien& l);
+int  so_node_ds_sinh_vien(ds_sinh_vien l);
 #endif 

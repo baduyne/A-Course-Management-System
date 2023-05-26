@@ -67,5 +67,8 @@
     <None Include="ds_vs.csv">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="1000-2000Hocki1MTH00322ctt2.csv">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

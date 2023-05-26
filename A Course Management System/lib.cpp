@@ -51,7 +51,7 @@ void option_teacher(tai_khoan& temp, list_log_in l, int x, int y)
 		else if (n == y + 3)
 		{
 			nd_lop_hoc(x, y);
-			int cl_lh = click(x, y, 5, 30);
+			int cl_lh = click(x, y, 7, 30);
 			xu_ly_lop_hoc(cl_lh,x,y);
 		}
 		else if (n == y + 2)

@@ -170,11 +170,11 @@ bool nhap_sinh_vien_tu_file(ds_sinh_vien & l, char ten_file[])
 	xoa_dau_cach(ten_file);
 	ifstream filesv;
 	filesv.open(ten_file);
-	if (check_empty_file(ten_file)==true)
+	if (!filesv.is_open())
 		return false;
 	// bo qua hang dau tien
 	char ar[200];
-	filesv.getline(ar, 100, '\n');
+	filesv.getline(ar, 200, '\n');
 	while (!filesv.eof())
 	{
 		char r[50];
@@ -227,13 +227,28 @@ void nhap_ds_sinh_vien(ds_sinh_vien &l,int x , int y)
 		addlast_sv(l, add);
 	}
 }
-void xuat_ds_sinh_vien(ds_sinh_vien l)
+void xuat_ds_sinh_vien(ds_sinh_vien l, int x ,int y)
 {
+	x = 15;
 	system("cls");
+	int so_node_sv = so_node_ds_sinh_vien(l);
+	box(x, y, so_node_sv, 100);
+	gotoxy(x, y);
+	cout << "Ma so" << setw(15) << "Ho Va Ten" << setw(18) << "Gioi Tinh" << setw(12) << "Ngay sinh" << setw(12) << "So CMND" << setw(13) << "Diem";
+	y++;
 	while (l.head != NULL)
 	{
-		cout << l.head->data.ma_sinh_vien << ',' << l.head->data.ho_ten << ',' << l.head->data.gioi_tinh << ',' << l.head->data.ngay_sinh << ',' << l.head->data.cmnd<< endl;
+		textcolor(2);
+		gotoxy(x, y);
+		ToMau(x, y, l.head->data.ma_sinh_vien, 2);
+		ToMau(x + 11, y, l.head->data.ho_ten, 2);
+		ToMau(x + 31, y, l.head->data.gioi_tinh, 2);
+		ToMau(x + 41, y, l.head->data.ngay_sinh, 2);
+		ToMau(x + 55, y, l.head->data.cmnd, 2);
+		gotoxy(x+71, y);
+		cout << l.head->data.diem;
 		l.head = l.head->next;
+		y++;
 	}
 }
 void ghi_1_sinh_vien_vao_file(nam_hoc a, hoc_ki b, khoa_hoc c, sinh_vien infor)
@@ -248,8 +263,8 @@ void ghi_1_sinh_vien_vao_file(nam_hoc a, hoc_ki b, khoa_hoc c, sinh_vien infor)
 	ofstream filesv;
 	filesv.open(address,ios::app);
 	if (check_empty_file(address))
-		filesv << "Ma So" << ',' << "Ho va ten" << ',' << "Gioi tinh" << ',' << "Ngay sinh" << ',' << "So CMND";
-	filesv << endl << infor.ma_sinh_vien << ',' << infor.ho_ten << ',' << infor.gioi_tinh << ',' << infor.ngay_sinh << ',' << infor.cmnd;
+		filesv << "Ma So" << ',' << "Ho va ten" << ',' << "Gioi tinh" << ',' << "Ngay sinh" << ',' << "So CMND" << ',' << "Diem";
+	filesv << endl << infor.ma_sinh_vien << ',' << infor.ho_ten << ',' << infor.gioi_tinh << ',' << infor.ngay_sinh << ',' << infor.cmnd << ',' << infor.diem;
 	filesv.close();
 }
 void make_link(char a[])
@@ -497,6 +512,49 @@ void doc_ds_nam_hoc_tu_file(nam_hoc*& arr, int &size)
 	fileoutnh.close();
 	size = i;
 }
+int  so_node_ds_sinh_vien(ds_sinh_vien l)
+{
+	int vt=1;
+	while (l.head != NULL)
+	{
+		l.head = l.head->next;
+		vt++;
+	}
+	return vt;
+}
+void doc_ds_sinh_vien(nam_hoc a, hoc_ki b, khoa_hoc c, ds_sinh_vien& l)
+{
+	char address[70];
+	strcpy(address, a.ten);
+	strcat(address, b.ten);
+	strcat(address, c.ma_khoa);
+	strcat(address, c.ten_lop_hoc);
+	xoa_dau_cach(address);
+	make_link(address);
+	ifstream filesv;
+	filesv.open(address);
+	if (!filesv.is_open())
+	{
+		return;
+	}
+	filesv.seekg(50, ios_base::beg);// bo qua dong dau tien
+	while (!filesv.eof())
+	{
+		sinh_vien sv;
+		filesv.getline(sv.ma_sinh_vien, 50, ',');
+		if (strcmp(sv.cmnd, "") == 0) // k doc khoang  trang cuoi file
+			break;
+		filesv.getline(sv.ho_ten, 50, ',');
+		filesv.getline(sv.gioi_tinh, 50, ',');
+		filesv.getline(sv.ngay_sinh, 50, ',');
+		filesv.getline(sv.cmnd, 50, ',');
+		filesv >> sv.diem;
+		filesv.ignore();
+		node_sv* add = tao_node_sv(sv);
+		addlast_sv(l, add);
+	}
+	filesv.close();
+}
 void xuat_ds_nam_hoc(nam_hoc* a, int n, int x , int y)
 {
 	system("cls");
@@ -533,17 +591,20 @@ void nd_hoc_ki(hoc_ki*& a, int sl, int x, int y)
 void nd_lop_hoc(int x, int y)
 {
 	system("cls");
-	box(x, y, 5, 40);
+	box(x, y, 6, 40);
 	char nd1[20] = "Tao 1 lop hoc";
 	char nd2[20] = "Them 1 sinh vien";
-	char nd3[30] = "Them danh sach sinh vien";
-	char nd4[20] = "Xoa 1 sinh vien";
-	char nd5[20] = "Xoa 1 khoa hoc";
-	ToMau(x, y, nd1, 2);
+	char nd3[30] = "Them sinh vien tu file";
+	char nd4[40] = "Xem danh sach sinh vien";
+	char nd5[20] = "Xoa 1 sinh vien";
+	char nd6[20] = "Xoa 1 khoa hoc";
+	ToMau(x ,y, nd1, 2);
 	ToMau(x, y+1, nd2, 2);
 	ToMau(x, y+2, nd3, 2);
 	ToMau(x, y+3, nd4, 2);
-	ToMau(x, y+4, nd5, 2);
+	ToMau(x, y+4, nd5, 2); 
+	ToMau(x, y + 5, nd5, 2);
+	ToMau(x, y + 6, nd5, 2);
 }
 void draw_load(int x, int y, int w)
 {
