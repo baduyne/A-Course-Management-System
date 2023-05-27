@@ -3,6 +3,7 @@
 #include <iostream>
 #include <conio.h>
 #include <Windows.h>
+#include<cstdio>
 using namespace std;
 void textcolor(int x);
 void ToMau(int x, int y, char* a, int color);

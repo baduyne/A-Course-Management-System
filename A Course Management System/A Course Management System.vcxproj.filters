@@ -70,5 +70,14 @@
     <None Include="1000-2000Hocki1MTH00322ctt2.csv">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="1000-2000Hocki1.csv">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="1000-2000Hocki1MHT000222CTT2.csv">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="2020-2021hocki1lop_hoc.csv">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
