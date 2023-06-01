@@ -15,7 +15,10 @@ struct hoc_ki
 };
 struct lop_hoc
 {
-	char ten[50];
+	char ten[30];
+	char khoa[50];
+	char k[10];
+	int so_luong;
 };
 struct khoa_hoc
 {
@@ -44,7 +47,6 @@ struct sinh_vien
 	char gioi_tinh[10];
 	char ngay_sinh[20];
 	char cmnd[20];
-	int diem=0;
 };
 struct node_sv
 {
@@ -73,44 +75,47 @@ bool nhap_sinh_vien_tu_file(ds_sinh_vien& l, char ten_file[]);
 void make_address(char a[]);
 void xoa_dau_phay(char a[]);
 void addfirst_sv(ds_sinh_vien& mh, node_sv* add);
-void ghi_1_khoa_hoc(hoc_ki h, khoa_hoc a, nam_hoc b);
+void ghi_1_khoa_hoc(hoc_ki h, khoa_hoc a, nam_hoc b, int pos);
 void addlast_sv(ds_sinh_vien& mh, node_sv* add);
 void nhap_sinh_vien(sinh_vien& a, int x, int y);
 void nhap_ds_sinh_vien(ds_sinh_vien& l, int x, int y);
 void xuat_ds_sinh_vien(ds_sinh_vien l, int x, int y);
 void doc_ds_khoa_hoc_tu_file(hoc_ki h,nam_hoc  b,ds_khoa_hoc& l);
-void xoa_dau_cach(char a[]);
 void nhap_hoc_ki(hoc_ki& h, int x, int y, nam_hoc a);
 void nhap_khoa_hoc(khoa_hoc& a, int x, int y);
 void doc_ds_hoc_ki_tu_file(hoc_ki*& arr, nam_hoc a, int& sl);
 void ghi_1_hoc_ki_vao_file(hoc_ki h, nam_hoc a);
 void xuat_ds_hoc_ki(hoc_ki* a, int n, int x, int y);
 void xuat_hoc_ki(hoc_ki h, int x , int y );
-void make_link(char a[]);
 void cap_phat_them_nam_hoc(nam_hoc*& a, int& sz);
 void nd_nam_hoc(nam_hoc*& a, int sl, int x, int y);
-bool check_empty_file(char ten_file[]);
 void nd_hoc_ki(hoc_ki*& a, int sl, int x, int y);
 void nd_khoa_hoc(int x, int y);
-void ghi_1_sinh_vien_vao_file(nam_hoc a, hoc_ki b, khoa_hoc c, sinh_vien infor);
+void ghi_1_sinh_vien_vao_khoa_hoc(nam_hoc a, hoc_ki b, khoa_hoc c, sinh_vien infor, int pos);
 void xuat_ds_khoa_hoc(int x, int y, ds_khoa_hoc l);
 int so_node_khoa_hoc(ds_khoa_hoc l);
-void xuat_khoa_hoc_them_sv(int  x, int y, ds_khoa_hoc l);
 khoa_hoc tim_khoa_hoc(ds_khoa_hoc l, int vt);
 void draw_load(int x, int y, int w);
 void doc_ds_sinh_vien(nam_hoc a, hoc_ki b, khoa_hoc c, ds_sinh_vien& l);
 //int pos_node_sv(ds_sinh_vien  l, node* p);
 int  so_node_ds_sinh_vien(ds_sinh_vien l);
 void remove_node_sv(ds_sinh_vien& l, int pos);
-void ghi_ds_sinh_vien_vao_file(nam_hoc a, hoc_ki b, khoa_hoc c, ds_sinh_vien infor);
-bool delete_file(char ten_file[]);
+void ghi_ds_sinh_vien_vao_khoa_hoc(nam_hoc a, hoc_ki b, khoa_hoc c, ds_sinh_vien infor);
+void delete_file(char ten_file[]);
 void remove_khoa_hoc(ds_khoa_hoc& kh, int pos);
 void ghi_ds_khoa_hoc(hoc_ki h, ds_khoa_hoc a, nam_hoc b);
 void nhap_lop_hoc(lop_hoc& a, int x, int y);
-void ghi_1_lop_hoc_vao_file(hoc_ki h, lop_hoc a, nam_hoc b);
-void doc_ds_lop_hoc_tu_file(hoc_ki h, lop_hoc*& a, nam_hoc b, int& sl);
+void ghi_1_lop_hoc_vao_file( lop_hoc a, nam_hoc b, int pos);
+void doc_ds_lop_hoc_tu_file(lop_hoc*& a, nam_hoc b, int& sl);
 void cap_phat_them_lop_hoc(lop_hoc*& a, int& size);
 void nhap_lop_hoc(lop_hoc& a, int x, int y);
 void xuat_lop_hoc(lop_hoc* a, int sl, int  x, int y);
 void nd_lop_hoc(int x, int y);
+void ghi_ds_sinh_vien_vao_lop_hoc(nam_hoc a,lop_hoc c, ds_sinh_vien infor);
+void ghi_1_sinh_vien_vao_lop_hoc(nam_hoc a, lop_hoc c, sinh_vien infor, int pos);
+void nd_khoi_tao(int x, int y);
+void func_khoi_tao(int x, int y, int  cl);
+void doc_ds_sinh_vien_lop_hoc(nam_hoc a, lop_hoc  c, ds_sinh_vien& l);
+void doc_ds_sinh_vien_khoa_hoc(nam_hoc a, hoc_ki b, khoa_hoc c, ds_sinh_vien& l);
+void xuat_nam_hoc(nam_hoc nh, int x, int y);
 #endif 

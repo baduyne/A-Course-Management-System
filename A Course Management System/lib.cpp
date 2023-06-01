@@ -2,15 +2,15 @@
 // de 2 ham option tren cung de code 
 void option_teacher(tai_khoan& temp, list_log_in l, int x, int y)
 {
-	char tf[50] = "danh_sach_tai_khoan_gv.csv";
+	char tf[50] = "Tai_khoan_giao_vien.csv";
 	int w = 15;
 	while (true)
 	{
-		int sl = 8;
+		int sl = 7;
 		system("cls");
 		nd_gv(x, y, temp);
 		int n = click(x, y, sl,w);
-		if (n == y + 7)
+		if (n == y + 6)
 		{
 			system("cls");
 			clearn(l);
@@ -20,13 +20,13 @@ void option_teacher(tai_khoan& temp, list_log_in l, int x, int y)
 		{
 			infor(x, y, temp);
 		}
-		else if (n == y + 6)
+		else if (n == y + 5)
 		{
 			reset_key(l, temp, tf, x, y);
 			system("cls");
 			log_in(l, temp, x, y);
 		}
-		else if (n == y + 5)
+		else if (n == y + 4)
 		{
 			int sl, sl_hk;
 			ds_khoa_hoc ds_kh;
@@ -56,42 +56,25 @@ void option_teacher(tai_khoan& temp, list_log_in l, int x, int y)
 			doc_ds_khoa_hoc_tu_file(hk[cl_hoc_ki], nh[cl_nam_hoc], ds_kh);
          	xuat_ds_khoa_hoc( x,y,ds_kh);
 		}
-		else if (n == y + 4)
+		else if (n == y + 3)
 		{
-			nd_khoa_hoc(x, y);
-			int cl_lh = click(x, y, 8, 30);
-			xu_ly_khoa_hoc(cl_lh,x,y);
+			xu_ly_khoa_hoc(x,y);
+		}
+		else if (n == y + 1)//create year and semer
+		{
+			nd_khoi_tao(x, y);
+			int cl_kt = click(x, y, 3, 20);
+			func_khoi_tao(x, y, cl_kt);
 		}
 		else if (n == y + 2)
 		{
-			int sl=2;
-			nam_hoc* nh = new nam_hoc[sl];
-			doc_ds_nam_hoc_tu_file(nh, sl);
-			nd_nam_hoc(nh, sl, x, y);
-			int cl_hoc_ki = click(x, y+1, sl,w) - y-1;
-			hoc_ki h;
-			system("cls");
-			nd_gv(x, y, temp);
-			nhap_hoc_ki(h,x, y,nh[cl_hoc_ki]);
-			ghi_1_hoc_ki_vao_file(h,nh[cl_hoc_ki]);
-		}
-		else if (n == y + 1)
-		{
-			nam_hoc a;
-			nhap_nam_hoc(a, x, y);
-			ghi_1_nam_hoc_vao_file(a);
-		}
-		else if (n == y + 3)
-		{
-			nd_lop_hoc(x, y);
-			int cl_lh = click(x, y, 3, 20);
-			xu_ly_lop_hoc(cl_lh, x, y);
+			xu_ly_lop_hoc(x, y);
 		}
 	}
 }
 void option_student(tai_khoan temp, list_log_in l, int x, int y)
 {
-	char tf[50] = "danh_sach_tai_khoan_sv.csv";
+	char tf[50] = "Tai_khoan_sinh_vien.csv";
 	int sl = 7, w = 20;
 	nd_sv(x, y, temp);
 	int n = click(x, y, sl,w);
@@ -140,11 +123,10 @@ void nd_gv(int x, int y, tai_khoan temp)
 	strcat(hi, temp.ho_ten);
 	ToMau(x - 4, y - 2, hi, 2);
 	char nd1[40] = "Xem Ho so";
-	char nd2[40] = "Tao nam hoc ";
-	char nd3[40] = "Tao hoc ki ";
-	char nd4[40] = "Lop hoc";
-	char nd5[40] = "Khoa hoc";
-	char nd6[40] = "Cac khoa hoc";
+	char nd2[40] = "Khoi tao";
+	char nd3[40] = "Lop hoc";
+	char nd4[40] = "Khoa hoc";
+	char nd5[40] = "Cac khoa hoc";
 	char dmk[40] = "Doi mat khau";
 	char dx[40] = "Dang xuat";
 	ToMau(x, y, nd1, 2);
@@ -152,9 +134,8 @@ void nd_gv(int x, int y, tai_khoan temp)
 	ToMau(x, y + 2, nd3, 2);
 	ToMau(x, y + 3, nd4, 2);
 	ToMau(x, y + 4, nd5, 2);
-	ToMau(x, y + 5, nd6, 2);
-	ToMau(x, y + 6, dmk, 2);
-	ToMau(x, y + 7, dx, 2);
+	ToMau(x, y + 5, dmk, 2);
+	ToMau(x, y + 6, dx, 2);
 	box(x, y-2, 10, 35);
 }
 void log_in(list_log_in& l, tai_khoan& infor, int x , int y )
@@ -165,7 +146,7 @@ void log_in(list_log_in& l, tai_khoan& infor, int x , int y )
 	{
 		while (true)
 		{
-			char tf[50] = "danh_sach_tai_khoan_sv.csv";
+			char tf[50] = "Tai_khoan_sinh_vien.csv";
 			system("cls");
 			noi_dung2(x, y);
 			int cl_1= click(x, y, 2, 10);
@@ -200,7 +181,7 @@ void log_in(list_log_in& l, tai_khoan& infor, int x , int y )
 		while (true)
 		{
 			system("cls");
-			char tf[50] = "danh_sach_tai_khoan_gv.csv";
+			char tf[50] = "Tai_khoan_giao_vien.csv";
 			noi_dung2(x,y);
 			int cl_2 = click(x, y, 2, 10);
 			if (cl_2 == y + 1)
@@ -287,6 +268,8 @@ void dk(int x, int y, char tf[])
 	xoa_xuong_dong(a.key);
 	ofstream file;
 	file.open(tf, ios::app);
+	if (check_empty_file(tf))
+		file << "Ma So" << ',' << "Ho Va Ten" << ',' << "Ngay sinh" << ',' << "Ten Dang nhap" << ',' << "Mat Khau";
 	// endl o dau de xoa /n
 	file << endl << a.ms << ',' << a.ho_ten << ',' <<a.ngay_sinh<<',' << a.user << ',' << a.key;
 	file.close();
@@ -417,6 +400,7 @@ void clearn(list_log_in& l)
 }
 int click(int x, int y, int sl, int w)
 {
+	textcolor(3);
 	int slt = sl;
 	slt--;
 	int	px = x, py = y;
@@ -434,7 +418,6 @@ int click(int x, int y, int sl, int w)
 				py = py - slt;
 			else
 				py = py + 1;
-			symbol_click(px, py, w);
 		}
 		else if (c == 72)
 		{
@@ -442,7 +425,6 @@ int click(int x, int y, int sl, int w)
 				py = py + sl - 1;
 			else
 				py = py - 1;
-			symbol_click(px, py, w);
 		}
 	}
 	return 0;
@@ -452,10 +434,9 @@ void ghi_file_tai_khoan(list_log_in l, char tf[])
 {
 	fstream filein;
 	filein.open(tf, ios::out);
-	/*file  << "Ma so" << ',' << "Ho va ten" << ',' << "user" << ',' << "password"<<endl;*/
 	while (l.head != NULL)
 	{
-		filein << l.head->data.ms << ',' << l.head->data.ho_ten << ',' << l.head->data.user << ',' << l.head->data.key;
+		filein << l.head->data.ms << ',' << l.head->data.ho_ten <<','<< l.head->data.ngay_sinh << ',' << l.head->data.user << ',' << l.head->data.key;
 		if (l.head->next == NULL)
 		{
 			filein.close();
@@ -519,4 +500,65 @@ void infor(int x, int y, tai_khoan a)
 	char c = _getch();
 	if (c == 13)
 		return;
+}
+void make_link(char a[])
+{
+	strcat(a, ".csv");
+}
+void xoa_dau_cach(char a[])
+{
+	int i = 0;
+	while (i < strlen(a))
+	{
+		if (a[i] == ' ')
+		{
+			for (int j = i; j < strlen(a); j++)
+				a[j] = a[j + 1];
+			i--;// tra lai y de xet nhieu khoang cach lien tiep nhau 
+		}
+		i++;
+	}
+}
+bool create_folder(char ten_file[])
+{
+	if (_mkdir(ten_file) == 0)
+		return true;
+	return false;
+}
+bool check_empty_file(char ten_file[])
+{
+	ifstream filehkempty;
+	filehkempty.open(ten_file, ios::binary);
+	filehkempty.seekg(0, ios::end);
+	if (filehkempty.tellg() == 0)
+	{
+		filehkempty.close();
+		return true;
+	}
+	filehkempty.close();
+	return false;
+}
+void func_khoi_tao(int x, int y, int  cl)
+{
+	if (cl == y + 2)
+		return;
+	else if (cl == y)
+	{
+		nam_hoc a;
+		nhap_nam_hoc(a, x, y);
+		ghi_1_nam_hoc_vao_file(a);
+		create_folder(a.ten);
+	}
+	else if(cl == y + 1)
+	{
+		int sl = 2;
+		nam_hoc* nh = new nam_hoc[sl];
+		doc_ds_nam_hoc_tu_file(nh, sl);
+		nd_nam_hoc(nh, sl, x, y);
+		int cl_hoc_ki = click(x, y + 1, sl, 10) - y - 1;
+		hoc_ki h;
+		system("cls");
+		nhap_hoc_ki(h, x, y, nh[cl_hoc_ki]);
+		ghi_1_hoc_ki_vao_file(h, nh[cl_hoc_ki]);
+	}
 }

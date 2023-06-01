@@ -2,6 +2,7 @@
 #include"lib1.h"
 #include"lib2.h"
 #include"do_hoa.h"
+#include<direct.h>
 using namespace std;
 struct tai_khoan
 {
@@ -45,3 +46,7 @@ void ghi_file_tai_khoan(list_log_in l, char tf[]);
 void xoa_xuong_dong(char a[]);
 int click(int x, int y, int sl, int w);
 void infor(int x, int y, tai_khoan a);
+bool create_folder(char ten_file[]);
+void make_link(char a[]);
+bool check_empty_file(char ten_file[]);
+void xoa_dau_cach(char a[]);

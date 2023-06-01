@@ -49,34 +49,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Danh_sach_cac_nam_hoc.csv">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="2020-2021.csv">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="danh_sach_tai_khoan_sv.csv">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="danh_sach_tai_khoan_gv.csv">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="3030-3031.csv">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="ds_vs.csv">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="1000-2000Hocki1MTH00322ctt2.csv">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="1000-2000Hocki1.csv">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="1000-2000Hocki1MHT000222CTT2.csv">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="2020-2021hocki1lop_hoc.csv">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
