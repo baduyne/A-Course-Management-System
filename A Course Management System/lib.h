@@ -1,27 +1,11 @@
 #pragma once
 #include"lib1.h"
 #include"lib2.h"
+#include"all_struct.h"
 #include"do_hoa.h"
 #include<direct.h>
 using namespace std;
-struct tai_khoan
-{
-	char ms[10];
-	char ho_ten[50];
-	char ngay_sinh[20];
-	char user[50];
-	char key[50];
-};
-typedef struct tai_khoan tai_khoan;
-struct node
-{
-	tai_khoan data;
-	node* next;
-};
-struct list_log_in
-{
-	node* head;
-};
+
 void option_student(tai_khoan temp, list_log_in l, int x , int y);
 void option_teacher(tai_khoan& temp, list_log_in l, int x, int y);
 void dk(int x, int y, char tf[]);
@@ -50,3 +34,7 @@ bool create_folder(char ten_file[]);
 void make_link(char a[]);
 bool check_empty_file(char ten_file[]);
 void xoa_dau_cach(char a[]);
+void dk_khoa_hoc(int x, int y, tai_khoan temp);
+bool check_ds_trong_lop(tai_khoan infor, nam_hoc a, hoc_ki b, khoa_hoc c);
+void xem_khoa_hoc(ds_khoa_hoc& l, int x, int y, tai_khoan t);
+void init_sinh_vien(sinh_vien& a);

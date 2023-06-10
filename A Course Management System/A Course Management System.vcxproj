@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="all_struct.h" />
     <ClCompile Include="do_hoa.cpp" />
     <ClCompile Include="lib.cpp" />
     <ClCompile Include="lib1.cpp" />

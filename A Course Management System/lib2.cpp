@@ -11,6 +11,7 @@ void xu_ly_lop_hoc( int x, int y)
 		ds_khoa_hoc ds_kh;
 		init_ds_mh(ds_kh);
 		khoa_hoc mh;
+		innit_khoa_hoc(mh);
 		nam_hoc* nh = new nam_hoc[3];
 		doc_ds_nam_hoc_tu_file(nh, sl);
 		nd_nam_hoc(nh, sl, x, y);
@@ -105,6 +106,7 @@ void xu_ly_khoa_hoc(int x ,int y)
 		if (cl == y)
 		{
 			khoa_hoc mh;
+			innit_khoa_hoc(mh);
 			nhap_khoa_hoc(mh, x, y);
 			ghi_1_khoa_hoc(hk[cl_hoc_ki], mh, nh[cl_nam_hoc], so_node_khoa_hoc(ds_kh)+1);
 		}

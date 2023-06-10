@@ -2,6 +2,7 @@
 #include "do_hoa.h"
 int main()
 {
+	/*resizeConsole(5000, 900);*/
 	textcolor(2);
 	int x = 40, y = 10;
 	list_log_in l; 

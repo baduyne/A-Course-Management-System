@@ -1,66 +1,12 @@
-#ifndef lib1___h
-#define lib1___h
+#pragma once
 #include<iostream>
 #include"do_hoa.h"
+#include"all_struct.h"
 #include"lib.h"
 #include<fstream>
 #include<iomanip>
 using namespace std;
-struct hoc_ki
-{
-	char ten[50];
-	char nien_khoa[50];
-	char day_began[30];
-	char day_end[30];
-};
-struct lop_hoc
-{
-	char ten[30];
-	char khoa[50];
-	char k[10];
-	int so_luong;
-};
-struct khoa_hoc
-{
-	char ma_khoa[20];
-	char ten_khoa_hoc[50];
-	char ten_lop_hoc[50];
-	char ten_giao_vien[50];
-	int so_tin_chi;
-	int so_luong = 50;
-	char ngay[30];
-	char ca_hoc[30];
-};
-struct node_khoa_hoc
-{
-	khoa_hoc data;
-	node_khoa_hoc* next;
-};
-struct ds_khoa_hoc
-{
-	node_khoa_hoc* head;
-};
-struct sinh_vien
-{
-	char ma_sinh_vien[10];
-	char ho_ten[50];
-	char gioi_tinh[10];
-	char ngay_sinh[20];
-	char cmnd[20];
-};
-struct node_sv
-{
-	sinh_vien data;
-	node_sv* next;
-};
-struct ds_sinh_vien
-{
-	node_sv* head;
-};
-struct nam_hoc
-{
-	char ten[30];
-};
+
 void nhap_nam_hoc(nam_hoc& nh,int x, int y);
 void ghi_1_nam_hoc_vao_file(nam_hoc a);
 void cap_phat_them_nam_hoc(nam_hoc*& a, int& sz);
@@ -118,4 +64,4 @@ void func_khoi_tao(int x, int y, int  cl);
 void doc_ds_sinh_vien_lop_hoc(nam_hoc a, lop_hoc  c, ds_sinh_vien& l);
 void doc_ds_sinh_vien_khoa_hoc(nam_hoc a, hoc_ki b, khoa_hoc c, ds_sinh_vien& l);
 void xuat_nam_hoc(nam_hoc nh, int x, int y);
-#endif 
+void innit_khoa_hoc(khoa_hoc& a);
