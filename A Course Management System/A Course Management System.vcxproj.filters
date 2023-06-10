@@ -33,6 +33,9 @@
     <ClCompile Include="all_struct.h">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="graphic.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="lib2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="graphic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
