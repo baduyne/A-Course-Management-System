@@ -1,5 +1,6 @@
 ﻿#include "lib.h"
 // de 2 ham option tren cung de code 
+// them dong luu tru
 void option_teacher(tai_khoan& temp, list_log_in l, int x, int y)
 {
 	char tf[50] = "Tai_khoan_giao_vien.csv";
