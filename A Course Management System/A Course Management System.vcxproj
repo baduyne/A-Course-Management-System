@@ -128,7 +128,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="all_struct.h" />
-    <ClCompile Include="do_hoa.cpp" />
     <ClCompile Include="lib.cpp" />
     <ClCompile Include="lib1.cpp" />
     <ClCompile Include="lib2.cpp" />
@@ -136,7 +135,6 @@
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="do_hoa.h" />
     <ClInclude Include="lib.h" />
     <ClInclude Include="lib1.h" />
     <ClInclude Include="lib2.h" />

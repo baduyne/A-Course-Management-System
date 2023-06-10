@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="do_hoa.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="lib.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
@@ -38,9 +35,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="do_hoa.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="lib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
