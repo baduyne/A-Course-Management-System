@@ -33,6 +33,9 @@
     <ClCompile Include="lib2.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="all_struct.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="do_hoa.h">

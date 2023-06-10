@@ -41,5 +41,32 @@
 //	//	ds_sv.head=ds_sv.head->next;
 //	//}*/
 //	//xuat_ds_sinh_vien(ds_sv,0,0);
+//	int x = 4, y = 2, w = 10;
+//	for (int i = 0; i < w; i++)
+//	{
+//		gotoxy(x+i, y);
+//		cout << char(196);
+//		gotoxy(x+i, y+2);
+//		cout << char(196);
+//	}
+//	for (int i = 0; i < 2; i++)
+//	{
+//		gotoxy(x, y+i);
+//		cout << char(179);
+//		gotoxy(x + w, y+i);
+//		cout << char(179);
+//	}
 //	
+//	gotoxy(x, y);
+//	cout << char(218);
+//	gotoxy(x+ w,y);
+//	cout << char(191);
+//	gotoxy(x, y+2);
+//	cout << char(192);
+//	gotoxy(x+w, y+2);
+//	cout << char(217);
+//	gotoxy(x, 3);
+//	char c[20];
+//	cin >> c;
+//
 //}

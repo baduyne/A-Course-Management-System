@@ -4,6 +4,11 @@ void init_ds_mh(ds_khoa_hoc & mh)
 {
 	mh.head = NULL;
 }
+void innit_khoa_hoc(khoa_hoc& a)
+{
+	a.ca_hoc[0] = a.ma_khoa[0] = a.ngay[0] = a.ten_giao_vien[0] = a.ten_khoa_hoc[0] = a.ten_lop_hoc[0] = '\0';
+	a.so_luong = a.so_tin_chi = 0;
+}
 node_khoa_hoc * tao_node_mh(khoa_hoc a)
 {
 	node_khoa_hoc* add = new node_khoa_hoc;
@@ -179,7 +184,7 @@ void nhap_sinh_vien(sinh_vien& a, int x ,int y)
 	box(x, y, 5, 40);
 	gotoxy(x, y);
 	cout << "ID:";
-	cin.getline(a.ma_sinh_vien, 10);
+	cin.getline(a.ma_sinh_vien, 20);
 	y++;
 	gotoxy(x, y);
 	cout << "Your Name : ";
@@ -297,15 +302,17 @@ void ghi_1_sinh_vien_vao_khoa_hoc(nam_hoc a, hoc_ki b, khoa_hoc c, sinh_vien inf
 	strcpy(address, a.ten);
 	strcat(address,"/");
 	strcat(address, b.ten);
+	strcat(address, "/");
 	strcat(address, c.ma_khoa);
 	strcat(address, c.ten_lop_hoc);
+	xoa_dau_cach(address);
 	xoa_dau_cach(address);
 	make_link(address);
 	ofstream filesv;
 	filesv.open(address,ios::app);
 	if (check_empty_file(address))
-		filesv <<"STT"<<',' << "Ma So" << ',' << "Ho va ten" << ',' << "Gioi tinh" << ',' << "Ngay sinh" << ',' << "So CMND" << ',' << "Diem";
-	filesv << endl <<pos<<',' << infor.ma_sinh_vien << ',' << infor.ho_ten << ',' << infor.gioi_tinh << ',' << infor.ngay_sinh << ',' << infor.cmnd;
+		filesv << "STT" << ',' << "Ma So" << ',' << "Ho va ten" << ',' << "Gioi tinh" << ',' << "Ngay sinh" << ',' << "So CMND" << ',' << "Diem" << endl;
+	filesv << pos << ',' << infor.ma_sinh_vien << ',' << infor.ho_ten << ',' << infor.gioi_tinh << ',' << infor.ngay_sinh << ',' << infor.cmnd << endl;
 	filesv.close();
 }
 void ghi_ds_sinh_vien_vao_khoa_hoc(nam_hoc a, hoc_ki b, khoa_hoc c, ds_sinh_vien infor)
@@ -315,6 +322,7 @@ void ghi_ds_sinh_vien_vao_khoa_hoc(nam_hoc a, hoc_ki b, khoa_hoc c, ds_sinh_vien
 	strcpy(address, a.ten);
 	strcat(address, "/");
 	strcat(address, b.ten);
+	strcat(address, "/");
 	strcat(address, c.ma_khoa);
 	strcat(address, c.ten_lop_hoc);
 	xoa_dau_cach(address);
@@ -342,8 +350,8 @@ void ghi_1_sinh_vien_vao_lop_hoc(nam_hoc a, lop_hoc  c, sinh_vien infor, int pos
 	ofstream filesv;
 	filesv.open(address, ios::app);
 	if (check_empty_file(address))
-		filesv <<"STT"<<','<<"Ma So" << ',' << "Ho va ten" << ',' << "Gioi tinh" << ',' << "Ngay sinh" << ',' << "So CMND";
-	filesv << endl<<pos<<',' << infor.ma_sinh_vien << ',' << infor.ho_ten << ',' << infor.gioi_tinh << ',' << infor.ngay_sinh << ',' << infor.cmnd;
+		filesv << "STT" << ',' << "Ma So" << ',' << "Ho va ten" << ',' << "Gioi tinh" << ',' << "Ngay sinh" << ',' << "So CMND" << endl;
+	filesv << pos << ',' << infor.ma_sinh_vien << ',' << infor.ho_ten << ',' << infor.gioi_tinh << ',' << infor.ngay_sinh << ',' << infor.cmnd << endl;
 	filesv.close();
 }
 void ghi_ds_sinh_vien_vao_lop_hoc(nam_hoc a,lop_hoc c, ds_sinh_vien infor)
@@ -487,9 +495,9 @@ void ghi_1_lop_hoc_vao_file(lop_hoc a, nam_hoc b, int pos)
 	make_link(address);
 	ofstream filein;
 	filein.open(address,ios::app);
-	if (check_empty_file(address))	
-		filein << "STT" << ',' << "Lop hoc" << ',' << "Khoa" << ',' << "So luong" << ',' << "Khoa Hoc";
-	filein << endl << pos << ',' << a.ten << ',' << a.khoa << ',' << a.so_luong << ',' << a.k;
+	if (check_empty_file(address))
+		filein << "STT" << ',' << "Lop hoc" << ',' << "Khoa" << ',' << "So luong" << ',' << "Khoa Hoc" << endl;
+	filein << pos << ',' << a.ten << ',' << a.khoa << ',' << a.so_luong << ',' << a.k << endl;
 	filein.close();
 }
 void ghi_1_hoc_ki_vao_file(hoc_ki h, nam_hoc a)
@@ -503,9 +511,9 @@ void ghi_1_hoc_ki_vao_file(hoc_ki h, nam_hoc a)
 	filehk.open(address, ios::app);
 	if(check_empty_file(address))
 	{
-		filehk << "Ten hoc ki" << ',' << "Niem khoa" << ',' << "Ngay bat dau" << ',' << "Ngay ket thuc";
+		filehk << "Ten hoc ki" << ',' << "Niem khoa" << ',' << "Ngay bat dau" << ',' << "Ngay ket thuc" << endl;
 	}
-	filehk << endl<< h.ten << ',' << h.nien_khoa << ',' << h.day_began << ',' << h.day_end;
+	filehk << h.ten << ',' << h.nien_khoa << ',' << h.day_began << ',' << h.day_end << endl;
 	filehk.close();
 }
 void doc_ds_hoc_ki_tu_file(hoc_ki *&arr,nam_hoc a, int& sl)
@@ -547,20 +555,22 @@ void xuat_ds_hoc_ki(hoc_ki* a,int n, int x, int y)
 }
 void ghi_1_khoa_hoc(hoc_ki h, khoa_hoc a, nam_hoc b, int pos)
 {
-	char address[30];
+	char address[100];
 	strcpy(address, b.ten);
 	strcat(address, "/");
 	strcat(address, h.ten);
-	strcat(address, "_khoa_hoc");
+	strcat(address, "/");
+	strcat(address, "khoa_hoc");
+	xoa_dau_cach(address);
 	xoa_dau_cach(address);
 	make_link(address);
 	ofstream filemh;
 	filemh.open(address, ios::app);
 	if (check_empty_file(address))
 	{
-		filemh << "STT"<< ',' << "Ma khoa hoc" << ',' << "Khoa hoc" << ','<<"Lop hoc" << ',' << "Giao vien" << ',' << "So tin chi" << ',' << "So luong" << ',' << "Ngay hoc trong tuan" << ',' << "Ca hoc";
+		filemh << "STT" << ',' << "Ma khoa hoc" << ',' << "Khoa hoc" << ',' << "Lop hoc" << ',' << "Giao vien" << ',' << "So tin chi" << ',' << "So luong" << ',' << "Ngay hoc trong tuan" << ',' << "Ca hoc" << endl;
 	}
-	filemh << endl<<pos<<',' << a.ma_khoa << ',' << a.ten_khoa_hoc <<','<<a.ten_lop_hoc<< ',' << a.ten_giao_vien << ',' << a.so_tin_chi << ',' << a.so_luong << ',' << a.ngay << ',' << a.ca_hoc;
+	filemh << pos << ',' << a.ma_khoa << ',' << a.ten_khoa_hoc << ',' << a.ten_lop_hoc << ',' << a.ten_giao_vien << ',' << a.so_tin_chi << ',' << a.so_luong << ',' << a.ngay << ',' << a.ca_hoc << endl;
 	filemh.close();
 }
 void ghi_ds_khoa_hoc(hoc_ki h, ds_khoa_hoc a, nam_hoc b)
@@ -570,6 +580,7 @@ void ghi_ds_khoa_hoc(hoc_ki h, ds_khoa_hoc a, nam_hoc b)
 	strcpy(address, b.ten);
 	strcat(address, "/");
 	strcat(address, h.ten);
+	strcat(address, "/");
 	strcat(address, "_khoa_hoc");
 	xoa_dau_cach(address);
 	make_link(address);
@@ -589,11 +600,13 @@ void ghi_ds_khoa_hoc(hoc_ki h, ds_khoa_hoc a, nam_hoc b)
 }
 void doc_ds_khoa_hoc_tu_file(hoc_ki h,nam_hoc b , ds_khoa_hoc &l)
 {
-	char address[30];
+	char address[100];
 	strcpy(address, b.ten);
 	strcat(address, "/");
 	strcat(address, h.ten);
-	strcat(address, "_khoa_hoc");
+	strcat(address, "/");
+	strcat(address, "khoa_hoc");
+	xoa_dau_cach(address);
 	xoa_dau_cach(address);
 	make_link(address);
 	khoa_hoc a;
@@ -669,13 +682,7 @@ void xuat_ds_khoa_hoc(int x, int y, ds_khoa_hoc l)
 		y++;
 		l.head = l.head->next;
 	}
-	gotoxy(x - 3, py + sl);
-	cout << char(174) << "Back";
-	char c = _getch();
-	if (c == 13)
-	{
-		return;
-	}
+	cin.ignore();
 }
 void remove_khoa_hoc(ds_khoa_hoc& kh, int pos)
 {
@@ -733,9 +740,9 @@ void ghi_1_nam_hoc_vao_file(nam_hoc a)
 	char ten_file[30] = "Danh_sach_cac_nam_hoc.csv";
 	ofstream filenh;
 	filenh.open(ten_file, ios::app);
-	if (check_empty_file(ten_file)==true)
-		filenh << "Nam hoc";
-	filenh << endl << a.ten;
+	if (check_empty_file(ten_file) == true)
+		filenh << "Nam hoc" << endl;
+	filenh << a.ten << endl;
 	filenh.close();
 }
 void cap_phat_them_nam_hoc(nam_hoc *& a, int& sz)
@@ -766,6 +773,8 @@ void doc_ds_nam_hoc_tu_file(nam_hoc*& arr, int &size)
 		if (i == size - 1)
 			cap_phat_them_nam_hoc(arr, size);
 		fileoutnh.getline(arr[i].ten, 50, '\n');
+		if (strcmp(arr[i].ten, "") == 0)
+			break;
 		i++;
 	}
 	fileoutnh.close();
@@ -779,9 +788,9 @@ void nd_khoi_tao(int x, int y)
 	char nd1[20] = "Tao Nam Hoc";
 	char nd2[20] = "Tao Hoc Hi";
 	char  exit[20] = "Thoat";
-	ToMau(x, y, nd1, 2);
-	ToMau(x, y + 1, nd2, 2);
-	ToMau(x, y + 2, exit, 2);
+	ToMau(x+8 -strlen(nd1) / 2, y, nd1, 2);
+	ToMau(x + 8 - strlen(nd2) / 2, y + 1, nd2, 2);
+	ToMau(x + 8 - strlen(exit) / 2, y + 2, exit, 2);
 }
 int  so_node_ds_sinh_vien(ds_sinh_vien l)
 {
@@ -803,6 +812,7 @@ void doc_ds_sinh_vien_khoa_hoc(nam_hoc a, hoc_ki b, khoa_hoc c, ds_sinh_vien& l)
 	strcat(address, c.ten_lop_hoc);
 	xoa_dau_cach(address);
 	make_link(address);
+	xoa_dau_cach(address);
 	ifstream filesv;
 	filesv.open(address);
 	if (!filesv.is_open())
@@ -918,15 +928,15 @@ void nd_khoa_hoc(int x, int y)
 	char nd7[20] = "Nhap diem";
 	char nd8[20] = "Nhap diem tu file";
 	char nd9[20] = "Thoat";
-	ToMau(x ,y, nd1, 2);
-	ToMau(x, y+1, nd2, 2);
-	ToMau(x, y+2, nd3, 2);
-	ToMau(x, y+3, nd4, 2);
-	ToMau(x, y+4, nd5, 2); 
-	ToMau(x, y + 5, nd6, 2);
-	ToMau(x, y + 6, nd7, 2);
-	ToMau(x, y + 7, nd8, 2);
-	ToMau(x, y + 8, nd9, 2);
+	ToMau(x+ 13 -strlen(nd1)/2, y, nd1, 2);
+	ToMau(x + 13 - strlen(nd2)/2, y+1, nd2, 2);
+	ToMau(x + 13 - strlen(nd3)/2, y+2, nd3, 2);
+	ToMau(x + 13 - strlen(nd4)/2, y+3, nd4, 2);
+	ToMau(x + 13 - strlen(nd5)/2, y+4, nd5, 2);
+	ToMau(x + 13 - strlen(nd6)/2, y + 5, nd6, 2);
+	ToMau(x + 13 - strlen(nd7)/2, y + 6, nd7, 2);
+	ToMau(x + 13 - strlen(nd8)/2, y + 7, nd8, 2);
+	ToMau(x + 13 - strlen(nd9)/2, y + 8, nd9, 2);
 }
 void nd_lop_hoc(int x, int y)
 {
@@ -938,12 +948,12 @@ void nd_lop_hoc(int x, int y)
 	char nd4[30] = "Them danh sach tu file";
 	char nd5[30] = "Xem danh sach sinh vien";
 	char nd6[30] = "Thoat";
-	ToMau(x, y, nd1, 2);
-	ToMau(x, y+1, nd2, 2);
-	ToMau(x, y+2, nd3, 2);
-	ToMau(x, y + 3, nd4, 2);
-	ToMau(x, y + 4, nd5, 2);
-	ToMau(x, y + 5, nd6, 2);
+	ToMau(x +11 - strlen(nd1) / 2, y, nd1, 2);
+	ToMau(x +11- strlen(nd2) / 2, y+1, nd2, 2);
+	ToMau(x +11- strlen(nd3) / 2, y+2, nd3, 2);
+	ToMau(x +11 - strlen(nd4) / 2, y + 3, nd4, 2);
+	ToMau(x +11 - strlen(nd5) / 2, y + 4, nd5, 2);
+	ToMau(x +11- strlen(nd6) / 2, y + 5, nd6, 2);
 }
 void draw_load(int x, int y, int w)
 {
@@ -960,3 +970,4 @@ void draw_load(int x, int y, int w)
 		/*Sleep(80);*/
 	}
 }
+
