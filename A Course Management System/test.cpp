@@ -1,4 +1,4 @@
-//#include"do_hoa.h"
+//#include"graphic.h"
 //#include"lib1.h"
 //#include<direct.h>
 //using namespace std;
@@ -41,7 +41,7 @@
 //	//	ds_sv.head=ds_sv.head->next;
 //	//}*/
 //	//xuat_ds_sinh_vien(ds_sv,0,0);
-//	int x = 4, y = 2, w = 10;
+//	/*int x = 4, y = 2, w = 10;
 //	for (int i = 0; i < w; i++)
 //	{
 //		gotoxy(x+i, y);
@@ -67,6 +67,6 @@
 //	cout << char(217);
 //	gotoxy(x, 3);
 //	char c[20];
-//	cin >> c;
-//
+//	cin >> c;*/
+//	ba_cham(0,0,10);
 //}

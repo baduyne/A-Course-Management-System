@@ -258,56 +258,61 @@ void noi_dung1( int x , int y)
 
 void dk(int x, int y, char tf[])
 {
+	textcolor(7);
+	int px = x, py = y;
 	y = y - 5;
-	box(x, y,10,35);
+	box(x, y, 18, 50);
 	gotoxy(x, y);
 	tai_khoan a;
 	cout << "Your Name:";
-	o(x+10, y-1, 25);
-	gotoxy(x+11, y);
+	o(x, y+1, 25);
+	gotoxy(x+1, y+2);
 	cin.getline(a.ho_ten, 50);
-	y+=3;
+	y+=4;
 	gotoxy(x, y);
 	cout << "ID:";
-	o(x + 3, y - 1, 25);
-	gotoxy(x + 4, y);
+	o(x, y + 1, 25);
+	gotoxy(x + 1, y + 2);
 	cin.getline(a.ms, 50);
-	y += 2;
+	y += 4;
 	gotoxy(x, y);
 	cout << "Birthday :";
 	o(x, y + 1, 25);
-	y += 2;
-	gotoxy(x + 1, y);
+	gotoxy(x + 1, y + 2);
 	cin.getline(a.ngay_sinh, 20);
-	y += 2;
+	y +=4;
 	gotoxy(x, y);
-	cout << " Gender :";
-	o(x, y + 1, 25);
-	y += 2;
-	gotoxy(x + 1, y);
-	cin.getline(a.gioitinh, 20);
-	y += 2;
-	gotoxy(x, y);
-	cout << " Number CCCD :";
-	o(x, y + 1, 25);
-	y += 2;
-	gotoxy(x + 1, y);
-	cin.getline(a.cccd, 20);
-	y += 2;
-	gotoxy(x, y);
-	cout << "Username :";
-	o(x, y + 1, 25);
-	y += 2;
-	gotoxy(x + 1, y);
-	cin.getline(a.user, 50);
-	y++;
-	gotoxy(x, y);
-	cout << "Password :";
-	o(x, y + 1, 25);
-	y += 2;
-	gotoxy(x + 1, y);
-	cin.getline(a.key, 50);
-	xoa_xuong_dong(a.key);
+	cout << "Gender :";
+	strcpy(a.gioitinh,gender(x, y));
+	gotoxy(x+5, y+1);
+	cout << "---Press Enter To Continue";
+	char c = _getch();
+	if (c == 13)
+	{
+		system("cls");
+		y = py;// reset value x y 
+		x = px;
+		box(x, y, 15, 40);
+		gotoxy(x, y);
+		cout << " Number CCCD :";
+		o(x, y + 1, 25);
+		gotoxy(x + 1, y + 2);
+		cin.getline(a.cccd, 20);
+		y += 4;
+		gotoxy(x, y);
+		cout << "Username :";
+		o(x, y + 1, 25);
+		gotoxy(x + 1, y + 2);
+		cin.getline(a.user, 50);
+		xoa_xuong_dong(a.key);
+		y = y + 4;
+		gotoxy(x, y);
+		cout << "Password :";
+		o(x, y + 1, 25);
+		gotoxy(x + 1, y + 2);
+		cin.getline(a.key, 50);
+		xoa_xuong_dong(a.key);
+	}
 	ofstream file;
 	file.open(tf, ios::app);
 	if (check_empty_file(tf))
@@ -384,18 +389,14 @@ bool dn(list_log_in l, int x, int y, char tf[], tai_khoan& temp)
 	box(x, y, 9, 40);
 	gotoxy(x, y);
 	cout << "Username :";
-	y++;
-	o(x, y, 25);
-	y++;
-	gotoxy(x + 1, y);
+	o(x, y+1, 25);
+	gotoxy(x + 1, y+2);
 	cin.getline(temp.user, 50);
-	y+=2;
+	y+=4;
 	gotoxy(x, y);
 	cout << "Password :";
-	y++;
-	o(x, y, 25);
-	y++;
-	gotoxy(x + 1, y);
+	o(x, y+1, 25);
+	gotoxy(x + 1, y+2);
 	cin.getline(temp.key, 50);
 	while (l.head != NULL)
 	{
@@ -699,5 +700,41 @@ void xem_khoa_hoc(ds_khoa_hoc& l, int x, int y, tai_khoan t)
 			addlast_mh(l, ds_kh.head);
 		}
 		ds_kh.head = ds_kh.head->next;
+	}
+}
+char* gender(int x, int y)
+{
+	char nam[10] = "Nam", nu[10] = "Nu", gd[10];
+	gotoxy(x, y);
+	int color[2] = { 7,7 }, px = x, py = y, count = 2;
+	while (true)
+	{
+		ToMau(x+10, y, nam, color[0]);
+		ToMau(x + 25, y, nu, color[1]);
+		char c = _getch();
+		color[0] = color[1] = 7;
+		if (c == 77)
+		{
+			if (count == 1)
+				count++;
+			else
+				count--;
+		}
+		else if (c == 75)
+		{
+			if (count == 2)
+				count--;
+			else
+				count++;
+		};
+		color[count - 1] = 12;
+		if (c == 13)
+		{
+			if (count == 1)
+				strcpy(gd, nam);
+			else 
+				strcpy(gd, nu);
+			return gd;
+		} 
 	}
 }

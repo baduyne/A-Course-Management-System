@@ -38,3 +38,4 @@ void dk_khoa_hoc(int x, int y, tai_khoan temp);
 bool check_ds_trong_lop(tai_khoan infor, nam_hoc a, hoc_ki b, khoa_hoc c);
 void xem_khoa_hoc(ds_khoa_hoc& l, int x, int y, tai_khoan t);
 void init_sinh_vien(sinh_vien& a);
+char* gender(int x, int y);

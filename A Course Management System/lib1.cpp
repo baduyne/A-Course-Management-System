@@ -43,57 +43,95 @@ void addlast_mh(ds_khoa_hoc& mh, node_khoa_hoc* add)
 void nhap_hoc_ki(hoc_ki& h, int x, int y, nam_hoc a)
 {
 	system("cls");
-	box(x, y, 4, 35);
+	box(x, y, 15, 35);
+	textcolor(7);
+	gotoxy(x, y);
 	textcolor(2);
-	gotoxy(x, y);
 	cout << "Nhap ten hoc ki : ";
+	textcolor(7);
+	o(x, y + 1, 25);
+	gotoxy(x + 1, y + 2);
 	cin.getline(h.ten, 20);
+	y += 4;
 	strcpy(h.nien_khoa, a.ten);
+	gotoxy(x, y);
+	textcolor(2);
+	cout << "Niem Khoa : " << h.nien_khoa;
 	y++;
 	gotoxy(x, y);
-	cout << "Niem Khoa :" << h.nien_khoa;
-	y++;
-	gotoxy(x, y);
+	textcolor(2);
 	cout << "Ngay bat dau : ";
+	textcolor(7);
+	o(x, y + 1, 25);
+	gotoxy(x + 1, y + 2);
 	cin.getline(h.day_began, 20);
-	y++;
+	y += 4;
 	gotoxy(x, y);
+	textcolor(2);
 	cout << "Ngay ket thuc ";
+	textcolor(7);
+	o(x, y + 1, 25);
+	gotoxy(x + 1, y + 2);
 	cin.getline(h.day_end, 20);
 }
 void nhap_khoa_hoc(khoa_hoc& a, int x , int y)
 {
+	int px = x, py = y;
 	system("cls");
-	box(x, y, 8, 50);
-	textcolor(2);
+	box(x, y, 20, 50);
+	textcolor(7);
 	gotoxy(x, y);
-	cout << "Ma khoa : ";
+	cout << "Ma khoa :";
+	o(x, y + 1, 25);
+	gotoxy(x + 1, y + 2);
 	cin.getline(a.ma_khoa, 20);
-	y++;
+	y+=4;
 	gotoxy(x, y);
 	cout << "Ten khoa hoc : ";
+	o(x, y + 1, 25);
+	gotoxy(x + 1, y + 2);
 	cin.getline(a.ten_khoa_hoc, 50);
-	y++;
+	y+=4;
 	gotoxy(x, y);
 	cout << "Ten Lop Hoc: ";
+	o(x, y + 1, 25);
+	gotoxy(x + 1, y + 2);
 	cin.getline(a.ten_lop_hoc, 50);
-	y++;
+	y+=4;
 	gotoxy(x, y);
 	cout << "Giao vien : ";
+	o(x, y + 1, 25);
+	gotoxy(x + 1, y + 2);
 	cin.getline(a.ten_giao_vien, 50);
-	y++;
-	gotoxy(x, y);
-	cout << "So tin chi : ";
-	cin >> a.so_tin_chi;
-	cin.ignore();
-	y++;
-	gotoxy(x, y);
-	cout << "Ngay hoc trong tuan : ";
-	cin.getline(a.ngay, 10);
-	y++;
-	gotoxy(x, y);
-	cout << "Ca hoc : ";
-	cin.getline(a.ca_hoc, 20);
+	gotoxy(x + 1, y + 4);
+	cout << "Press Enter To Continue";
+	char c = _getch();
+	if (c == 13)
+	{
+		x=px;
+		y = py;
+		system("cls");
+		box(x, y, 13, 50);
+		textcolor(7);
+		gotoxy(x, y);
+		cout << "So tin chi : ";
+		o(x, y + 1, 25);
+		gotoxy(x + 1, y + 2);
+		cin >> a.so_tin_chi;
+		cin.ignore();
+		y+=4;
+		gotoxy(x, y);
+		cout << "Ngay hoc trong tuan : ";
+		o(x, y + 1, 25);
+		gotoxy(x + 1, y + 2);
+		cin.getline(a.ngay, 10);
+		y+=4;
+		gotoxy(x, y);
+		cout << "Ca hoc : ";
+		o(x, y + 1, 25);
+		gotoxy(x + 1, y + 2);
+		cin.getline(a.ca_hoc, 20);
+	}
 }
 void init_ds_sinh_vien(ds_sinh_vien & sv)
 {
@@ -181,25 +219,33 @@ void remove_node_sv(ds_sinh_vien& l, int pos)
 void nhap_sinh_vien(sinh_vien& a, int x ,int y)
 {
 	system("cls");
-	box(x, y, 5, 40);
+	box(x, y, 19, 40);
 	gotoxy(x, y);
 	cout << "ID:";
+	o(x, y + 1, 25);
+	gotoxy(x + 1, y + 2);
 	cin.getline(a.ma_sinh_vien, 20);
-	y++;
+	y+=4;
 	gotoxy(x, y);
 	cout << "Your Name : ";
+	o(x, y + 1, 25);
+	gotoxy(x + 1, y + 2);
 	cin.getline(a.ho_ten, 50);
-	y++;
+	y+=4;
 	gotoxy(x, y);
 	cout << "Gender : ";
-	cin.getline(a.gioi_tinh, 20);
-	y++;
+	strcpy(a.gioi_tinh, gender(x, y));
+	y+=2;
 	gotoxy(x, y);
 	cout << "Birthday : ";
+	o(x, y + 1, 25);
+	gotoxy(x + 1, y + 2);
 	cin.getline(a.ngay_sinh, 20);
-	y++;
+	y+=4;
 	gotoxy(x, y);
 	cout << "Number CMND : ";
+	o(x, y + 1, 25);
+	gotoxy(x + 1, y + 2);
 	cin.getline(a.cmnd, 20);
 	
 }
@@ -377,22 +423,31 @@ void ghi_ds_sinh_vien_vao_lop_hoc(nam_hoc a,lop_hoc c, ds_sinh_vien infor)
 
 void nhap_lop_hoc(lop_hoc& a, int x, int y)
 {
-	box(x, y, 5, 50);
+	box(x, y, 15, 50);
 	gotoxy(x, y);
-	cout << "Ten lop : ";
+
+	cout << "Ten lop :"; 
+	o(x, y + 1, 25);
+	gotoxy(x + 1, y + 2);
 	cin.getline(a.ten, 30);
-	y++;
+	y += 4;
 	gotoxy(x, y);
 	cout << "Khoa : ";
+	o(x, y + 1, 25);
+	gotoxy(x + 1, y + 2);
 	cin.getline(a.khoa, 50);
-	y++;
+	y+=4;
 	gotoxy(x, y);
 	cout << "So luong to da: ";
+	o(x, y + 1, 25);
+	gotoxy(x + 1, y + 2);
 	cin >> a.so_luong;
 	cin.ignore();
-	y++;
+	y += 4;
 	gotoxy(x, y);
 	cout << "Khoa hoc: ";
+	o(x, y + 1, 25);
+	gotoxy(x + 1, y + 2);
 	cin >> a.k;
 }
 void cap_phat_them_lop_hoc(lop_hoc*& a, int& size)
@@ -724,10 +779,13 @@ void delete_file(char ten_file[])
 void nhap_nam_hoc(nam_hoc& nh,int x , int y)
 {
 	system("cls");
-	box(x, y, 1, 40);
-	textcolor(2);
+	box(x, y, 5, 40);
+	textcolor(7);
 	gotoxy(x , y);
 	cout << "Niem khoa : ";
+	y += 1;
+	o(x, y, 15);
+	gotoxy(x+1, y + 1);
 	cin.getline(nh.ten,50);
 }
 void xuat_nam_hoc(nam_hoc nh,int x,int y)

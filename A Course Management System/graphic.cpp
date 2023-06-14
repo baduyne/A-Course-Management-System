@@ -49,5 +49,51 @@ void ToMau(int x, int y, char* a, int color) // x, y là tọa độ con trỏ c
 }
 void o(int x, int y, int w)
 {
-
+	for (int i = 0; i < w; i++)
+	{
+		gotoxy(x + i, y);
+		cout << char(196);
+		gotoxy(x + i, y + 2);
+		cout << char(196);
+	}
+	for (int i = 0; i < 2; i++)
+	{
+		gotoxy(x, y + i);
+		cout << char(179);
+		gotoxy(x + w, y + i);
+		cout << char(179);
+	}
+	gotoxy(x, y);
+	cout << char(218);
+	gotoxy(x + w, y);
+	cout << char(191);
+	gotoxy(x, y + 2);
+	cout << char(192);
+	gotoxy(x + w, y + 2);
+	cout << char(217);
+}
+void ba_cham(int x, int y, int w)
+{
+	for (int i = 0; i < w; i++)
+	{
+		gotoxy(x + 1, y);
+		cout << "_";
+	}
+}
+void press_enter()
+{
+	int j = 10;
+	while (j < 15)
+	{
+		for (int i = 0; i < 30; i++)
+		{
+			gotoxy(10 + i, j);
+			textcolor(2);
+			cout << "   ";
+		}
+		j++;
+	}
+	/*gotoxy(15, 12);
+	textcolor(12);
+	cout<<"Press Enter To Continue";*/
 }

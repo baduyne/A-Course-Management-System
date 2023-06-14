@@ -8,3 +8,6 @@ void resizeConsole(int width, int height);
 void gotoxy(int x, int y);
 void o(int x, int y, int w);
 void ToMau(int x, int y, char* a, int color);
+void o(int x, int y, int w);
+void ba_cham(int x, int y, int w);
+void press_enter();
