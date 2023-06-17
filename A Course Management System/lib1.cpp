@@ -74,6 +74,15 @@ void nhap_hoc_ki(hoc_ki& h, int x, int y, nam_hoc a)
 	gotoxy(x + 1, y + 2);
 	cin.getline(h.day_end, 20);
 }
+bool kt_hoc_ki(hoc_ki* arr, int sl, hoc_ki a)
+{
+	for (int i = 0; i < sl; i++)
+	{
+		if (strcmp(arr[i].ten, a.ten) == 0)
+			return true;
+	}
+	return false;
+}
 void nhap_khoa_hoc(khoa_hoc& a, int x , int y)
 {
 	int px = x, py = y;
@@ -247,7 +256,6 @@ void nhap_sinh_vien(sinh_vien& a, int x ,int y)
 	o(x, y + 1, 25);
 	gotoxy(x + 1, y + 2);
 	cin.getline(a.cmnd, 20);
-	
 }
 void make_address(char a[])
 {
@@ -788,6 +796,15 @@ void nhap_nam_hoc(nam_hoc& nh,int x , int y)
 	gotoxy(x+1, y + 1);
 	cin.getline(nh.ten,50);
 }
+bool kt_nam_hoc(nam_hoc* a, int size, nam_hoc b)
+{
+	for (int i = 0; i < size; i++)
+	{
+		if (strcmp(a[i].ten, b.ten) == 0)
+			return true;
+	}
+	return false;
+}
 void xuat_nam_hoc(nam_hoc nh,int x,int y)
 {
 	gotoxy(x, y);
@@ -824,7 +841,7 @@ void doc_ds_nam_hoc_tu_file(nam_hoc*& arr, int &size)
 	int i = 0;
 	ifstream fileoutnh;
 	fileoutnh.open("Danh_sach_cac_nam_hoc.csv");
-	char r[40];
+	char* r = new char[40];
 	fileoutnh.getline(r, 40, '\n');
 	while (!fileoutnh.eof())
 	{
@@ -837,6 +854,7 @@ void doc_ds_nam_hoc_tu_file(nam_hoc*& arr, int &size)
 	}
 	fileoutnh.close();
 	size = i;
+	delete[]r;
 }
 
 void nd_khoi_tao(int x, int y)
@@ -862,13 +880,13 @@ int  so_node_ds_sinh_vien(ds_sinh_vien l)
 }
 void doc_ds_sinh_vien_khoa_hoc(nam_hoc a, hoc_ki b, khoa_hoc c, ds_sinh_vien& l)
 {
-	char* address = new char[50];
+	char* address = new char[100];
 	strcpy(address, a.ten);
 	strcat(address, "/");
 	strcat(address, b.ten);
+	strcat(address, "/");
 	strcat(address, c.ma_khoa);
 	strcat(address, c.ten_lop_hoc);
-	xoa_dau_cach(address);
 	make_link(address);
 	xoa_dau_cach(address);
 	ifstream filesv;

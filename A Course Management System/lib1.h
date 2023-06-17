@@ -65,3 +65,5 @@ void doc_ds_sinh_vien_lop_hoc(nam_hoc a, lop_hoc  c, ds_sinh_vien& l);
 void doc_ds_sinh_vien_khoa_hoc(nam_hoc a, hoc_ki b, khoa_hoc c, ds_sinh_vien& l);
 void xuat_nam_hoc(nam_hoc nh, int x, int y);
 void innit_khoa_hoc(khoa_hoc& a);
+bool kt_nam_hoc(nam_hoc* a, int size, nam_hoc b);
+bool kt_hoc_ki(hoc_ki* arr, int sl, hoc_ki a);

@@ -14,6 +14,16 @@ void xu_ly_lop_hoc( int x, int y)
 		innit_khoa_hoc(mh);
 		nam_hoc* nh = new nam_hoc[3];
 		doc_ds_nam_hoc_tu_file(nh, sl);
+		if (sl == 0)
+		{
+			system("cls");
+			box(x, y, 2, 30);
+			gotoxy(x, y);
+			textcolor(12);
+			cout << "NO YEAR SCHOOL";
+			cin.ignore();
+			return;
+		}
 		nd_nam_hoc(nh, sl, x, y);
 		int cl_nam_hoc = click(x, y + 1, sl, 12) - y - 1;
 		int sl_lop_hoc = 1;
@@ -89,10 +99,30 @@ void xu_ly_khoa_hoc(int x ,int y)
 		int sl, sl_hk, w = 15;
 		nam_hoc* nh = new nam_hoc[3];
 		doc_ds_nam_hoc_tu_file(nh, sl);
+		if(sl == 0)
+		{
+			system("cls");
+			box(x, y, 2, 30);
+			gotoxy(x, y);
+			textcolor(12);
+			cout << "NO YEAR SCHOOL";
+			cin.ignore();
+			return;
+		}
 		nd_nam_hoc(nh, sl, x, y);
 		int cl_nam_hoc = click(x, y + 1, sl, w) - y - 1;
 		hoc_ki* hk = new hoc_ki[3];
 		doc_ds_hoc_ki_tu_file(hk, nh[cl_nam_hoc], sl_hk);
+		if (sl_hk == 0)
+		{
+			system("cls");
+			box(x, y, 2, 30);
+			gotoxy(x, y);
+			textcolor(12);
+			cout << "NO SEMESTER";
+			cin.ignore();
+			return;
+		}
 		system("cls");
 		nd_hoc_ki(hk, sl_hk, x, y);
 		int cl_hoc_ki = click(x, y, sl_hk, w) - y;
@@ -114,6 +144,7 @@ void xu_ly_khoa_hoc(int x ,int y)
 		{
 			if (sl_kh == 0)
 			{
+				    system("cls");
 					box(x, y, sl, 30);
 					textcolor(4);
 					gotoxy(x, y);
@@ -135,11 +166,13 @@ void xu_ly_khoa_hoc(int x ,int y)
 			}
 			else if (cl == y + 2)
 			{
-				char tf[100];
+				char *tf=new char [200];
 				system("cls");
-				box(x, y, 2, 50);
+				box(x, y, 5, 55);
 				gotoxy(x, y);
-				cout << "Duong dan : ";
+				cout << "Link : ";
+				o(x, y+1, 40);
+				gotoxy(x+1, y + 2);
 				cin.getline(tf, 100);
 				xoa_dau_cach(tf);
 				if (nhap_sinh_vien_tu_file(ds_sv, tf) == true)
@@ -157,6 +190,7 @@ void xu_ly_khoa_hoc(int x ,int y)
 					ghi_1_sinh_vien_vao_khoa_hoc(nh[cl_nam_hoc], hk[cl_hoc_ki], kh, ds_sv.head->data, so_node_ds_sinh_vien(ds_sv)+1);
 					ds_sv.head = ds_sv.head->next;
 				}
+				delete[]tf;
 			}
 			else if (cl == y + 3)
 			{

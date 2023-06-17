@@ -68,5 +68,5 @@
 //	gotoxy(x, 3);
 //	char c[20];
 //	cin >> c;*/
-//	ba_cham(0,0,10);
+//	press_enter();
 //}

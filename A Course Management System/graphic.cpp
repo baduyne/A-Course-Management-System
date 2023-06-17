@@ -83,16 +83,16 @@ void ba_cham(int x, int y, int w)
 void press_enter()
 {
 	int j = 10;
-	while (j < 15)
-	{
+	/*while (j < 15)
+	{*/
 		for (int i = 0; i < 30; i++)
 		{
 			gotoxy(10 + i, j);
 			textcolor(2);
-			cout << "   ";
+			printf(" ");
 		}
-		j++;
-	}
+	/*	j++;
+	}*/
 	/*gotoxy(15, 12);
 	textcolor(12);
 	cout<<"Press Enter To Continue";*/
