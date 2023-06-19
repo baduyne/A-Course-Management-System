@@ -120,14 +120,14 @@ void  nd_sv(int x, int y, tai_khoan temp)
 	ToMau(x - 4, y - 2, hi, 2);
 	char nd1[40] = "Xem Ho so";
 	char nd2[40] = "Dang ki mon hoc";
-	char nd3[40] = "Xem lich hoc";
+	char nd3[40] = "Ket qua dang ki HP";
 	char nd4[40] = "Xem lich thi";
 	char nd5[40] = "Ket qua hoc tap";
 	char dmk[40] = "Doi mat khau";
 	char dx[40] = "Dang xuat";
 	ToMau(x + 11 - strlen(nd1) / 2, y, nd1, 2);
 	ToMau(x + 11 - strlen(nd2) / 2, y + 1, nd2, 2);
-	ToMau(x + 11 - strlen(nd3) / 2, y + 2, nd3, 2);
+	ToMau(x + 12 - strlen(nd3) / 2, y + 2, nd3, 2);
 	ToMau(x + 11 - strlen(nd4) / 2, y + 3, nd4, 2);
 	ToMau(x + 11 - strlen(nd5) / 2, y + 4, nd5, 2);
 	ToMau(x + 11 - strlen(dmk) / 2, y + 5, dmk, 2);

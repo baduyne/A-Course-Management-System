@@ -29,6 +29,16 @@ void xu_ly_lop_hoc( int x, int y)
 		int sl_lop_hoc = 1;
 		lop_hoc* lh = new lop_hoc[sl_lop_hoc];// co the cap phat them
 		doc_ds_lop_hoc_tu_file(lh, nh[cl_nam_hoc], sl_lop_hoc);
+		if (sl_lop_hoc == 0)
+		{
+			system("cls");
+			box(x, y, 3, 35);
+			textcolor(4);
+			gotoxy(x+5, y);
+			cout << "NO CLASS";
+			cin.ignore();
+			break;
+		}
 		system("cls");
 		if (cl == y)
 		{
@@ -83,7 +93,7 @@ void xu_ly_lop_hoc( int x, int y)
 				xuat_lop_hoc(lh, sl_lop_hoc, x, y);
 				int cl_lh = click(19, y + 1, sl_lop_hoc, 62) - y - 1;
 				doc_ds_sinh_vien_lop_hoc(nh[cl_nam_hoc], lh[cl_lh], ds_sv);
-				xuat_ds_sinh_vien(ds_sv, x, y);
+				xuat_ds_sinh_vien_lop_hoc(ds_sv, x, y);
 			}
 		}
 	}
@@ -197,8 +207,16 @@ void xu_ly_khoa_hoc(int x ,int y)
 				system("cls");
 				gotoxy(x, y);
 				doc_ds_sinh_vien_khoa_hoc(nh[cl_nam_hoc], hk[cl_hoc_ki], kh, ds_sv);
-				int node_sv = so_node_ds_sinh_vien(ds_sv);
-				xuat_ds_sinh_vien(ds_sv, x, y);
+				if (so_node_ds_sinh_vien(ds_sv) == 0)
+				{
+					box(x, y, 2, 30);
+					textcolor(4);
+					gotoxy(x, y);
+					cout << "NO MEMBER";
+					cin.ignore();
+					continue;
+				}
+				xuat_ds_sinh_vien_khoa_hoc(ds_sv, x, y);
 				char c = _getch();
 			}
 			else if (cl == y + 4)
@@ -209,14 +227,14 @@ void xu_ly_khoa_hoc(int x ,int y)
 				int  sv = so_node_ds_sinh_vien(ds_sv);
 				if (sv == 0)
 				{
-					box(x, y, sv, 30);
+					box(x, y, 2, 30);
 					textcolor(4);
 					gotoxy(x, y);
 					cout << "NO MEMBER";
 					cin.ignore();
 					continue;
 				}
-				xuat_ds_sinh_vien(ds_sv, x, y);
+				xuat_ds_sinh_vien_lop_hoc(ds_sv, x, y);
 				int cl_sv = click(15, y + 1, sv, 73) - y;
 				remove_node_sv(ds_sv, cl_sv);
 				ghi_ds_sinh_vien_vao_khoa_hoc(nh[cl_nam_hoc], hk[cl_hoc_ki], kh, ds_sv);

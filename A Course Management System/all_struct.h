@@ -3,13 +3,13 @@
 using namespace std;
 struct tai_khoan
 {
-	char ms[10];
-	char ho_ten[50];
-	char ngay_sinh[20];
-	char gioitinh[20];
-	char cccd[20];
-	char user[50];
-	char key[50];
+	char ms[10]="\0";
+	char ho_ten[50] = "\0";
+	char ngay_sinh[20] = "\0";
+	char gioitinh[20] = "\0";
+	char cccd[20] = "\0";
+	char user[50] = "\0";
+	char key[50] = "\0";
 };
 //typedef struct tai_khoan tai_khoan;
 struct node
@@ -23,15 +23,15 @@ struct list_log_in
 };
 struct hoc_ki
 {
-	char ten[50];
-	char nien_khoa[50];
-	char day_began[30];
-	char day_end[30];
+	char ten[50] = "\0";
+	char nien_khoa[50] = "\0";
+	char day_began[30] = "\0";
+	char day_end[30] = "\0";
 };
 struct lop_hoc
 {
-	char ten[30];
-	char khoa[50];
+	char ten[30] = "\0";
+	char khoa[50] = "\0";
 	char k[10];
 	int so_luong;
 };
@@ -62,6 +62,10 @@ struct sinh_vien
 	char gioi_tinh[20];
 	char ngay_sinh[20];
 	char cmnd[20];
+	float diemgk = 0;
+	float diemck = 0;
+	float dqt = 0;
+	float dtb = 0;
 };
 struct node_sv
 {
