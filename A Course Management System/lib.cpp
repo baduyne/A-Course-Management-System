@@ -1,6 +1,5 @@
 ﻿#include "lib.h"
 // de 2 ham option tren cung de code 
-// them dong luu tru
 void option_teacher(tai_khoan& temp, list_log_in l, int x, int y)
 {
 	char tf[50] = "Tai_khoan_giao_vien.csv";
@@ -36,6 +35,16 @@ void option_teacher(tai_khoan& temp, list_log_in l, int x, int y)
 			khoa_hoc mh;
 			nam_hoc* nh = new nam_hoc[3];
 			doc_ds_nam_hoc_tu_file(nh, sl);
+			if (sl == 0)
+			{
+				system("cls");
+				box(x, y, 2, 30);
+				gotoxy(x, y);
+				textcolor(12);
+				cout << "NO SCHOOL YEAR";
+				cin.ignore();
+				return;
+			}
 			nd_nam_hoc(nh, sl, x, y );
 			int cl_nam_hoc = click(x, y+1, sl,w ) - y - 1;
 			hoc_ki* hk = new hoc_ki[3];
@@ -56,6 +65,16 @@ void option_teacher(tai_khoan& temp, list_log_in l, int x, int y)
 			int cl_hoc_ki = click(x, y, sl_hk,w) - y;
 			system("cls");
 			doc_ds_khoa_hoc_tu_file(hk[cl_hoc_ki], nh[cl_nam_hoc], ds_kh);
+			if (so_node_khoa_hoc(ds_kh) == 0)
+			{
+				system("cls");
+				box(x, y, sl, 30);
+				textcolor(4);
+				gotoxy(x, y);
+				cout << "NO COURSE";
+				cin.ignore();
+				continue;
+			}
          	xuat_ds_khoa_hoc( x,y,ds_kh);
 		}
 		else if (n == y + 3)
@@ -110,6 +129,7 @@ void option_student(tai_khoan temp, list_log_in l, int x, int y)
 			init_ds_mh(l);
 			xem_khoa_hoc(l, x, y, temp);
 			xuat_ds_khoa_hoc(x, y, l);
+			cin.ignore();
 		}
 	}
 }
@@ -187,7 +207,7 @@ void log_in(list_log_in& l, tai_khoan& infor, int x , int y )
 				else
 				{
 					textcolor(4);
-					gotoxy(x, y + 7);
+					gotoxy(x, y + 8);
 					cout << "Failure !! ";
 					Sleep(500);
 				}
@@ -524,7 +544,7 @@ void ghi_file_tai_khoan(list_log_in l, char tf[])
 }
 void box(int x, int y, int sl, int w)
 {
-	char a[50] = "POTAL HCMUS";
+	char a[50] = "PORTAL HCMUS";
 	int len = strlen(a);
 	ToMau(x + w / 2 - len, y - 3, a, 2);
 	x = x - 6;
@@ -701,7 +721,7 @@ void dk_khoa_hoc(int x, int y, tai_khoan temp)
 		box(x, y, 2, 30);
 		gotoxy(x, y);
 		textcolor(12);
-		cout << "NO YEAR SCHOOL";
+		cout << "NO SCHOOL YEAR";
 		cin.ignore();
 		return;
 	}
@@ -761,6 +781,8 @@ void dk_khoa_hoc(int x, int y, tai_khoan temp)
 	strcpy(a.gioi_tinh, temp.gioitinh);
 	strcpy(a.cmnd, temp.cccd);
 	ghi_1_sinh_vien_vao_khoa_hoc(nh[cl_nam_hoc], hk[cl_hoc_ki], kh, a, so_node_ds_sinh_vien(ds_sv) + 1);
+	delete[]nh;
+	delete[]hk;
 }
 bool check_ds_trong_lop(tai_khoan infor, nam_hoc a, hoc_ki b, khoa_hoc c)
 {
@@ -786,7 +808,7 @@ void xem_khoa_hoc(ds_khoa_hoc& l, int x, int y, tai_khoan t)
 		box(x, y, 2, 30);
 		gotoxy(x, y);
 		textcolor(12);
-		cout << "NO YEAR SCHOOL";
+		cout << "NO SCHOOL YEAR";
 		cin.ignore();
 		return;
 	}
@@ -830,18 +852,20 @@ void xem_khoa_hoc(ds_khoa_hoc& l, int x, int y, tai_khoan t)
 		}
 		temp = temp->next;
 	}
+	delete[]nh;
+	delete[]hk;
 }
 char* gender(int x, int y)
 {
 	char nam[10] = "Nam", nu[10] = "Nu", gd[10];
 	gotoxy(x, y);
-	int color[2] = { 7,7 }, px = x, py = y, count = 2;
+	int color[2] = { 12,7 }, px = x, py = y, count = 1;
 	while (true)
 	{
 		ToMau(x+10, y, nam, color[0]);
 		ToMau(x + 25, y, nu, color[1]);
 		char c = _getch();
-		color[0] = color[1] = 7;
+		color[0]= color[1] = 7;
 		if (c == 77)
 		{
 			if (count == 1)
@@ -876,5 +900,97 @@ void in_hoa_chu_dau(char a[])
 	{
 		if(97 <= a[i] && a[i] <= 122)
 			a[i] = a[i] - 32;
+	}
+}
+char* ngay_hoc_trong_tuan(int x , int y)
+{
+	char t2[5] = "Mon", t3[5] = "Tue",  t4[5] = "Wed", t5[5] = "Thu", t6[5] = "Fri", t7[5] = "Sat";
+	int color[6] = {12,7,7,7,7,7}, px = x, py = y, count = 1;
+	while (true)
+	{
+		ToMau(x , y, t2 , color[0]);
+		ToMau(x + 6, y, t3, color[1]);
+		ToMau(x + 12, y, t4, color[2]);
+		ToMau(x + 18, y, t5, color[3]);
+		ToMau(x + 24, y, t6, color[4]);
+		ToMau(x + 30, y, t7, color[5]);
+		char c = _getch();
+		color[count - 1] = 7;
+		if (c == 75)
+		{
+			if (count == 1)
+				count = 6;
+			else
+				count--;
+		}
+		else if (c == 77)
+		{
+			if (count == 6)
+				count=1 ;
+			else
+				count++;
+		};
+		color[count - 1] = 12;
+		if (c == 13)
+		{
+			switch (count)
+			{
+			case 1:
+				return t2;
+			case 2:
+				return t3;
+			case 3:
+				return t4;
+			case 4:
+				return t5;
+			case 5:
+				return t6;
+			case 6:
+				return t7;
+			}
+		}
+	}
+}
+char* ca_hoc_trong_ngay(int x, int y)
+{
+	char s1[20] = "S1(07:30)", s2[20] = "S2(09:30)", s3[15] = "S3(13:30)", s4[20] = "S4(15:30)";
+	int color[4] = { 12,7,7,7}, px = x, py = y, count = 1;
+	while (true)
+	{
+		ToMau(x, y, s1, color[0]);
+		ToMau(x + 11, y, s2, color[1]);
+		ToMau(x + 22, y, s3, color[2]);
+		ToMau(x + 33, y, s4, color[3]);
+		char c = _getch();
+		color[count - 1] = 7;
+		if (c == 75)
+		{
+			if (count == 1)
+				count = 4;
+			else
+				count--;
+		}
+		else if (c == 77)
+		{
+			if (count == 4)
+				count = 1;
+			else
+				count++;
+		};
+		color[count - 1] = 12;
+		if (c == 13)
+		{
+			switch (count)
+			{
+			case 1:
+				return s1;
+			case 2:
+				return s2;
+			case 3:
+				return s3;
+			case 4:
+				return s4;
+			}
+		}
 	}
 }

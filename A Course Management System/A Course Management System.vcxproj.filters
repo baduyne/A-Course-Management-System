@@ -51,9 +51,4 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="ds_vs.csv">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
 </Project>

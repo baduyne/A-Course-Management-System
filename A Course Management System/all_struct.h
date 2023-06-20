@@ -11,7 +11,6 @@ struct tai_khoan
 	char user[50] = "\0";
 	char key[50] = "\0";
 };
-//typedef struct tai_khoan tai_khoan;
 struct node
 {
 	tai_khoan data;
@@ -37,14 +36,14 @@ struct lop_hoc
 };
 struct khoa_hoc
 {
-	char ma_khoa[20];
-	char ten_khoa_hoc[50];
-	char ten_lop_hoc[50];
-	char ten_giao_vien[50];
-	int so_tin_chi;
+	char ma_khoa[20] = "\0 ";
+	char ten_khoa_hoc[50] = "\0";
+	char ten_lop_hoc[50] = "\0";
+	char ten_giao_vien[50] = "\0";
+	int so_tin_chi = 0;
 	int so_luong = 50;
-	char ngay[30];
-	char ca_hoc[30];
+	char ngay[30] = "\0";
+	char ca_hoc[30] = "\0";
 };
 struct node_khoa_hoc
 {
@@ -78,5 +77,5 @@ struct ds_sinh_vien
 };
 struct nam_hoc
 {
-	char ten[30];
+	char ten[30] = "\0";
 };

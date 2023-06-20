@@ -68,5 +68,7 @@
 //	gotoxy(x, 3);
 //	char c[20];
 //	cin >> c;*/
-//	press_enter();
+//	char* a = new char[5];
+//	strcpy(a,ngay_hoc_trong_tuan(2, 4));
+//	cout << endl << a;
 //}

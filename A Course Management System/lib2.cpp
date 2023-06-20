@@ -20,7 +20,7 @@ void xu_ly_lop_hoc( int x, int y)
 			box(x, y, 2, 30);
 			gotoxy(x, y);
 			textcolor(12);
-			cout << "NO YEAR SCHOOL";
+			cout << "NO SCHOOL YEAR ";
 			cin.ignore();
 			return;
 		}
@@ -29,16 +29,6 @@ void xu_ly_lop_hoc( int x, int y)
 		int sl_lop_hoc = 1;
 		lop_hoc* lh = new lop_hoc[sl_lop_hoc];// co the cap phat them
 		doc_ds_lop_hoc_tu_file(lh, nh[cl_nam_hoc], sl_lop_hoc);
-		if (sl_lop_hoc == 0)
-		{
-			system("cls");
-			box(x, y, 3, 35);
-			textcolor(4);
-			gotoxy(x+5, y);
-			cout << "NO CLASS";
-			cin.ignore();
-			break;
-		}
 		system("cls");
 		if (cl == y)
 		{
@@ -48,6 +38,16 @@ void xu_ly_lop_hoc( int x, int y)
 		}
 		else
 		{
+			if (sl_lop_hoc == 0)
+			{
+				system("cls");
+				box(x, y, 3, 35);
+				textcolor(4);
+				gotoxy(x + 5, y);
+				cout << "NO CLASS";
+				cin.ignore();
+				break;
+			}
 			ds_sinh_vien ds_sv;
 			init_ds_sinh_vien(ds_sv);
 			doc_ds_lop_hoc_tu_file(lh, nh[cl_nam_hoc], sl_lop_hoc);
@@ -115,7 +115,7 @@ void xu_ly_khoa_hoc(int x ,int y)
 			box(x, y, 2, 30);
 			gotoxy(x, y);
 			textcolor(12);
-			cout << "NO YEAR SCHOOL";
+			cout << "NO SCHOOL YEAR";
 			cin.ignore();
 			return;
 		}
@@ -145,10 +145,22 @@ void xu_ly_khoa_hoc(int x ,int y)
 		system("cls");
 		if (cl == y)
 		{
-			khoa_hoc mh;
-			innit_khoa_hoc(mh);
-			nhap_khoa_hoc(mh, x, y);
-			ghi_1_khoa_hoc(hk[cl_hoc_ki], mh, nh[cl_nam_hoc], so_node_khoa_hoc(ds_kh)+1);
+			khoa_hoc kh;
+			innit_khoa_hoc(kh);
+			while (true)
+			{
+                nhap_khoa_hoc(kh, x, y);
+				if (kt_trung_ca_khoa_hoc(ds_kh, kh) == true)
+				{
+					gotoxy(x + 10, y + 10);
+					textcolor(12);
+					cout << "Trung gio hoc !";
+					cin.ignore();
+					continue;
+				}
+				break;
+			}
+			ghi_1_khoa_hoc(hk[cl_hoc_ki], kh, nh[cl_nam_hoc], so_node_khoa_hoc(ds_kh)+1);
 		}
 		else
 		{
@@ -176,24 +188,24 @@ void xu_ly_khoa_hoc(int x ,int y)
 			}
 			else if (cl == y + 2)
 			{
-				char *tf=new char [200];
+				char *tf=new char [500];
 				system("cls");
 				box(x, y, 5, 55);
 				gotoxy(x, y);
 				cout << "Link : ";
 				o(x, y+1, 40);
 				gotoxy(x+1, y + 2);
-				cin.getline(tf, 100);
-				xoa_dau_cach(tf);
+				cin.getline(tf, 500);
 				if (nhap_sinh_vien_tu_file(ds_sv, tf) == true)
 				{
-					draw_load(x, y + 1, 20);
+					draw_load(x, y + 4, 20);
 				}
 				else
 				{
 					char a[20] = "Fail.....";
-					ToMau(x, y + 1, a, 4);
+					ToMau(x, y + 4, a, 4);
 					Sleep(200);
+					continue;
 				}
 				while (ds_sv.head != NULL)
 				{
@@ -242,19 +254,18 @@ void xu_ly_khoa_hoc(int x ,int y)
 			else if (cl == y + 5)
 			{
 				// xoa file khoa hoc 
-				cout << cl_khoa_hoc;
-				system("pause");
-				char address[70];
+				char *address=new char [100];
 				strcpy(address, nh[cl_nam_hoc].ten);
 				strcat(address, "/");
 				strcat(address, hk[cl_hoc_ki].ten);
-				strcat(address, kh.ma_khoa);
+				strcat(address, "/");
+				strcat(address, kh.ten_khoa_hoc);
 				strcat(address, kh.ten_lop_hoc);
-				xoa_dau_cach(address);
 				make_link(address);
 				delete_file(address);
 				remove_khoa_hoc(ds_kh, cl_khoa_hoc);
 				ghi_ds_khoa_hoc(hk[cl_hoc_ki], ds_kh, nh[cl_nam_hoc]);
+				delete[]address;
 			}
 		}
 	}

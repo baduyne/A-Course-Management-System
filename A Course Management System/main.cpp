@@ -10,7 +10,5 @@ int main()
 	tai_khoan inf;
 	khoi_tao(l);
 	log_in(l, inf,x,y);
-	/*gotoxy(10, 10);
-	cout << "alo";*/
 }
  
