@@ -68,7 +68,14 @@
 //	gotoxy(x, 3);
 //	char c[20];
 //	cin >> c;*/
-//	char* a = new char[5];
+//	/*char* a = new char[5];
 //	strcpy(a,ngay_hoc_trong_tuan(2, 4));
-//	cout << endl << a;
+//	cout << endl << a;*/
+//	ds_sinh_vien l;
+//	init_ds_sinh_vien(l);
+//	char ten_file[500];
+//	cin.getline(ten_file, 500);
+//	make_address(ten_file);
+//	if(doc_file_diem(l, ten_file));
+//	xuat_ds_sinh_vien_khoa_hoc(l,20,4);
 //}

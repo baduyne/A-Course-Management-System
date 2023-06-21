@@ -70,3 +70,5 @@ bool kt_hoc_ki(hoc_ki* arr, int sl, hoc_ki a);
 void xuat_ds_sinh_vien_khoa_hoc(ds_sinh_vien l, int x, int y);
 bool kt_trung_ca_khoa_hoc(ds_khoa_hoc l, khoa_hoc a);
 char* ngay_hoc_trong_tuan(int x, int y);
+bool doc_file_diem(ds_sinh_vien& l, char tf[]);
+void tao_file_nhap_diem(nam_hoc a, hoc_ki b, khoa_hoc c, ds_sinh_vien l);

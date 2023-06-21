@@ -994,3 +994,15 @@ char* ca_hoc_trong_ngay(int x, int y)
 		}
 	}
 }
+void nd_nhap_diem(int x, int y)
+{
+	box(x, y, 5, 30);
+	char nd1[30] = "Tao file nhap diem";
+	char nd2[30] = "Nhap diem";
+	char nd3[30] = "Nhap diem tu file";
+	char nd4[30] = "Thoat";
+	ToMau(x+17-strlen(nd1), y, nd1, 7);
+	ToMau(x + 13- strlen(nd2), y+1, nd2, 7);
+	ToMau(x + 17 - strlen(nd3), y+2, nd3, 7);
+	ToMau(x + 11 - strlen(nd4), y + 3, nd4, 7);
+}

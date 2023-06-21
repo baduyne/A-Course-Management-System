@@ -175,7 +175,7 @@ void xu_ly_khoa_hoc(int x ,int y)
 					continue;
 			}
 			xuat_ds_khoa_hoc(x, y, ds_kh);
-			int cl_khoa_hoc = click(12, y + 1, sl_kh,90) - y;
+			int cl_khoa_hoc = click(12, y + 1, sl_kh,97) - y;
 			khoa_hoc kh = tim_khoa_hoc(ds_kh, cl_khoa_hoc);
 			ds_sinh_vien ds_sv;
 			init_ds_sinh_vien(ds_sv);
@@ -267,6 +267,86 @@ void xu_ly_khoa_hoc(int x ,int y)
 				ghi_ds_khoa_hoc(hk[cl_hoc_ki], ds_kh, nh[cl_nam_hoc]);
 				delete[]address;
 			}
+			else if (cl == y + 7)
+			{
+				while (true)
+				{
+					system("cls");
+					char* ten_file = new char[300];
+					doc_ds_sinh_vien_khoa_hoc(nh[cl_nam_hoc], hk[cl_hoc_ki], kh, ds_sv);
+					int  sv = so_node_ds_sinh_vien(ds_sv);
+					if (sv == 0)
+					{
+						box(x, y, 2, 30);
+						textcolor(4);
+						gotoxy(x, y);
+						cout << "NO MEMBER";
+						cin.ignore();
+						continue;
+
+					}
+					nd_nhap_diem(x, y);
+					int click_nhap_diem = click(x, y, 4, 20);
+					if (click_nhap_diem == y + 2)
+					{
+						system("cls");
+						box(x, y, 5, 55);
+						gotoxy(x, y);
+						cout << "Link : ";
+						o(x, y + 1, 40);
+						gotoxy(x + 1, y + 2);
+						cin.getline(ten_file, 300);
+						make_address(ten_file);
+						if (nhap_diem(ds_sv, ten_file) == true)
+						{
+							draw_load(x, y + 4, 20);
+						}
+						else
+						{
+							char a[20] = "Fail.....";
+							ToMau(x, y + 4, a, 4);
+							Sleep(200);
+							continue;
+						}
+						ghi_ds_sinh_vien_vao_khoa_hoc(nh[cl_nam_hoc], hk[cl_hoc_ki], kh, ds_sv);
+					}
+					else if (click_nhap_diem == y)
+					{
+						tao_file_nhap_diem(nh[cl_nam_hoc], hk[cl_hoc_ki], kh, ds_sv);
+					}
+					else if (click_nhap_diem == y + 3)
+					{
+						break;
+					}
+					else if (click_nhap_diem == y + 1)
+					{
+
+					}
+				}
+			}
 		}
 	}
+}
+bool nhap_diem(ds_sinh_vien &ds_sv_kh, char ten_file[])
+{
+		ds_sinh_vien l;
+		init_ds_sinh_vien(l);
+		if (doc_file_diem(l, ten_file) == false)
+			return false;
+		node_sv* temp_ds = ds_sv_kh.head;
+		while (temp_ds != NULL)
+		{
+			for (node_sv* temp = l.head; temp != NULL; temp = temp->next)
+			{
+				if (strcmp(temp_ds->data.ma_sinh_vien, temp->data.ma_sinh_vien) == 0)
+				{
+					temp_ds->data.dqt = temp->data.dqt;
+					temp_ds->data.diemgk = temp->data.diemgk;
+					temp_ds->data.diemck = temp->data.diemck;
+					temp_ds->data.dtb = temp->data.dtb;
+				}
+			}
+			temp_ds = temp_ds->next;
+		}
+		return true;
 }
