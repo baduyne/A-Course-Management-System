@@ -1069,19 +1069,23 @@ void nd_khoa_hoc(int x, int y)
 void nd_lop_hoc(int x, int y)
 {
 	system("cls");
-	box(x, y, 6, 35);
-	char nd1[20] = "Them 1 lop hoc";
-	char nd2[30] = "Danh sach lop hoc";
-	char nd3[30] = "Them 1 sinh vien";
-	char nd4[30] = "Them danh sach tu file";
-	char nd5[30] = "Xem danh sach sinh vien";
-	char nd6[30] = "Thoat";
+	box(x, y, 8, 35);
+	char nd1[20] = "Tao 1 Lop Hoc";
+	char nd2[30] = "Danh Sach Lop Hoc";
+	char nd3[30] = "Them 1 Sinh Vien";
+	char nd4[30] = "Them Danh Sach Tu File";
+	char nd5[30] = "Xem Danh Sach Sinh Vien";
+	char nd6[30] = "Xoa 1 Sinh Vien";
+	char nd7[30] = "Xem Diem Lop Hoc";
+	char nd8[30] = "Thoat";
 	ToMau(x +11 - strlen(nd1) / 2, y, nd1, 2);// canh giua 
 	ToMau(x +11- strlen(nd2) / 2, y+1, nd2, 2);
 	ToMau(x +11- strlen(nd3) / 2, y+2, nd3, 2);
 	ToMau(x +11 - strlen(nd4) / 2, y + 3, nd4, 2);
 	ToMau(x +11 - strlen(nd5) / 2, y + 4, nd5, 2);
-	ToMau(x +11- strlen(nd6) / 2, y + 5, nd6, 2);
+	ToMau(x + 11 - strlen(nd6) / 2, y + 5, nd6, 2);
+	ToMau(x + 11 - strlen(nd7) / 2, y + 6, nd7, 2);
+	ToMau(x +11- strlen(nd8) / 2, y + 7, nd8, 2);
 }
 void draw_load(int x, int y, int w)
 {

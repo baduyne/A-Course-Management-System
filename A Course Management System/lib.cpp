@@ -125,10 +125,58 @@ void option_student(tai_khoan temp, list_log_in l, int x, int y)
 		}
 		else if (n == y + 2)
 		{
+			int sl = 2, w = 15, sl_hk = 2;
+			nam_hoc* nh = new nam_hoc[sl];
+			doc_ds_nam_hoc_tu_file(nh, sl);
+			if (sl == 0)
+			{
+				system("cls");
+				box(x, y, 2, 30);
+				gotoxy(x, y);
+				textcolor(12);
+				cout << "NO SCHOOL YEAR";
+				cin.ignore();
+				return;
+			}
+			nd_nam_hoc(nh, sl, x, y);
+			int cl_nam_hoc = click(x, y + 1, sl, w) - y - 1;
+			hoc_ki* hk = new hoc_ki[sl_hk];
+			doc_ds_hoc_ki_tu_file(hk, nh[cl_nam_hoc], sl_hk);
+			system("cls");
+			if (sl_hk == 0)
+			{
+				box(x, y, 2, 30);
+				gotoxy(x, y);
+				textcolor(12);
+				cout << "NO SEMESTER";
+				cin.ignore();
+				return;
+			}
+			nd_hoc_ki(hk, sl_hk, x, y);
+			int cl_hoc_ki = click(x, y, sl_hk, w) - y;
+			ds_khoa_hoc ds_kh;
+			init_ds_mh(ds_kh);
+			doc_ds_khoa_hoc_tu_file(hk[cl_hoc_ki], nh[cl_nam_hoc], ds_kh);
+			if (so_node_khoa_hoc(ds_kh) == 0)
+			{
+				system("cls");
+				box(x, y, sl, 30);
+				textcolor(4);
+				gotoxy(x, y);
+				cout << "NO COURSE";
+				cin.ignore();
+				return;
+			}
 			ds_khoa_hoc l;
 			init_ds_mh(l);
-			xem_khoa_hoc(l, x, y, temp);
+			xem_khoa_hoc_da_dk( nh[cl_nam_hoc], hk[cl_hoc_ki],l, x, y, temp);
 			xuat_ds_khoa_hoc(x, y, l);
+			delete[]nh;
+			delete[]hk;
+		}
+		else if (n == y + 3)
+		{
+			xem_diem(temp, x, y);
 			cin.ignore();
 		}
 	}
@@ -358,9 +406,7 @@ node* tao_node_log_in(tai_khoan a)
 void addlast_log_in(list_log_in& l, node* p)
 {
 	if (l.head == NULL)
-	{
 		l.head = p;
-	}
 	else
 	{
 		node* temp = l.head;
@@ -757,7 +803,7 @@ void dk_khoa_hoc(int x, int y, tai_khoan temp)
 		return;
 	}
 	xuat_ds_khoa_hoc(x, y, ds_kh);
-	int cl_khoa_hoc = click(12, y + 1, sl_kh, 90) - y;
+	int cl_khoa_hoc = click(12, y + 1, sl_kh, 97) - y;// -y de no bat dau tu 1 
 	khoa_hoc kh = tim_khoa_hoc(ds_kh, cl_khoa_hoc);
 	ds_sinh_vien ds_sv;
 	init_ds_sinh_vien(ds_sv);
@@ -797,44 +843,15 @@ bool check_ds_trong_lop(tai_khoan infor, nam_hoc a, hoc_ki b, khoa_hoc c)
 	}
 	return false;
 }
-void xem_khoa_hoc(ds_khoa_hoc& l, int x, int y, tai_khoan t)
+void xem_khoa_hoc_da_dk(nam_hoc a , hoc_ki b ,ds_khoa_hoc& l, int x, int y, tai_khoan t)
 {
-	int sl=2, w = 15, sl_hk=2;
-	nam_hoc* nh = new nam_hoc[sl];
-	doc_ds_nam_hoc_tu_file(nh, sl);
-	if (sl == 0)
-	{
-		system("cls");
-		box(x, y, 2, 30);
-		gotoxy(x, y);
-		textcolor(12);
-		cout << "NO SCHOOL YEAR";
-		cin.ignore();
-		return;
-	}
-	nd_nam_hoc(nh, sl, x, y);
-	int cl_nam_hoc = click(x, y + 1, sl, w) - y - 1;
-	hoc_ki* hk = new hoc_ki[sl_hk];
-	doc_ds_hoc_ki_tu_file(hk, nh[cl_nam_hoc], sl_hk);
-	system("cls");
-	if (sl_hk == 0)
-	{
-		box(x, y, 2, 30);
-		gotoxy(x, y);
-		textcolor(12);
-		cout << "NO SEMESTER";
-		cin.ignore();
-		return;
-	}
-	nd_hoc_ki(hk, sl_hk, x, y);
-	int cl_hoc_ki = click(x, y, sl_hk, w) - y;
 	ds_khoa_hoc ds_kh;
 	init_ds_mh(ds_kh);
-	doc_ds_khoa_hoc_tu_file(hk[cl_hoc_ki], nh[cl_nam_hoc], ds_kh);
+	doc_ds_khoa_hoc_tu_file(b, a, ds_kh);
 	if (so_node_khoa_hoc(ds_kh) == 0)
 	{
 		system("cls");
-		box(x, y, sl, 30);
+		box(x, y, 3, 30);
 		textcolor(4);
 		gotoxy(x, y);
 		cout << "NO COURSE";
@@ -845,15 +862,13 @@ void xem_khoa_hoc(ds_khoa_hoc& l, int x, int y, tai_khoan t)
 	while (temp != NULL)
 	{
 		khoa_hoc tam = temp->data;
-		if (check_ds_trong_lop(t, nh[cl_nam_hoc], hk[cl_hoc_ki], tam) == true)
+		if (check_ds_trong_lop(t, a, b, tam) == true)
 		{
 			node_khoa_hoc* add = tao_node_mh(tam);
 			addlast_mh(l, add);
 		}
 		temp = temp->next;
 	}
-	delete[]nh;
-	delete[]hk;
 }
 char* gender(int x, int y)
 {
@@ -997,12 +1012,51 @@ char* ca_hoc_trong_ngay(int x, int y)
 void nd_nhap_diem(int x, int y)
 {
 	box(x, y, 5, 30);
-	char nd1[30] = "Tao file nhap diem";
-	char nd2[30] = "Nhap diem";
-	char nd3[30] = "Nhap diem tu file";
+	char nd1[30] = "Tao File Nhap Diem";
+	char nd2[30] = "Nhap Diem";
+	char nd3[30] = "Nhap Diem Tu File";
 	char nd4[30] = "Thoat";
-	ToMau(x+17-strlen(nd1), y, nd1, 7);
-	ToMau(x + 13- strlen(nd2), y+1, nd2, 7);
-	ToMau(x + 17 - strlen(nd3), y+2, nd3, 7);
-	ToMau(x + 11 - strlen(nd4), y + 3, nd4, 7);
+	ToMau(x+9-strlen(nd1)/2, y, nd1, 2);
+	ToMau(x + 9- strlen(nd2)/2, y+1, nd2, 2);
+	ToMau(x +9 - strlen(nd3)/2, y+2, nd3, 2);
+	ToMau(x + 9 - strlen(nd4)/2, y + 3, nd4, 2);
+}
+void nd_xem_diem_lop_hoc(int x, int y)
+{
+	box(x, y, 5, 38);
+	char nd1[30] = "Diem Cuoi Ki Cac Khoa Hoc";
+	char nd2[30] = "Diem Trung Binh Hoc Ki";
+	char nd3[30] = "Diem Trung Binh Chung";
+	char nd4[30] = "Thoat";
+	ToMau(x + 12 - strlen(nd1)/2, y, nd1, 7);
+	ToMau(x + 12 - strlen(nd2)/2, y + 1, nd2, 7);
+	ToMau(x + 12 - strlen(nd3)/2, y + 2, nd3, 7);
+	ToMau(x + 12 - strlen(nd4)/2, y + 3, nd4, 7);
+}
+void kt_khoa_hoc_thuoc_lop_hoc(nam_hoc a, hoc_ki b,lop_hoc c, ds_khoa_hoc& l, int x, int y)
+{
+	ds_khoa_hoc ds_kh;
+	init_ds_mh(ds_kh);
+	doc_ds_khoa_hoc_tu_file(b, a, ds_kh);
+	if (so_node_khoa_hoc(ds_kh) == 0)
+	{
+		system("cls");
+		box(x, y, 3, 30);
+		textcolor(4);
+		gotoxy(x, y);
+		cout << "NO COURSE";
+		cin.ignore();
+		return;
+	}
+	node_khoa_hoc* temp = ds_kh.head;
+	while (temp != NULL)
+	{
+		khoa_hoc tam = temp->data;
+		if (strcmp(temp->data.ten_lop_hoc,c.ten)==0)
+		{
+			node_khoa_hoc* add = tao_node_mh(tam);
+			addlast_mh(l, add);
+		}
+		temp = temp->next;
+	}
 }

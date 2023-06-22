@@ -4,8 +4,8 @@ void xu_ly_lop_hoc( int x, int y)
 	while (true)
 	{
 		nd_lop_hoc(x, y);
-		int cl = click(x, y, 6, 25);
-		if (cl == y + 5)
+		int cl = click(x, y, 8, 25);
+		if (cl == y + 7)
 			return;
 		int sl;
 		ds_khoa_hoc ds_kh;
@@ -91,9 +91,54 @@ void xu_ly_lop_hoc( int x, int y)
 			else if (cl == y + 4)
 			{
 				xuat_lop_hoc(lh, sl_lop_hoc, x, y);
-				int cl_lh = click(19, y + 1, sl_lop_hoc, 62) - y - 1;
+				int cl_lh = click(19, y + 1, sl_lop_hoc, 62) - y - 1;// lop hoc la mang bat dau tu 0
 				doc_ds_sinh_vien_lop_hoc(nh[cl_nam_hoc], lh[cl_lh], ds_sv);
 				xuat_ds_sinh_vien_lop_hoc(ds_sv, x, y);
+			}
+			else if (cl == y + 5)
+			{
+				xuat_lop_hoc(lh, sl_lop_hoc, x, y);
+				int cl_lh = click(19, y + 1, sl_lop_hoc, 62) - y - 1;// lop hoc la mang bat dau tu 0
+				doc_ds_sinh_vien_lop_hoc(nh[cl_nam_hoc], lh[cl_lh], ds_sv);
+				int  sv = so_node_ds_sinh_vien(ds_sv);
+				if (sv == 0)
+				{
+					box(x, y, 2, 30);
+					textcolor(4);
+					gotoxy(x, y);
+					cout << "NO MEMBER";
+					cin.ignore();
+					continue;
+				}
+				xuat_ds_sinh_vien_lop_hoc(ds_sv, x, y);
+				int cl_sv = click(15, y + 1, sv, 73) - y;
+				remove_node_sv(ds_sv, cl_sv);
+				ghi_ds_sinh_vien_vao_lop_hoc(nh[cl_nam_hoc], lh[cl_lh],ds_sv);
+			}
+			else if (cl == y + 6)
+			{
+				int sl_hk = 3;
+				xuat_lop_hoc(lh, sl_lop_hoc, x, y);
+				int cl_lh = click(19, y + 1, sl_lop_hoc, 62) - y - 1;
+				hoc_ki* hk = new hoc_ki[sl_hk];
+				doc_ds_hoc_ki_tu_file(hk, nh[cl_nam_hoc], sl_hk);
+				if (sl_hk == 0)
+				{
+					system("cls");
+					box(x, y, 2, 30);
+					gotoxy(x, y);
+					textcolor(12);
+					cout << "NO SEMESTER";
+					cin.ignore();
+					return;
+				}
+				system("cls");
+				nd_hoc_ki(hk, sl_hk, x, y);
+				int cl_hoc_ki = click(x, y, sl_hk, 15) - y;// bat dau tu 0
+				system("cls");
+				nd_xem_diem_lop_hoc(x, y);
+				int cl_nhap_diem_lh = click(x,y,4,27);
+				xem_diem_lop_hoc(nh[cl_nam_hoc], hk[cl_hoc_ki], lh[cl_lh], x, y, cl_nhap_diem_lh);
 			}
 		}
 	}
@@ -120,7 +165,7 @@ void xu_ly_khoa_hoc(int x ,int y)
 			return;
 		}
 		nd_nam_hoc(nh, sl, x, y);
-		int cl_nam_hoc = click(x, y + 1, sl, w) - y - 1;
+		int cl_nam_hoc = click(x, y + 1, sl, w) - y - 1;// bay dau tu 0
 		hoc_ki* hk = new hoc_ki[3];
 		doc_ds_hoc_ki_tu_file(hk, nh[cl_nam_hoc], sl_hk);
 		if (sl_hk == 0)
@@ -135,7 +180,7 @@ void xu_ly_khoa_hoc(int x ,int y)
 		}
 		system("cls");
 		nd_hoc_ki(hk, sl_hk, x, y);
-		int cl_hoc_ki = click(x, y, sl_hk, w) - y;
+		int cl_hoc_ki = click(x, y, sl_hk, w) - y;// bat dau tu 0
 		ds_khoa_hoc ds_kh;
 		init_ds_mh(ds_kh);
 		doc_ds_khoa_hoc_tu_file(hk[cl_hoc_ki], nh[cl_nam_hoc], ds_kh);
@@ -175,7 +220,7 @@ void xu_ly_khoa_hoc(int x ,int y)
 					continue;
 			}
 			xuat_ds_khoa_hoc(x, y, ds_kh);
-			int cl_khoa_hoc = click(12, y + 1, sl_kh,97) - y;
+			int cl_khoa_hoc = click(12, y + 1, sl_kh,97) - y;// -y de no bat dau tu 1 
 			khoa_hoc kh = tim_khoa_hoc(ds_kh, cl_khoa_hoc);
 			ds_sinh_vien ds_sv;
 			init_ds_sinh_vien(ds_sv);
@@ -349,4 +394,117 @@ bool nhap_diem(ds_sinh_vien &ds_sv_kh, char ten_file[])
 			temp_ds = temp_ds->next;
 		}
 		return true;
+}
+void xem_diem(tai_khoan infor, int x, int y)
+{
+	int sl = 2, w = 15, sl_hk = 2, px = x, py = y;
+	nam_hoc* nh = new nam_hoc[sl];
+	doc_ds_nam_hoc_tu_file(nh, sl);
+	if (sl == 0)
+	{
+		system("cls");
+		box(x, y, 2, 30);
+		gotoxy(x, y);
+		textcolor(12);
+		cout << "NO SCHOOL YEAR";
+		cin.ignore();
+		return;
+	}
+	nd_nam_hoc(nh, sl, x, y);
+	int cl_nam_hoc = click(x, y + 1, sl, w) - y - 1;
+	hoc_ki* hk = new hoc_ki[sl_hk];
+	doc_ds_hoc_ki_tu_file(hk, nh[cl_nam_hoc], sl_hk);
+	system("cls");
+	if (sl_hk == 0)
+	{
+		box(x, y, 2, 30);
+		gotoxy(x, y);
+		textcolor(12);
+		cout << "NO SEMESTER";
+		cin.ignore();
+		return;
+	}
+	nd_hoc_ki(hk, sl_hk, x, y);
+	int cl_hoc_ki = click(x, y, sl_hk, w) - y;
+	ds_khoa_hoc ds_kh;
+	init_ds_mh(ds_kh);
+	doc_ds_khoa_hoc_tu_file(hk[cl_hoc_ki], nh[cl_nam_hoc], ds_kh);
+	if (so_node_khoa_hoc(ds_kh) == 0)
+	{
+		system("cls");
+		box(x, y, 2, 30);
+		textcolor(4);
+		gotoxy(x, y);
+		cout << "NO COURSE";
+		cin.ignore();
+		return;
+	}
+	x = 15;
+	system("cls");
+	ds_khoa_hoc kh_da_dk;
+	init_ds_mh(kh_da_dk);
+	xem_khoa_hoc_da_dk(nh[cl_nam_hoc], hk[cl_hoc_ki], kh_da_dk, x, y, infor);
+	box(x, y, so_node_khoa_hoc(ds_kh), 90);
+	gotoxy(x, y);
+	textcolor(2);
+	cout << "Ma KHoa" << setw(16) << "Ten Khoa Hoc" << setw(19) << "Ten Lop" << setw(10) << "Diem QT" << setw(10) << "Diem GK" << setw(10) << "Diem Ck" << setw(10) << "Diem TB" << endl;
+	y++;
+	textcolor(7);
+	ds_sinh_vien l;
+	while (kh_da_dk.head!=NULL)
+	{
+		ToMau(x, y, kh_da_dk.head->data.ma_khoa,7);
+		ToMau(x+15, y, kh_da_dk.head->data.ten_khoa_hoc, 7);
+		ToMau(x+35, y, kh_da_dk.head->data.ten_lop_hoc, 7);
+		init_ds_sinh_vien(l);
+		doc_ds_sinh_vien_khoa_hoc(nh[cl_nam_hoc], hk[cl_hoc_ki], kh_da_dk.head->data, l);
+		while (l.head != NULL)
+		{
+			if (strcmp(l.head->data.ma_sinh_vien, infor.ms) == 0)
+			{
+				gotoxy(x+45, y);
+				cout << l.head->data.dqt << setw(10) << l.head->data.diemgk << setw(10) << l.head->data.diemck << setw(10) << l.head->data.dtb;
+				y++;
+			}
+			l.head = l.head->next;
+		}
+		kh_da_dk.head = kh_da_dk.head->next;
+	}
+}
+void xem_diem_lop_hoc(nam_hoc a, hoc_ki b, lop_hoc c, int x, int y,int cl)
+{
+	system("cls");
+	if (cl == y)
+	{
+		x = 15;
+		ds_khoa_hoc ds_kh;
+		init_ds_mh(ds_kh);
+		kt_khoa_hoc_thuoc_lop_hoc(a, b, c, ds_kh, x, y);
+		box(x, y, so_node_khoa_hoc(ds_kh), 90);
+		gotoxy(x, y);
+		textcolor(2);
+		cout << "Ma KHoa" << setw(18) << "Ten Khoa Hoc" << setw(19) << "Ten Lop" << setw(30) << "Diem Trung Binh Cuoi Ki" << endl;
+		y++;
+		textcolor(7);
+		ds_sinh_vien l;
+		while (ds_kh.head != NULL)
+		{
+			int s = 0;
+			ToMau(x, y, ds_kh.head->data.ma_khoa, 7);
+			ToMau(x + 13, y, ds_kh.head->data.ten_khoa_hoc, 7);
+			ToMau(x + 35, y, ds_kh.head->data.ten_lop_hoc, 7);
+			init_ds_sinh_vien(l);
+			doc_ds_sinh_vien_khoa_hoc(a, b, ds_kh.head->data, l);
+			while (l.head != NULL)
+			{
+				s = s + l.head->data.diemck;
+				l.head = l.head->next;
+			}
+			gotoxy(x+62, y);
+			s = s == 0 ? 0 : s / so_node_ds_sinh_vien(l);
+			cout <<s;
+			ds_kh.head = ds_kh.head->next;
+		}
+	}
+	cin.ignore();
 }

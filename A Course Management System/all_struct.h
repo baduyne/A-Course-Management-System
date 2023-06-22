@@ -79,3 +79,22 @@ struct nam_hoc
 {
 	char ten[30] = "\0";
 };
+struct bang_diem
+{
+	char ma_khoa[40];
+	char ten_khoa_hoc[40];
+	char ten_lop_hoc[40];
+	float diemgk = 0;
+	float diemck = 0;
+	float dqt = 0;
+	float dtb = 0;
+};
+struct node_bd
+{
+	bang_diem data;
+	node_bd* next;
+};
+struct ds_bang_diem
+{
+	node_bd * head;
+};

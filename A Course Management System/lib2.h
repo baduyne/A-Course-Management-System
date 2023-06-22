@@ -5,3 +5,4 @@
 void xu_ly_lop_hoc(int x, int y);
 void xu_ly_khoa_hoc( int x, int y);
 bool nhap_diem(ds_sinh_vien& ds_sv_kh, char ten_file[]);
+void xem_diem(tai_khoan infor, int x, int y);
