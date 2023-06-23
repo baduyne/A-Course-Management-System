@@ -72,6 +72,38 @@ void o(int x, int y, int w)
 	gotoxy(x + w, y + 2);
 	cout << char(217);
 }
+void box(int x, int y, int sl, int w)
+{
+	char a[50] = "PORTAL HCMUS";
+	int len = strlen(a);
+	ToMau(x + w / 2 - len, y - 3, a, 2);
+	x = x - 6;
+	y = y - 2;
+	sl += 3;
+	for (int i = 0; i < w; i++)
+	{
+		gotoxy(x + i, y);
+		cout << char(205);
+		gotoxy(x + i, y + sl);
+		cout << char(205);
+	}
+	for (int i = 0; i < sl; i++)
+	{
+		gotoxy(x, y + i);
+		cout << char(186);
+		gotoxy(x + w, y + i);
+		cout << char(186);
+	}
+	gotoxy(x, y);
+	cout << char(201);
+	gotoxy(x, y + sl);
+	cout << char(200);
+	gotoxy(x + w, y);
+	cout << char(187);
+	gotoxy(x + w, y + sl);
+	cout << char(188);
+	/*draw_load(x, y+sl-1,w);*/
+}
 void ba_cham(int x, int y, int w)
 {
 	for (int i = 0; i < w; i++)
@@ -96,4 +128,19 @@ void press_enter()
 	/*gotoxy(15, 12);
 	textcolor(12);
 	cout<<"Press Enter To Continue";*/
+}
+void draw_load(int x, int y, int w)
+{
+	gotoxy(x, y);
+	for (int i = 0; i < w; i++)
+	{
+		cout << char(178);
+	}
+	gotoxy(x, y);
+	for (int i = 0; i < w; i++)
+	{
+		textcolor(3);
+		cout << char(178);
+		/*Sleep(80);*/
+	}
 }
