@@ -46,7 +46,6 @@ void xuat_ds_khoa_hoc(int x, int y, ds_khoa_hoc l);
 void remove_khoa_hoc(ds_khoa_hoc& kh, int pos);
 void nhap_nam_hoc(nam_hoc& nh, int x, int y);
 bool kt_nam_hoc(nam_hoc* a, int size, nam_hoc b);
-void xuat_nam_hoc(nam_hoc nh, int x, int y);
 void ghi_1_nam_hoc_vao_file(nam_hoc a);
 void cap_phat_them_nam_hoc(nam_hoc*& a, int& sz);
 void doc_ds_nam_hoc_tu_file(nam_hoc*& arr, int& size);

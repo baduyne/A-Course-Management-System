@@ -640,7 +640,7 @@ void reset_key(list_log_in& l, tai_khoan& a, char ten_file[], int x ,int y )
 	gotoxy(x, y);
 	textcolor(2);
 	cout << "Mat Khau Cu :";
-	textcolor(2);
+	textcolor(7);
 	o(x, y+1, 25);
 	gotoxy(x + 1, y + 2);
 	cin.getline(t, 50);
@@ -665,12 +665,11 @@ void reset_key(list_log_in& l, tai_khoan& a, char ten_file[], int x ,int y )
 	node* temp = l.head;
 	while (temp != NULL)
 	{
-		if (strcmp(temp->data.user, a.user) == 0)
+		if (strcmp(temp->data.user, a.user) == 0 && strcmp(temp->data.key, a.key) == 0)
 		{
-			strcpy(temp->data.key, t);
-			strcpy(a.key, t);
-			ghi_file_tai_khoan(l, ten_file);
-			return;
+			strcpy(temp->data.key, t1);
+			strcpy(a.key, t1);
+			break;
 		}
 		temp = temp->next;
 	}
@@ -724,8 +723,8 @@ int click(int x, int y, int sl, int w)
 
 void ghi_file_tai_khoan(list_log_in l, char tf[])
 {
-	fstream filein;
-	filein.open(tf, ios::out);
+	ofstream filein;
+	filein.open(tf);
 	if (check_empty_file(tf))
 		filein << "Ma So" << ',' << "Ho Va Ten" << ',' << "Ngay sinh" << ',' << "Gioi tinh" << ',' << "So CCCD" << ',' << "Ten Dang nhap" << ',' << "Mat Khau" << endl;
 	while (l.head != NULL)
@@ -872,7 +871,7 @@ void func_khoi_tao(int x, int y, int  cl)// khoi tao nam hoc va hoc ki
 
 char* gender(int x, int y)
 {
-	char nam[10] = "Nam", nu[10] = "Nu", gd[10];
+	char nam[10] = "Nam", nu[10] = "Nu";
 	gotoxy(x, y);
 	int color[2] = { 12,7 }, px = x, py = y, count = 1;
 	while (true)
@@ -899,10 +898,9 @@ char* gender(int x, int y)
 		if (c == 13)
 		{
 			if (count == 1)
-				strcpy(gd, nam);
-			else 
-				strcpy(gd, nu);
-			return gd;
+				return nam;
+			else
+				return nu;
 		} 
 	}
 }

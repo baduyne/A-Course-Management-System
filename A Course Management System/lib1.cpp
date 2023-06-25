@@ -4,7 +4,6 @@ void init_ds_kh(ds_khoa_hoc & mh)
 {
 	mh.head = NULL;
 }
-
 node_khoa_hoc * tao_node_mh(khoa_hoc a)
 {
 	node_khoa_hoc* add = new node_khoa_hoc;
@@ -310,17 +309,18 @@ void xuat_ds_sinh_vien_lop_hoc(ds_sinh_vien l, int x ,int y)
 	int so_node_sv = so_node_ds_sinh_vien(l);
 	box(x, y, so_node_sv, 100);
 	gotoxy(x, y);
-	cout << "Ma so" << setw(15) << "Ho Va Ten" << setw(18) << "Gioi Tinh" << setw(12) << "Ngay sinh" << setw(12) << "So CMND";
+	textcolor(2);
+	cout << "Ma so" << setw(15) << "Ho Va Ten" << setw(21) << "Gioi Tinh" << setw(12) << "Ngay sinh" << setw(12) << "So CMND";
 	y++;
 	while (l.head != NULL)
 	{
 		textcolor(2);
 		gotoxy(x, y);
-		ToMau(x, y, l.head->data.ma_sinh_vien, 2);
-		ToMau(x + 11, y, l.head->data.ho_ten, 2);
-		ToMau(x + 31, y, l.head->data.gioi_tinh, 2);
-		ToMau(x + 41, y, l.head->data.ngay_sinh, 2);
-		ToMau(x + 55, y, l.head->data.cmnd, 2);
+		ToMau(x, y, l.head->data.ma_sinh_vien, 7);
+		ToMau(x + 11, y, l.head->data.ho_ten, 7);
+		ToMau(x + 32, y, l.head->data.gioi_tinh, 7);
+		ToMau(x + 44, y, l.head->data.ngay_sinh, 7);
+		ToMau(x + 58, y, l.head->data.cmnd, 7);
 		l.head = l.head->next;
 		y++;
 	}
@@ -803,11 +803,6 @@ bool kt_nam_hoc(nam_hoc* a, int size, nam_hoc b)
 	}
 	return false;
 }
-void xuat_nam_hoc(nam_hoc nh,int x,int y)
-{
-	gotoxy(x, y);
-	cout << nh.ten << endl;
-}
 void ghi_1_nam_hoc_vao_file(nam_hoc a)
 {
 	char ten_file[30] = "Danh_sach_cac_nam_hoc.csv";
@@ -945,22 +940,13 @@ void doc_ds_sinh_vien_lop_hoc(nam_hoc a, lop_hoc  c, ds_sinh_vien& l)
 	filesv.close();
 	delete[]address;
 }
-void xuat_ds_nam_hoc(nam_hoc* a, int n, int x , int y)
-{
-	system("cls");
-	box(x, y, n, 40);
-	for (int i = 0; i < n; i++)
-	{
-		xuat_nam_hoc(a[i],x,y);
-		y++;
-	}
-}
+
 void xuat_nam_hoc(nam_hoc*& a, int sl, int x , int y )
 {
 	system("cls");
-	box(x, y, sl+1, 25);
+	box(x, y, sl + 1, 25);
 	textcolor(2);
-	gotoxy(x-1, y);
+	gotoxy(x - 1, y);
 	cout << "Niem Khoa :";
 	y++;
 	for (int i = 0; i < sl; i++)
