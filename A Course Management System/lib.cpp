@@ -76,13 +76,12 @@ void log_in(list_log_in& l, tai_khoan& infor, int x, int y)
 void option_teacher(tai_khoan& temp, list_log_in l, int x, int y)
 {
 	char tf[50] = "Tai_khoan_giao_vien.csv";
-	int w = 15;
 	while (true)
 	{
 		int sl = 7;
 		system("cls");
 		nd_gv(x, y, temp);
-		int n = click(x+5, y, sl,w);
+		int n = click(x+5, y, sl,15);
 		if (n == y + 6)
 		{
 			system("cls");
@@ -119,7 +118,7 @@ void option_teacher(tai_khoan& temp, list_log_in l, int x, int y)
 				return;
 			}
 			xuat_nam_hoc(nh, sl, x, y );
-			int cl_nam_hoc = click(x, y+1, sl,w ) - y - 1;
+			int cl_nam_hoc = click(x, y+1, sl,12) - y - 1;
 			hoc_ki* hk = new hoc_ki[3];
 			doc_ds_hoc_ki_tu_file(hk, nh[cl_nam_hoc], sl_hk);
 			if (sl_hk == 0)
@@ -135,7 +134,7 @@ void option_teacher(tai_khoan& temp, list_log_in l, int x, int y)
 			system("cls");
 			nd_gv(x, y, temp);
 			nd_hoc_ki(hk, sl_hk, x, y);
-			int cl_hoc_ki = click(x, y, sl_hk,w) - y;
+			int cl_hoc_ki = click(x, y, sl_hk,10) - y;
 			system("cls");
 			doc_ds_khoa_hoc_tu_file(hk[cl_hoc_ki], nh[cl_nam_hoc], ds_kh);
 			if (so_node_khoa_hoc(ds_kh) == 0)
@@ -157,7 +156,7 @@ void option_teacher(tai_khoan& temp, list_log_in l, int x, int y)
 		else if (n == y + 1)//create year and semer
 		{
 			nd_khoi_tao(x, y);
-			int cl_kt = click(x, y, 3, 20);
+			int cl_kt = click(x+3, y, 3,12);
 			func_khoi_tao(x, y, cl_kt);
 		}
 		else if (n == y + 2)
@@ -198,7 +197,7 @@ void option_student(tai_khoan temp, list_log_in l, int x, int y)
 		}
 		else if (n == y + 2)
 		{
-			int sl = 2, w = 15, sl_hk = 2;
+			int sl = 2, sl_hk = 2;
 			nam_hoc* nh = new nam_hoc[sl];
 			doc_ds_nam_hoc_tu_file(nh, sl);
 			if (sl == 0)
@@ -212,7 +211,7 @@ void option_student(tai_khoan temp, list_log_in l, int x, int y)
 				return;
 			}
 			xuat_nam_hoc(nh, sl, x, y);
-			int cl_nam_hoc = click(x, y + 1, sl, w) - y - 1;
+			int cl_nam_hoc = click(x, y + 1, sl, 11) - y - 1;
 			hoc_ki* hk = new hoc_ki[sl_hk];
 			doc_ds_hoc_ki_tu_file(hk, nh[cl_nam_hoc], sl_hk);
 			system("cls");
@@ -226,14 +225,14 @@ void option_student(tai_khoan temp, list_log_in l, int x, int y)
 				return;
 			}
 			nd_hoc_ki(hk, sl_hk, x, y);
-			int cl_hoc_ki = click(x, y, sl_hk, w) - y;
+			int cl_hoc_ki = click(x, y, sl_hk, 10) - y;
 			ds_khoa_hoc ds_kh;
 			init_ds_kh(ds_kh);
 			doc_ds_khoa_hoc_tu_file(hk[cl_hoc_ki], nh[cl_nam_hoc], ds_kh);
 			if (so_node_khoa_hoc(ds_kh) == 0)
 			{
 				system("cls");
-				box(x, y, sl, 30);
+				box(x, y, 2, 30);
 				textcolor(4);
 				gotoxy(x, y);
 				cout << "NO COURSE";
@@ -243,6 +242,16 @@ void option_student(tai_khoan temp, list_log_in l, int x, int y)
 			ds_khoa_hoc l;
 			init_ds_kh(l);
 			xem_khoa_hoc_da_dk( nh[cl_nam_hoc], hk[cl_hoc_ki],l, x, y, temp);
+			if (l.head == NULL)
+			{
+				system("cls");
+				box(x, y, 2, 30);
+				textcolor(4);
+				gotoxy(x, y);
+				cout << "NO COURSE";
+				cin.ignore();
+				return;
+			}
 			xuat_ds_khoa_hoc(x, y, l);
 			delete[]nh;
 			delete[]hk;
@@ -307,7 +316,7 @@ void nd_hoc_ki(hoc_ki*& a, int sl, int x, int y)
 		char c = _getch();
 		return;
 	}
-	box(x, y, sl, 35);
+	box(x, y, sl, 24);
 	for (int i = 0; i < sl; i++)
 	{
 		ToMau(x, y, a[i].ten, 2);
@@ -835,13 +844,21 @@ void func_khoi_tao(int x, int y, int  cl)// khoi tao nam hoc va hoc ki
 	}
 	else if(cl == y + 1)// tao hoc ki
 	{
-		int sl = 2, sl_hoc_ki=2;
+		int sl = 2, sl_hoc_ki=3;
 		nam_hoc* nh = new nam_hoc[sl];
 		doc_ds_nam_hoc_tu_file(nh, sl);
 		xuat_nam_hoc(nh, sl, x, y);
 		int cl_nam_hoc = click(x, y + 1, sl, 10) - y - 1;
 		hoc_ki h, * arr_hoc_ki = new hoc_ki[sl_hoc_ki];
 		doc_ds_hoc_ki_tu_file(arr_hoc_ki, nh[cl_nam_hoc], sl_hoc_ki);
+		if (sl_hoc_ki == 3)
+		{
+			gotoxy(x + 8, y + 14);
+			textcolor(12);
+			cout << "Hoc Ki Da Day !";
+			cin.ignore();
+			return;
+		}
 		while (true)
 		{
 			nhap_hoc_ki(h, x, y, nh[cl_nam_hoc]);

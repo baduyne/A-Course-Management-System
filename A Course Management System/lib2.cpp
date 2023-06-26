@@ -33,6 +33,7 @@ void xu_ly_lop_hoc( int x, int y)
 			lop_hoc a;
 			nhap_lop_hoc(a, x, y);
 			ghi_1_lop_hoc_vao_file(a, nh[cl_nam_hoc], sl_lop_hoc + 1);
+			tao_file_ds_sinh_vien_lop_hoc_rong(nh[cl_nam_hoc], a);
 		}
 		else
 		{
@@ -110,7 +111,7 @@ void xu_ly_lop_hoc( int x, int y)
 					continue;
 				}
 				xuat_ds_sinh_vien_lop_hoc(ds_sv, x, y);
-				int cl_sv = click(15, y + 1, sv, 73) - y;
+				int cl_sv = click(15, y + 3, sv, 77) - y - 2;
 				remove_node_sv(ds_sv, cl_sv);
 				ghi_ds_sinh_vien_vao_lop_hoc(nh[cl_nam_hoc], lh[cl_lh],ds_sv);
 			}
@@ -169,7 +170,7 @@ void xu_ly_khoa_hoc(int x ,int y)
 			return;
 		}
 		xuat_nam_hoc(nh, sl, x, y);
-		int cl_nam_hoc = click(x, y + 1, sl, w) - y - 1;// bay dau tu 0
+		int cl_nam_hoc = click(x, y + 1, sl, 11) - y - 1;// bay dau tu 0
 		hoc_ki* hk = new hoc_ki[3];
 		doc_ds_hoc_ki_tu_file(hk, nh[cl_nam_hoc], sl_hk);
 		if (sl_hk == 0)
@@ -184,7 +185,7 @@ void xu_ly_khoa_hoc(int x ,int y)
 		}
 		system("cls");
 		nd_hoc_ki(hk, sl_hk, x, y);
-		int cl_hoc_ki = click(x, y, sl_hk, w) - y;// bat dau tu 0
+		int cl_hoc_ki = click(x, y, sl_hk, 10) - y;// bat dau tu 0
 		ds_khoa_hoc ds_kh;
 		init_ds_kh(ds_kh);
 		doc_ds_khoa_hoc_tu_file(hk[cl_hoc_ki], nh[cl_nam_hoc], ds_kh);
@@ -209,6 +210,7 @@ void xu_ly_khoa_hoc(int x ,int y)
 				break;
 			}
 			ghi_1_khoa_hoc(hk[cl_hoc_ki], kh, nh[cl_nam_hoc], so_node_khoa_hoc(ds_kh)+1);
+			tao_file_ds_sv_khoa_hoc_rong(nh[cl_nam_hoc], hk[cl_hoc_ki], kh);
 		}
 		else
 		{
@@ -295,7 +297,7 @@ void xu_ly_khoa_hoc(int x ,int y)
 					continue;
 				}
 				xuat_ds_sinh_vien_lop_hoc(ds_sv, x, y);
-				int cl_sv = click(15, y + 1, sv, 73) - y;
+				int cl_sv = click(15, y + 3, sv, 77) - y-2;
 				remove_node_sv(ds_sv, cl_sv);
 				ghi_ds_sinh_vien_vao_khoa_hoc(nh[cl_nam_hoc], hk[cl_hoc_ki], kh, ds_sv);
 			}
