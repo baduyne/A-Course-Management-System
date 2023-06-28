@@ -147,7 +147,7 @@ void option_teacher(tai_khoan& temp, list_log_in l, int x, int y)
 				cin.ignore();
 				continue;
 			}
-         	xuat_ds_khoa_hoc( x,y,ds_kh);
+         	xuat_ds_khoa_hoc( x,y,ds_kh, nh[cl_nam_hoc], hk[cl_hoc_ki]);
 		}
 		else if (n == y + 3)
 		{
@@ -252,7 +252,7 @@ void option_student(tai_khoan temp, list_log_in l, int x, int y)
 				cin.ignore();
 				return;
 			}
-			xuat_ds_khoa_hoc(x, y, l);
+			xuat_ds_khoa_hoc(x, y, l, nh[cl_nam_hoc], hk[cl_hoc_ki]);
 			delete[]nh;
 			delete[]hk;
 		}
@@ -357,7 +357,8 @@ void nd_lop_hoc(int x, int y)
 	char nd5[30] = "Xem Danh Sach Sinh Vien";
 	char nd6[30] = "Xoa 1 Sinh Vien";
 	char nd7[30] = "Xem Diem Lop Hoc";
-	char nd8[30] = "Thoat";
+	char nd8[30] = "Xoa 1 Lop Hoc";
+	char nd9[30] = "Thoat";
 	ToMau(x + 11 - strlen(nd1) / 2, y, nd1, 2);// canh giua 
 	ToMau(x + 11 - strlen(nd2) / 2, y + 1, nd2, 2);
 	ToMau(x + 11 - strlen(nd3) / 2, y + 2, nd3, 2);
@@ -366,6 +367,7 @@ void nd_lop_hoc(int x, int y)
 	ToMau(x + 11 - strlen(nd6) / 2, y + 5, nd6, 2);
 	ToMau(x + 11 - strlen(nd7) / 2, y + 6, nd7, 2);
 	ToMau(x + 11 - strlen(nd8) / 2, y + 7, nd8, 2);
+	ToMau(x + 11 - strlen(nd9) / 2, y + 8, nd9, 2);
 }
 void nd_khoi_tao(int x, int y)
 {
@@ -397,12 +399,11 @@ void nd_xem_diem_lop_hoc(int x, int y)
 	char nd2[30] = "Diem Trung Binh Hoc Ki";
 	char nd3[30] = "Diem Trung Binh Chung";
 	char nd4[30] = "Thoat";
-	ToMau(x + 12 - strlen(nd1) / 2, y, nd1, 7);
-	ToMau(x + 12 - strlen(nd2) / 2, y + 1, nd2, 7);
-	ToMau(x + 12 - strlen(nd3) / 2, y + 2, nd3, 7);
-	ToMau(x + 12 - strlen(nd4) / 2, y + 3, nd4, 7);
+	ToMau(x + 12 - strlen(nd1) / 2, y, nd1, 2);
+	ToMau(x + 12 - strlen(nd2) / 2, y + 1, nd2, 2);
+	ToMau(x + 12 - strlen(nd3) / 2, y + 2, nd3, 2);
+	ToMau(x + 12 - strlen(nd4) / 2, y + 3, nd4, 2);
 }
-
 void noi_dung2(int x , int y)
 {
 	char nd1[20] = " Log In ";
