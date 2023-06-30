@@ -16,7 +16,7 @@ struct node
 	tai_khoan data;
 	node* next;
 };
-struct list_log_in
+struct ds_tai_khoan
 {
 	node* head;
 };

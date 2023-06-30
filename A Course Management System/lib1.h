@@ -66,3 +66,5 @@ void xem_khoa_hoc_da_dk(nam_hoc a, hoc_ki b, ds_khoa_hoc& l, int x, int y, tai_k
 node_sv* tim_node_sinh_vien(ds_sinh_vien l, int vt);
 int chon_sv_lop_hoc(ds_sinh_vien l, int x, int y);
 void xoa_1_lop_hoc(nam_hoc a, lop_hoc*& arr, int& sl, int vt);
+void hoa_doi_sv(sinh_vien& a, sinh_vien& b);
+void sap_xep_sv(ds_sinh_vien& l);

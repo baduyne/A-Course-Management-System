@@ -134,6 +134,7 @@ void draw_load(int x, int y, int w)
 	gotoxy(x, y);
 	for (int i = 0; i < w; i++)
 	{
+		textcolor(7);
 		cout << char(178);
 	}
 	gotoxy(x, y);
@@ -141,6 +142,6 @@ void draw_load(int x, int y, int w)
 	{
 		textcolor(3);
 		cout << char(178);
-		/*Sleep(80);*/
+		Sleep(80);
 	}
 }
