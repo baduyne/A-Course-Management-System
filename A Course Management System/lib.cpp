@@ -156,6 +156,7 @@ void option_teacher(tai_khoan& temp, ds_tai_khoan l, int x, int y)
 				continue;
 			}
          	xuat_ds_khoa_hoc( x,y,ds_kh, nh[cl_nam_hoc], hk[cl_hoc_ki]);
+			cin.ignore();
 		}
 		else if (n == y + 3)
 		{
@@ -251,6 +252,7 @@ void option_student(tai_khoan temp, ds_tai_khoan l, int x, int y)
 			init_ds_kh(ds_kh_dk);
 			xem_khoa_hoc_da_dk( nh[cl_nam_hoc], hk[cl_hoc_ki], ds_kh_dk, x, y, temp);
 			xuat_ds_khoa_hoc(x, y, ds_kh_dk, nh[cl_nam_hoc], hk[cl_hoc_ki]);
+			cin.ignore();
 		}
 		else if (n == y + 3)
 		{

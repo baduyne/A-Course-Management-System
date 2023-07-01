@@ -53,12 +53,15 @@ void xu_ly_lop_hoc( int x, int y)
 			if (cl == y + 1)
 			{
 				xuat_lop_hoc(nh[cl_nam_hoc], lh, sl_lop_hoc, x, y);
+				cin.ignore();
 			}
 			else if (cl == y + 2)
 			{
 				xuat_lop_hoc(nh[cl_nam_hoc], lh, sl_lop_hoc, x, y);
 				int cl_lh = click(19, y + 1, sl_lop_hoc, 62) - y - 1;
 				doc_ds_sinh_vien_lop_hoc(nh[cl_nam_hoc], lh[cl_lh], ds_sv);
+				if (so_node_ds_sinh_vien(ds_sv) == lh[cl_lh].so_luong)
+					continue;
 				sinh_vien a;
 				nhap_sinh_vien(a, x, y);
 				ghi_1_sinh_vien_vao_lop_hoc(nh[cl_nam_hoc], lh[cl_lh], a, so_node_ds_sinh_vien(ds_sv) + 1);
@@ -93,7 +96,7 @@ void xu_ly_lop_hoc( int x, int y)
 				int cl_lh = click(19, y + 1, sl_lop_hoc, 62) - y - 1;// lop hoc la mang bat dau tu 0
 				doc_ds_sinh_vien_lop_hoc(nh[cl_nam_hoc], lh[cl_lh], ds_sv);
 				system("cls");
-				xuat_ds_sinh_vien_lop_hoc(ds_sv, x, y, -1);
+				xem_ds_sinh_vien_lop_hoc(ds_sv, x, y);
 				cin.ignore();
 			}
 			else if (cl == y + 5)
@@ -172,7 +175,7 @@ void xu_ly_khoa_hoc(int x ,int y)
 		int cl = click(x+2, y, 9, 26);
 		if (cl == y + 8)
 			return;
-		int sl, sl_hk, w = 15;
+		int sl, sl_hk=3, w = 15;
 		nam_hoc* nh = new nam_hoc[3];
 		doc_ds_nam_hoc_tu_file(nh, sl);
 		if(sl == 0)
@@ -247,13 +250,16 @@ void xu_ly_khoa_hoc(int x ,int y)
 			init_ds_sinh_vien(ds_sv);
 			if (cl == y + 1)
 			{
+				doc_ds_sinh_vien_khoa_hoc(nh[cl_nam_hoc], hk[cl_hoc_ki], kh, ds_sv);
+				if (so_node_ds_sinh_vien(ds_sv) == kh.so_luong)
+					continue;
 				sinh_vien a;
 				nhap_sinh_vien(a, x, y);
-				doc_ds_sinh_vien_khoa_hoc(nh[cl_nam_hoc], hk[cl_hoc_ki], kh, ds_sv);
 				ghi_1_sinh_vien_vao_khoa_hoc(nh[cl_nam_hoc], hk[cl_hoc_ki], kh, a, so_node_ds_sinh_vien(ds_sv)+1);
 			}
 			else if (cl == y + 2)
 			{
+				doc_ds_sinh_vien_khoa_hoc(nh[cl_nam_hoc], hk[cl_hoc_ki], kh, ds_sv);
 				char *tf=new char [500];
 				system("cls");
 				box(x, y, 5, 55);
@@ -273,11 +279,7 @@ void xu_ly_khoa_hoc(int x ,int y)
 					Sleep(200);
 					continue;
 				}
-				while (ds_sv.head != NULL)
-				{
-					ghi_1_sinh_vien_vao_khoa_hoc(nh[cl_nam_hoc], hk[cl_hoc_ki], kh, ds_sv.head->data, so_node_ds_sinh_vien(ds_sv)+1);
-					ds_sv.head = ds_sv.head->next;
-				}
+				ghi_ds_sinh_vien_vao_khoa_hoc(nh[cl_nam_hoc], hk[cl_hoc_ki], kh, ds_sv);
 				delete[]tf;
 			}
 			else if (cl == y + 3)
@@ -293,8 +295,9 @@ void xu_ly_khoa_hoc(int x ,int y)
 					cin.ignore();
 					continue;
 				}
+				sap_xep_sv(ds_sv);
 				xuat_ds_sinh_vien_khoa_hoc(ds_sv, x, y);
-				char c = _getch();
+				cin.ignore();
 			}
 			else if (cl == y + 4)
 			{
@@ -362,6 +365,7 @@ void xu_ly_khoa_hoc(int x ,int y)
 					}
 					temp->data = kh;
 					ghi_ds_khoa_hoc(hk[cl_hoc_ki], ds_kh, nh[cl_nam_hoc]);
+					sap_xep_sv(ds_sv);
 					ghi_ds_sinh_vien_vao_khoa_hoc(nh[cl_nam_hoc], hk[cl_hoc_ki], kh, ds_sv_kh);
 			}
 			else if (cl == y + 7)
@@ -540,7 +544,15 @@ void xem_diem_lop_hoc(nam_hoc a, hoc_ki b, lop_hoc c, int x, int y,int cl)
 	int sl_khoa_hoc = so_node_khoa_hoc(ds_kh);
 	float dtb_hoc_ki = 0;
 	if (sl_khoa_hoc == 0)
+	{
+		box(x, y, 2, 30);
+		textcolor(4);
+		gotoxy(x, y);
+		cout << "No Courses In This Semester";
+		cin.ignore();
 		return;
+	}
+		
 	if (cl == y)
 	{
 		textcolor(2);
@@ -595,40 +607,39 @@ void xem_diem_lop_hoc(nam_hoc a, hoc_ki b, lop_hoc c, int x, int y,int cl)
 		gotoxy(x-3, y+3);
 		textcolor(3);
 		cout << "Press Enter To Continue";
-		}
-		cin.ignore();
+	}
+	cin.ignore();
 }
 void sua_khoa_hoc(khoa_hoc &a, int x, int y, int cl)
 {
-	
 	system("cls");
-	box(x, y, 4, 40);
+	box(x, y, 4, 50);
 	gotoxy(x, y);
 	if (cl == 0)
 	{
-		o(x, y + 1, 20);
 		cout << "Ma Khoa Moi :";
+		o(x, y + 1, 20);
 		gotoxy(x+1, y+2);
 		cin.getline(a.ma_khoa, 20);
 	}
 	else if (cl == 1)
 	{
-		o(x, y + 1, 20);
 		cout << "Ten Khoa Hoc Moi :";
+		o(x, y + 1, 20);
 		gotoxy(x + 1, y + 2);
 		cin.getline(a.ten_khoa_hoc, 100);
 	}
 	else if (cl == 2)
 	{
-		o(x, y + 1, 20);
 		cout << "Ten Lop Hoc Moi :";
+		o(x, y + 1, 20);
 		gotoxy(x + 1, y + 2);
 		cin.getline(a.ten_lop_hoc, 100);
 	}
 	else if (cl == 3)
 	{
-		o(x, y + 1, 20);
 		cout << "Ten Giao Vien Moi :";
+		o(x, y + 1, 20);
 		gotoxy(x + 1, y + 2);
 		cin.getline(a.ten_giao_vien, 100);
 	}
@@ -639,15 +650,15 @@ void sua_khoa_hoc(khoa_hoc &a, int x, int y, int cl)
 	}
 	else if (cl == 5)
 	{
-		o(x, y + 1, 20);
 		cout << "So Tin Chi Moi :";
+		o(x, y + 1, 20);
 		gotoxy(x + 1, y + 2);
 		cin>>a.so_tin_chi;
 	}
 	else if (cl == 6)
 	{
-		o(x, y + 1, 20);
 		cout << "So Luong Toi Da:";
+		o(x, y + 1, 20);
 		gotoxy(x + 1, y + 2);
 		cin>>a.so_luong;
 	}
@@ -656,5 +667,4 @@ void sua_khoa_hoc(khoa_hoc &a, int x, int y, int cl)
 		cout << "Ca Hoc Moi :";
 		strcpy(a.ca_hoc, ca_hoc_trong_ngay(x+1, y+2));
 	}
-	
 }

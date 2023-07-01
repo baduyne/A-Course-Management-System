@@ -68,3 +68,4 @@ int chon_sv_lop_hoc(ds_sinh_vien l, int x, int y);
 void xoa_1_lop_hoc(nam_hoc a, lop_hoc*& arr, int& sl, int vt);
 void hoa_doi_sv(sinh_vien& a, sinh_vien& b);
 void sap_xep_sv(ds_sinh_vien& l);
+void xem_ds_sinh_vien_lop_hoc(ds_sinh_vien l, int x, int y);

@@ -3,8 +3,8 @@
 using namespace std;
 int main()
 {
-	/*resizeConsole(5000, 900);
-	textcolor(2);*/
+	//resizeConsole(5000, 900);
+	///*textcolor(2); */
 	int x = 40, y = 10;
 	ds_tai_khoan l; 
 	tai_khoan inf;
