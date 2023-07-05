@@ -7,9 +7,7 @@ void xu_ly_lop_hoc( int x, int y)
 		int cl = click(x, y, 9, 25);
 		if (cl == y + 8)
 			return;
-		int sl;
-		ds_khoa_hoc ds_kh;
-		khoa_hoc mh;
+		int sl=0;
 		nam_hoc* nh = new nam_hoc[3];
 		doc_ds_nam_hoc_tu_file(nh, sl);
 		if (sl == 0)

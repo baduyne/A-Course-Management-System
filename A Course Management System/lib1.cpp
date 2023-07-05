@@ -382,7 +382,7 @@ void xem_ds_sinh_vien_lop_hoc(ds_sinh_vien l, int x, int y)
 			system("cls");
 			x = px, y = py;
 			gotoxy(x - 1, y);
-			textcolor(3);
+			textcolor(2);
 			cout << "_____________________________________________________________________________";
 			y++;
 			gotoxy(x - 1, y);
@@ -626,7 +626,7 @@ void nhap_lop_hoc(lop_hoc& a, int x, int y)
 	cin >> a.k;
 	cin.ignore();
 }
-void cap_phat_them_lop_hoc(lop_hoc*& a, int& size)
+void cap_phat_them_lop_hoc(lop_hoc * & a, int& size)
 {
 	lop_hoc* temp = new lop_hoc[size];
 	for (int i = 0; i < size; i++)
@@ -646,7 +646,7 @@ void cap_phat_them_lop_hoc(lop_hoc*& a, int& size)
 void doc_ds_lop_hoc_tu_file(lop_hoc *&a, nam_hoc b,int & sl)
 {
 	int i = 0;
-	char *address=new char [50];
+	char *address=new char [100];
 	strcpy(address, b.ten);
 	strcat(address, "/lop_hoc");
 	make_link(address);
@@ -1254,6 +1254,8 @@ void dk_khoa_hoc(int x, int y, tai_khoan temp)
 	ds_sinh_vien ds_sv;
 	init_ds_sinh_vien(ds_sv);
 	doc_ds_sinh_vien_khoa_hoc(nh[cl_nam_hoc], hk[cl_hoc_ki], kh, ds_sv);
+	if (so_node_ds_sinh_vien(ds_sv) == kh.so_luong)
+		return;
 	if (check_ds_trong_lop(temp, nh[cl_nam_hoc], hk[cl_hoc_ki], kh) == true)
 	{
 		system("cls");

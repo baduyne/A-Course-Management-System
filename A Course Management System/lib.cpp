@@ -6,7 +6,7 @@ void log_in(ds_tai_khoan& l, tai_khoan& infor, int x, int y)
 	{
 		system("cls");
 		noi_dung1(x, y);
-		int cl = click(x, y, 2, 10);
+		int cl = click(x+2, y, 2, 18);
 		if (cl == y + 1)
 		{
 			while (true)
@@ -48,7 +48,7 @@ void log_in(ds_tai_khoan& l, tai_khoan& infor, int x, int y)
 			while (true)
 			{
 				system("cls");
-				char tf[50] = "Tai_khoan_giao_vien.csv";
+				char tf[50] = "Tai_khoan_nv_hoc_thuat.csv";
 				noi_dung2(x, y);
 				int cl_2 = click(x, y, 3, 10);
 				if (cl_2 == y + 1)
@@ -83,7 +83,7 @@ void log_in(ds_tai_khoan& l, tai_khoan& infor, int x, int y)
 }
 void option_teacher(tai_khoan& temp, ds_tai_khoan l, int x, int y)
 {
-	char tf[50] = "Tai_khoan_giao_vien.csv";
+	char tf[50] = "Tai_khoan_nv_hoc_thuat.csv";
 	while (true)
 	{
 		int sl = 7;
@@ -450,11 +450,11 @@ void remove_symbol_click(int x, int y, int w)
 }
 void noi_dung1( int x , int y)
 {
-	char nd1[50] = "Teacher";
+	char nd1[50] = "Academic Staff";
 	char nd2[50] = "Student";
-	ToMau(x+4-strlen(nd1)/2, y, nd1, 2);
-	ToMau(x + 4 - strlen(nd2) / 2, y+1, nd2, 2);
-	box(x, y, 2, 20);
+	ToMau(x+10-strlen(nd1)/2, y, nd1, 2);
+	ToMau(x + 10 - strlen(nd2) / 2, y+1, nd2, 2);
+	box(x, y, 2, 30);
 }
 void dk(int x, int y, char tf[])// dang ki tai khoan
 {
@@ -464,12 +464,10 @@ void dk(int x, int y, char tf[])// dang ki tai khoan
 	doc_file(tf, ds_tk);
 	int px = x, py = y;
 	y = y - 5;
-	while (true)
-	{
-		system("cls");
-		box(x, y, 18, 50);
-		gotoxy(x, y);
-		textcolor(2);
+	system("cls");
+	box(x, y, 20, 50);
+	gotoxy(x, y);
+	textcolor(2);
 		cout << "Your Name:";
 		textcolor(7);
 		o(x, y + 1, 25);
@@ -493,58 +491,57 @@ void dk(int x, int y, char tf[])// dang ki tai khoan
 		cin.getline(a.ngay_sinh, 20);
 		y += 4;
 		gotoxy(x, y);
-		textcolor(7);
+		textcolor(2);
 		cout << "Gender :";
 		textcolor(7);
 		strcpy(a.gioitinh, gender(x, y));
 		gotoxy(x + 5, y + 1);
-		textcolor(3);
-		cout << "--->Press Enter To Continue";
-		char c = _getch();
-		if (c == 13)
-		{
-			system("cls");
-			y = py;// reset value x y 
-			x = px;
-			box(x, y, 15, 40);
+		y += 2;
 			gotoxy(x, y);
 			textcolor(2);
-			cout << " Number CCCD :";
+			cout << "Number CCCD :";
 			textcolor(7);
 			o(x, y + 1, 25);
 			gotoxy(x + 1, y + 2);
 			cin.getline(a.cccd, 20);
 			y += 4;
 			gotoxy(x, y);
-			textcolor(2);
-			cout << "Username :";
-			textcolor(7);
-			o(x, y + 1, 25);
-			gotoxy(x + 1, y + 2);
-			cin.getline(a.user, 50);
-			y = y + 4;
-			gotoxy(x, y);
-			textcolor(2);
-			cout << "Password :";
-			textcolor(7);
-			o(x, y + 1, 25);
-			gotoxy(x + 1, y + 2);
-			cin.getline(a.key, 50);
-			
-		}
-		if (kt_trung_tai_khoan(ds_tk, a)==true)
-		{
-			gotoxy(x, y + 5);
-			textcolor(12);
-			cout << "Tai khoan Da Toan Tai";
-			cin.ignore();
-			y = py;// reset value x y 
-			x = px;
-			continue;
-		}
-		else
-			break;
-	}
+			textcolor(3);
+			cout << "--Press Enter To Continue";
+			char c = _getch();
+			while (true)
+			{
+				y = py;// reset value x y 
+				x = px;
+				system("cls");
+				box(x, y, 9, 40);
+				gotoxy(x, y);
+				textcolor(2);
+				cout << "Username :";
+				textcolor(7);
+				o(x, y + 1, 25);
+				gotoxy(x + 1, y + 2);
+				cin.getline(a.user, 50);
+				y = y + 4;
+				gotoxy(x, y);
+				textcolor(2);
+				cout << "Password :";
+				textcolor(7);
+				o(x, y + 1, 25);
+				gotoxy(x + 1, y + 2);
+				cin.getline(a.key, 50);
+
+				if (kt_trung_tai_khoan(ds_tk, a) == true)
+				{
+					gotoxy(x, y + 5);
+					textcolor(12);
+					cout << "Tai khoan Da Ton Tai";
+					cin.ignore();
+					continue;
+				}
+				else
+					break;
+			}
 	ofstream file;
 	file.open(tf, ios::app);
 	if (check_empty_file(tf))
@@ -556,7 +553,7 @@ bool kt_trung_tai_khoan(ds_tai_khoan l, tai_khoan a)
 {
 	while (l.head != NULL)
 	{
-		if (strcmp(l.head->data.key, a.key) == 0 && strcmp(l.head->data.user, a.user) == 0)
+		if (strcmp(l.head->data.key, a.key) == 0 || strcmp(l.head->data.user, a.user) == 0)
 			return true;
 		l.head = l.head->next;
 	}
@@ -869,7 +866,6 @@ void func_khoi_tao(int x, int y, int  cl)// khoi tao nam hoc va hoc ki
 		}
 		ghi_1_nam_hoc_vao_file(a);
 		create_folder(a.ten);
-		delete[]arr;
 	}
 	else if(cl == y + 1)// tao hoc ki
 	{
@@ -882,9 +878,9 @@ void func_khoi_tao(int x, int y, int  cl)// khoi tao nam hoc va hoc ki
 		doc_ds_hoc_ki_tu_file(arr_hoc_ki, nh[cl_nam_hoc], sl_hoc_ki);
 		if (sl_hoc_ki == 3)
 		{
-			gotoxy(x + 8, y + 14);
+			gotoxy(x +3, y + sl+1);
 			textcolor(12);
-			cout << "Hoc Ki Da Day !";
+			cout << "Hoc Ki Da Day";
 			cin.ignore();
 			return;
 		}
@@ -908,8 +904,6 @@ void func_khoi_tao(int x, int y, int  cl)// khoi tao nam hoc va hoc ki
 		strcat(address, "/");
 		strcat(address, h.ten);
 		create_folder(address);
-		delete[]nh;
-		delete[]arr_hoc_ki;
 		delete[]address;
 	}
 }
