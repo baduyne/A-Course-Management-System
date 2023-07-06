@@ -4,6 +4,7 @@
 #include"all_struct.h"
 #include"graphic.h"
 #include<direct.h>
+#include<string.h>
 using namespace std;
 
 void log_in(ds_tai_khoan& l, tai_khoan& infor, int x, int y);
