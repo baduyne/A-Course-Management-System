@@ -109,7 +109,7 @@ void option_teacher(tai_khoan& temp, ds_tai_khoan l, int x, int y)
 		}
 		else if (n == y + 4)
 		{
-			int sl, sl_hk=3;
+			int sl=3, sl_hk=3;
 			ds_khoa_hoc ds_kh;
 			init_ds_kh(ds_kh);
 			khoa_hoc mh;

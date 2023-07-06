@@ -141,6 +141,9 @@
     <ClInclude Include="lib1.h" />
     <ClInclude Include="lib2.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="2021-2022\Hoc Ki 1\Vi Tich Phan 1B22KHMT2.csv" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

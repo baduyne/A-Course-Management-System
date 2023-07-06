@@ -1,9 +1,9 @@
-STT,Ma khoa hoc,Khoa hoc,Lop hoc,Giao vien,So tin chi,So luong,Ngay hoc trong tuan,Ca hoc
-1,MTH00004,Vi Tich Phan 2B,22CTT2,Nguyen Van K,3,50,Mon,S3(13:30)
-2,VYK0003,Hoa Dai Cuong 1,22VYK1,Tran Van A,3,50,Thu,S1(07:30)
-3,CSC0001,Ki Thuat Lap Trinh,22CTT2,Bui Thanh D,4,50,Fri,S1(07:30)
-4,MTH0030,Dai So Tuyen Tinh,22CTT2,Tran H,4,50,Wed,S1(07:30)
-5,PHY0001,Vat Ly Dai Cuong ,22CTT6,Trinh Hoa Lang,3,50,Tue,S1(07:30)
-6,PHY0002,Triet ,22CTT2,Le Thi An,3,50,Thu,S3(13:30)
-7,MTH0001,Toan Roi Rac,22KHMT2,Tran Van A,3,50,Tue,S2(09:30)
-8,MTH0003,Vi Tich Phan 1B,22KHMT2,Nguyen Van N,3,50,Thu,S3(13:30)
+STT,Ma khoa hoc,Ten khoa hoc,Ten lop hoc,Ten giao vien,So tin chi,So luong,Ngay hoc trong tuan,Ca hoc
+1,MTH002,Vi Tich Phan 2B,22CTT2,Nguyen Van K,3,100,Tue,S3(13:30)
+2,CSC0001,Ki Thuat Lap Trinh,22CTT2,Bui Thanh D,4,50,Fri,S1(07:30)
+3,PHY0001,Vat Ly Dai Cuong ,22CTT6,Trinh Hoa Lang,3,50,Tue,S1(07:30)
+4,MTH0001,Toan Roi Rac,22KHMT2,Tran Van A,3,50,Tue,S2(09:30)
+5,MTH0003,Vi Tich Phan 1B,22KHMT2,Nguyen Van N,3,50,Thu,S3(13:30)
+6,VKUH001,Triet Hoc,22CTT1,Nguyen Van A,3,50,Sat,S3(13:30)
+7,VMK001,Dai So Tuyen Tinh,22CTT1,Nguyen H,3,50,Fri,S3(13:30)
+8,MTH0007,Sat Xuat Thong Ke,22CTT1,Nguyen S,4,50,Fri,S1(07:30)

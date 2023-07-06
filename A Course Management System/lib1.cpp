@@ -325,14 +325,9 @@ void xuat_ds_sinh_vien_lop_hoc(ds_sinh_vien l, int x ,int y, int pos)
 	y++;
 	while (l.head != NULL)
 	{
-		if (pos == 26)
-		{
-			XoaManHinh();
-			x = px, y = py;
-		}
 		color = 7;
 		if (i == pos)
-			color = 3;
+			color = 12;
 		char c[2] ="|";
 		gotoxy(x, y);
 		ToMau(x-1, y,c, 7);
@@ -361,6 +356,7 @@ void xem_ds_sinh_vien_lop_hoc(ds_sinh_vien l, int x, int y)
 	XoaManHinh();
 	int so_node_sv = so_node_ds_sinh_vien(l), i = 1, color = 7;
 	gotoxy(x - 1, y);
+	textcolor(7);
 	cout << "_____________________________________________________________________________";
 	y++;
 	gotoxy(x - 1, y);
@@ -382,7 +378,7 @@ void xem_ds_sinh_vien_lop_hoc(ds_sinh_vien l, int x, int y)
 			system("cls");
 			x = px, y = py;
 			gotoxy(x - 1, y);
-			textcolor(2);
+			textcolor(7);
 			cout << "_____________________________________________________________________________";
 			y++;
 			gotoxy(x - 1, y);
@@ -634,7 +630,7 @@ void cap_phat_them_lop_hoc(lop_hoc * & a, int& size)
 		temp[i] = a[i];
 	}
 	delete[]a;
-	int size_new = size + 3;
+	int size_new = size + 4;
 	a = new lop_hoc[size_new];
 	for (int i = 0; i < size; i++)
 	{
@@ -669,8 +665,8 @@ void doc_ds_lop_hoc_tu_file(lop_hoc *&a, nam_hoc b,int & sl)
 			 filein.getline(r, 10, ',');
 			 if (strcmp(r, "") == 0)
 				 break;
-			 filein.getline(a[i].ten, 30, ',');
-			 filein.getline(a[i].khoa, 30, ',');
+			 filein.getline(a[i].ten, 50, ',');
+			 filein.getline(a[i].khoa, 50, ',');
 			 filein >> a[i].so_luong;
 			 filein.ignore();
 			 filein.getline(a[i].k, 30, '\n');
@@ -981,26 +977,27 @@ void cap_phat_them_nam_hoc(nam_hoc *& a, int& sz)
 		temp[i] = a[i];
 	}
 	delete[]a;
-	int size_new = sz + 3;
+	int size_new = sz + 4;
 	a = new nam_hoc[size_new];
 	for (int j = 0; j < sz; j++)
 	{
 		a[j] = temp[j];
 	}
 	sz = size_new;
+	delete[]temp;
 }
 void doc_ds_nam_hoc_tu_file(nam_hoc*& arr, int &size)
 {
 	int i = 0;
 	ifstream fileoutnh;
 	fileoutnh.open("Danh_sach_cac_nam_hoc.csv");
-	char* r = new char[40];
-	fileoutnh.getline(r, 40, '\n');
+	char* r = new char[100];
+	fileoutnh.getline(r, 100, '\n');
 	while (!fileoutnh.eof())
 	{
 		if (i == size - 1)
 			cap_phat_them_nam_hoc(arr, size);
-		fileoutnh.getline(arr[i].ten, 50, '\n');
+		fileoutnh.getline(arr[i].ten, 100, '\n');
 		if (strcmp(arr[i].ten, "") == 0)
 			break;
 		i++;
@@ -1129,7 +1126,7 @@ bool doc_file_diem(ds_sinh_vien& l, char tf[])
 	if (!file_diem.is_open())
 		return false;
 	char* r = new char[100];
-	file_diem.getline(r, 100, '\n');// doc hang dau tien
+	file_diem.getline(r, 200, '\n');// doc hang dau tien
 	while (!file_diem.eof())
 	{
 		file_diem.getline(r, 50, ',');

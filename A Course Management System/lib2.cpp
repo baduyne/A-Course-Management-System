@@ -1,14 +1,15 @@
 #include"lib2.h"
 void xu_ly_lop_hoc( int x, int y)
 {
+	nam_hoc* nh = new nam_hoc[3];
+	lop_hoc* lh = new lop_hoc[4];
 	while (true)
 	{
 		nd_lop_hoc(x, y);
 		int cl = click(x, y, 9, 25);
 		if (cl == y + 8)
 			return;
-		int sl=0;
-		nam_hoc* nh = new nam_hoc[3];
+		int sl=4;
 		doc_ds_nam_hoc_tu_file(nh, sl);
 		if (sl == 0)
 		{
@@ -23,7 +24,6 @@ void xu_ly_lop_hoc( int x, int y)
 		xuat_nam_hoc(nh, sl, x, y);
 		int cl_nam_hoc = click(x, y + 1, sl, 12) - y - 1;
 		int sl_lop_hoc = 3;
-		lop_hoc* lh = new lop_hoc[sl_lop_hoc];// co the cap phat them
 		doc_ds_lop_hoc_tu_file(lh, nh[cl_nam_hoc], sl_lop_hoc);
 		system("cls");
 		if (cl == y)
@@ -69,21 +69,24 @@ void xu_ly_lop_hoc( int x, int y)
 				xuat_lop_hoc(nh[cl_nam_hoc], lh, sl_lop_hoc, x, y);
 				int cl_lh = click(19, y + 1, sl_lop_hoc, 62) - y - 1;
 				doc_ds_sinh_vien_lop_hoc(nh[cl_nam_hoc], lh[cl_lh], ds_sv);
-				char tf[200];
+				char* tf = new char[500];
 				system("cls");
-				box(x, y, 2, 50);
+				box(x, y, 5, 55);
 				gotoxy(x, y);
-				cout << "Duong Dan : ";
-				cin.getline(tf, 200);
+				cout << "Link : ";
+				o(x, y + 1, 40);
+				gotoxy(x + 1, y + 2);
+				cin.getline(tf, 500);
 				if (nhap_sinh_vien_tu_file(ds_sv, tf) == true)
 				{
-					draw_load(x, y + 1, 20);
+					draw_load(x, y + 4, 20);
 				}
 				else
 				{
 					char a[20] = "Fail.....";
-					ToMau(x, y + 1, a, 4);
+					ToMau(x, y + 4, a, 4);
 					Sleep(200);
+					continue;
 				}
 				sap_xep_sv(ds_sv);
 				ghi_ds_sinh_vien_vao_lop_hoc(nh[cl_nam_hoc], lh[cl_lh], ds_sv);
@@ -151,30 +154,33 @@ void xu_ly_lop_hoc( int x, int y)
 			else if (cl == y + 7)
 			{
 				xuat_lop_hoc(nh[cl_nam_hoc], lh, sl_lop_hoc, x, y);
-				int cl_lh = click(19, y + 1, sl_lop_hoc, 62) - y - 1;
-				xoa_1_lop_hoc(nh[cl_nam_hoc], lh, sl_lop_hoc, cl_lh);
+				int cl_lh_xoa = click(19, y + 1, sl_lop_hoc, 62) - y - 1;
+				
 				char* address = new char[70];
 				strcpy(address, nh[cl_nam_hoc].ten);
 				strcat(address, "/");
-				strcat(address, lh[cl_lh].ten);
+				strcat(address, lh[cl_lh_xoa].ten);
 				make_link(address);
 				delete_file(address);
+				xoa_1_lop_hoc(nh[cl_nam_hoc], lh, sl_lop_hoc, cl_lh_xoa);
 				ghi_ds_lop_hoc_vao_file(nh[cl_nam_hoc], lh, sl_lop_hoc);
 				delete[]address;
-			}
+			} 
 		}
 	}
 }
 void xu_ly_khoa_hoc(int x ,int y)
 {
+	nam_hoc* nh = new nam_hoc[3];
+	hoc_ki* hk = new hoc_ki[3];
 	while (true)
 	{
 		nd_khoa_hoc(x, y);
 		int cl = click(x+2, y, 9, 26);
 		if (cl == y + 8)
 			return;
-		int sl, sl_hk=3, w = 15;
-		nam_hoc* nh = new nam_hoc[3];
+		int sl=3, sl_hk=3, w = 15;
+		
 		doc_ds_nam_hoc_tu_file(nh, sl);
 		if(sl == 0)
 		{
@@ -188,7 +194,6 @@ void xu_ly_khoa_hoc(int x ,int y)
 		}
 		xuat_nam_hoc(nh, sl, x, y);
 		int cl_nam_hoc = click(x, y + 1, sl, 11) - y - 1;// bay dau tu 0
-		hoc_ki* hk = new hoc_ki[3];
 		doc_ds_hoc_ki_tu_file(hk, nh[cl_nam_hoc], sl_hk);
 		if (sl_hk == 0)
 		{
@@ -363,13 +368,13 @@ void xu_ly_khoa_hoc(int x ,int y)
 					}
 					temp->data = kh;
 					ghi_ds_khoa_hoc(hk[cl_hoc_ki], ds_kh, nh[cl_nam_hoc]);
-					sap_xep_sv(ds_sv);
 					ghi_ds_sinh_vien_vao_khoa_hoc(nh[cl_nam_hoc], hk[cl_hoc_ki], kh, ds_sv_kh);
 			}
 			else if (cl == y + 7)
 			{
 				while (true)
 				{
+					init_ds_sinh_vien(ds_sv);
 					system("cls");
 					char* ten_file = new char[300];
 					doc_ds_sinh_vien_khoa_hoc(nh[cl_nam_hoc], hk[cl_hoc_ki], kh, ds_sv);
@@ -416,9 +421,7 @@ void xu_ly_khoa_hoc(int x ,int y)
 						draw_load(x, y + 5, 20);
 					}
 					else if (click_nhap_diem == y + 3)
-					{
 						break;
-					}
 					else if (click_nhap_diem == y + 1)
 					{
 
@@ -428,7 +431,7 @@ void xu_ly_khoa_hoc(int x ,int y)
 		}
 	}
 }
-bool nhap_diem_tu_file(ds_sinh_vien &ds_sv_kh, char ten_file[])
+bool nhap_diem_tu_file(ds_sinh_vien & ds_sv_kh, char ten_file[])
 {
 		ds_sinh_vien l;
 		init_ds_sinh_vien(l);
